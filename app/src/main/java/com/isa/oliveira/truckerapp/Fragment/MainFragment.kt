@@ -1,5 +1,6 @@
 package com.isa.oliveira.truckerapp.Fragment
 
+import android.app.ProgressDialog
 import android.content.Intent
 import android.graphics.PorterDuff
 import android.location.Address
@@ -7,27 +8,19 @@ import android.location.Geocoder
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
-import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.google.gson.JsonObject
 import com.isa.oliveira.truckerapp.Activity.LoginActivity
 import com.isa.oliveira.truckerapp.Activity.MainActivity
-import com.isa.oliveira.truckerapp.Model.getParametros
-import com.isa.oliveira.truckerapp.Model.getValues
 import com.isa.oliveira.truckerapp.Model.point1Parametros
 import com.isa.oliveira.truckerapp.Model.sendParametros
 import com.isa.oliveira.truckerapp.R
 import com.isa.oliveira.truckerapp.Task.ListaTask
-import com.isa.oliveira.truckerapp.Task.valuesTask
-import com.isa.oliveira.truckerapp.Utilities.Util
 import java.text.DecimalFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -147,16 +140,16 @@ class MainFragment : Fragment(), AdapterView.OnItemSelectedListener{
 
                         var param =
                             sendParametros(
-                                point1Parametros,
                                 DecimalFormat.getNumberInstance().parse(edt_valor.text.toString()).toDouble(),
                                 DecimalFormat.getNumberInstance().parse(edt_consumo.text.toString()).toDouble(),
-                                eixos
+                                point1Parametros
                             )
 
                         val gson = GsonBuilder().setPrettyPrinting().create()
 
 
                         val jsonInString = gson.toJson(param)
+                        println("para " +jsonInString)
 
                         addData(jsonInString)
                     }else{
@@ -189,78 +182,25 @@ class MainFragment : Fragment(), AdapterView.OnItemSelectedListener{
 
 
     fun addData(parametros: String?) {
-        object : ListaTask(parametros!!) {
+            object : ListaTask(parametros!!, eixos, activity!!, auth) {
 
-            override fun onPostExecute(result: String?) {
-                super.onPostExecute(result)
-                if (result != null) {
-                    try {
-                        val serializer = Gson()
-                     var Lista = serializer.fromJson(result, getParametros::class.java)
-                        if (Lista != null) {
-
-                            val parameters = JsonObject()
-
-
-                            parameters.addProperty("axis", eixos)
-                            parameters.addProperty("distance", Lista.distance)
-                            parameters.addProperty("has_return_shipment", true)
-
-
-                            addValues(parameters.toString(), result)
-
-                        }
-
-                    } catch (ex: Exception) {
-                        Util.showMessage(
-                            context!!,
-                            "Aviso",
-                            "Sem acesso à internet, tente novamente!"
-                        )
-                    }
+                var pd: ProgressDialog? = null
+                override fun onPreExecute() {
+                    super.onPreExecute()
+                    pd = ProgressDialog.show(
+                        context, "",
+                        "Carregando Dados..."
+                    )
                 }
-            }
-        }.execute()
-    }
+
+                override fun onPostExecute(result: String?) {
+                    super.onPostExecute(result)
+                    pd!!.cancel()
+                }
+            }.execute()
+        }
+
     fun ClosedRange<Int>.random() =
         Random().nextInt(endInclusive - start) +  start
-    fun addValues(parametros: String?, result1: String) {
-        object : valuesTask(parametros!!) {
 
-            override fun onPostExecute(result: String?) {
-                super.onPostExecute(result)
-                if (result != null) {
-                    try {
-                        val serializer = Gson()
-                        var Lista = serializer.fromJson(result, getValues::class.java)
-                        var Lista2 = serializer.fromJson(result1, getParametros::class.java)
-                        if (Lista != null) {
-
-                            var detalhe = DetalhesFragment()
-
-                            if(!auth.currentUser!!.uid.isNullOrEmpty()){
-                                val database = FirebaseDatabase.getInstance()
-                                val myRef = database.getReference().child(auth.currentUser!!.uid)
-                                    .child("Rotas").child((0..10000).random().toString())
-                                myRef.setValue(Lista2, Lista)
-                                detalhe.add(result1, result, eixos)
-                            }
-                            activity!!.supportFragmentManager.beginTransaction()
-                                .replace(R.id.container, detalhe)
-                                .addToBackStack("")
-                                .commit()
-
-                        }
-
-                    } catch (ex: Exception) {
-                        Util.showMessage(
-                            context!!,
-                            "Aviso",
-                            "Sem acesso à internet, tente novamente!"
-                        )
-                    }
-                }
-            }
-        }.execute()
-    }
 }

@@ -67,10 +67,7 @@ class DetalhesFragment : Fragment(){
 
 
         close.setOnClickListener {
-            auth.signOut()
-            val i = Intent(activity, LoginActivity::class.java)
-            startActivity(i)
-            activity!!.finish()
+            activity!!.supportFragmentManager.popBackStack()
         }
         if (auth.currentUser != null){
             hisim.setOnClickListener {

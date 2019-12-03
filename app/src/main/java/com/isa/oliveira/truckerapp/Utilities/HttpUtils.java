@@ -26,6 +26,7 @@ public class HttpUtils {
 
 
     public static String Jsn;
+    public static String Jsn1;
 
     private static final int CONNECTION_TIMEOUT = 15000;
     private static final int DATARETRIEVAL_TIMEOUT = 10000;
@@ -123,6 +124,38 @@ public class HttpUtils {
         Request request = new Request.Builder()
                 .url(urlString)
                 .post(body)
+                .build();
+
+        Call call = client.newCall(request);
+
+        call.enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e("HttpService", "onFailure() Request was: " + e);
+
+                Jsn1 = "erro";
+                e.printStackTrace();
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Jsn1 = response.body().string();
+
+                Log.e("response ", "onResponse(): " + Jsn1 );
+            }
+        });
+       return  Jsn1;
+    }
+
+    public static String post1(String urlString, String parameters) throws IOException {
+        MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+        RequestBody body = RequestBody.create(JSON, parameters);
+
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url(urlString)
+                .post(body)
                 .addHeader("Authorization", "header value") //Notice this request has header if you don't need to send a header just erase this part
                 .build();
 
@@ -141,11 +174,10 @@ public class HttpUtils {
             public void onResponse(Call call, Response response) throws IOException {
                 Jsn = response.body().string();
 
-                Log.e("response ", "onResponse(): " + Jsn );
+                Log.e("response ", "onResponse() post 1: " + Jsn );
             }
         });
-       return  Jsn;
+        return  Jsn;
     }
-
 
 }

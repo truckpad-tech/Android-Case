@@ -72,5 +72,8 @@ data class allDetails(
     val neogranel: Double?,
     @SerializedName("perigosa")
     @Expose
-    val perigosa: Double?
+    val perigosa: Double?,
+    @SerializedName("aixes")
+    @Expose
+    val eixos: Int?
 )

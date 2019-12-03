@@ -30,7 +30,7 @@ data class getParametros(
 
     @SerializedName("distance")
                            @Expose
-                           val distance: Int?,
+                           val distance: Int = 0,
     @SerializedName("distance_unit")
                            @Expose
                            val distance_unit: String?,
