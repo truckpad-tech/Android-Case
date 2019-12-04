@@ -16,4 +16,10 @@
     <string name="label_consumption">consumo em km/l</string>
     <string name="label_diesel_price">Preço do diesel</string>
     <string name="label_calculate">calcular</string>
+    <string name="exit_alert_message">Deseja realmente sair? Dados não finalizados serão perdidos</string>
+    <string name="error_no_location">Não existe localização atual</string>
+    <string name="message_define_inicial_location">Defina o endereço INICIAL</string>
+    <string name="message_initial_location_applied">Endereço inicial aplicado!</string>
+    <string name="message_final_location_applied">Endereço final aplicado!</string>
+    <string name="label_cancel">Cancelar</string>
 </resources>

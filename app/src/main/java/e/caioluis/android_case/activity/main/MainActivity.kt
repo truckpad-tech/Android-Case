@@ -1,5 +1,6 @@
 package e.caioluis.android_case.activity.main
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -12,9 +13,10 @@ import kotlinx.android.synthetic.main.activity_maps.*
 class MainActivity : AppCompatActivity(),
     MainActivityContract.MainView, View.OnClickListener {
 
-    private lateinit var bottomSheet: View
     private lateinit var bSheetBehavior: BottomSheetBehavior<View>
+    private lateinit var bottomSheet: View
     private lateinit var presenter: MainActivityContract.MainPresenter
+    private lateinit var builder: AlertDialog.Builder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,8 +30,10 @@ class MainActivity : AppCompatActivity(),
 
         bottomSheet = findViewById<View>(R.id.frag_bottom_sheet)
         bSheetBehavior = BottomSheetBehavior.from(bottomSheet)
-        presenter =
-            MainActivityPresenter(this)
+
+        presenter = MainActivityPresenter(this)
+
+        builder = AlertDialog.Builder(this)
     }
 
     private fun initActions() {
@@ -54,17 +58,17 @@ class MainActivity : AppCompatActivity(),
                 presenter.handleSearch()
             }
 
-            R.id.bottom_tv_startPoint ->{
+            R.id.bottom_tv_startPoint -> {
 
                 presenter.handleStartPointClick()
             }
 
-            R.id.bottom_tv_finalPoint ->{
+            R.id.bottom_tv_finalPoint -> {
 
                 presenter.handleFinalPointClick()
             }
 
-            R.id.map_btn_useLocation ->{
+            R.id.map_btn_useLocation -> {
 
                 presenter.handleUseLocationClick()
             }
@@ -73,9 +77,9 @@ class MainActivity : AppCompatActivity(),
 
     override fun expandBottomSheet(boolean: Boolean) {
 
-        if (boolean){
+        if (boolean) {
             bSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-        }else{
+        } else {
             bSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
         }
     }
@@ -108,5 +112,26 @@ class MainActivity : AppCompatActivity(),
         bottom_tv_startPoint.setOnClickListener(this)
         bottom_tv_finalPoint.setOnClickListener(this)
         map_btn_useLocation.setOnClickListener(this)
+    }
+
+    override fun onBackPressed() {
+        showExitAlert()
+    }
+
+    private fun showExitAlert() {
+
+        with(builder) {
+
+            setMessage(context.getString(R.string.exit_alert_message))
+            setPositiveButton(getString(R.string.label_cancel)) { _, _ ->
+
+            }
+
+            setNegativeButton(R.string.label_exit) { _, _ ->
+                finish()
+            }
+
+            show()
+        }
     }
 }

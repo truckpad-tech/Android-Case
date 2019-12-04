@@ -1,20 +1,12 @@
 package e.caioluis.android_case.activity.main
 
-import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.AlertDialog
-import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
-import android.location.LocationManager
-import androidx.fragment.app.FragmentActivity
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import e.caioluis.android_case.R
+import e.caioluis.android_case.map.MyMap
 import e.caioluis.android_case.util.CheckPermission
 import kotlinx.android.synthetic.main.activity_maps.*
 
@@ -22,22 +14,11 @@ class MainActivityPresenter(
 
     private val mainView: MainActivityContract.MainView
 
-) : MainActivityContract.MainPresenter, OnMapReadyCallback {
-
-    private lateinit var mMap: GoogleMap
+) : MainActivityContract.MainPresenter {
 
     private val mainActivity = mainView as Activity
-
-    private var locationManager: LocationManager =
-        (mainActivity as Context).getSystemService(Context.LOCATION_SERVICE) as LocationManager
-
-    private var mapFragment =
-        (mainActivity as FragmentActivity).supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
-
-    private var willShowDialog = true
+    private val googleMap = MyMap(mainActivity)
     private val checkPermission = CheckPermission(mainActivity)
-
-    private var actualLatLng: LatLng = LatLng(0.0, 0.0)
     private var initialLocation: LatLng = LatLng(0.0, 0.0)
     private var finalLocation: LatLng = LatLng(0.0, 0.0)
     private var isInitialPoint = true
@@ -45,7 +26,7 @@ class MainActivityPresenter(
     override fun handlePermissionResult(result: IntArray) {
 
         if (result.isEmpty() || result.first() == PackageManager.PERMISSION_DENIED) {
-            showPermissionAlert()
+            checkPermission.showPermissionAlert()
             return
         }
 
@@ -57,27 +38,30 @@ class MainActivityPresenter(
         if (!checkPermission.checkGpsPermission())
             return
 
-        mapFragment.getMapAsync(this)
+        googleMap.startMap()
     }
 
     override fun handleSearch() {
 
         val searchString = mainActivity.map_et_searchBar.text.toString()
 
-        val address = geolocate(searchString)
+        val address = geoLocate(searchString)
 
         if (address != null) {
 
             val addressLatLng = LatLng(address.latitude, address.longitude)
-            navigateToLocation(addressLatLng)
+            googleMap.navigateToLocation(addressLatLng)
         }
     }
 
     override fun handleStartPointClick() {
 
-        if (isActualLocationEmpty()) return
+        if (googleMap.isActualLocationEmpty()) {
+            mainView.showToastMessage(mainActivity.getString(R.string.error_no_location))
+            return
+        }
 
-        mainView.showToastMessage("Defina o endereço INICIAL")
+        mainView.showToastMessage(mainActivity.getString(R.string.message_define_inicial_location))
 
         isInitialPoint = true
 
@@ -87,9 +71,12 @@ class MainActivityPresenter(
 
     override fun handleFinalPointClick() {
 
-        if (isActualLocationEmpty()) return
+        if (googleMap.isActualLocationEmpty()) {
+            mainView.showToastMessage(mainActivity.getString(R.string.error_no_location))
+            return
+        }
 
-        mainView.showToastMessage("Defina o endereço FINAL")
+        mainView.showToastMessage(mainActivity.getString(R.string.message_define_inicial_location))
 
         isInitialPoint = false
 
@@ -99,22 +86,22 @@ class MainActivityPresenter(
 
     override fun handleUseLocationClick() {
 
-        val address = geolocate(actualLatLng)
+        val address = geoLocate(googleMap.getActualLatLng())
 
         if (isInitialPoint) {
             mainActivity.bottom_tv_startPoint.text = address!!.getAddressLine(0)
-            initialLocation = actualLatLng
-            mainView.showToastMessage("Endereço inicial aplicado!")
+            initialLocation = googleMap.getActualLatLng()
+            mainView.showToastMessage(mainActivity.getString(R.string.message_initial_location_applied))
         } else {
             mainActivity.bottom_tv_finalPoint.text = address!!.getAddressLine(0)
-            finalLocation = actualLatLng
-            mainView.showToastMessage("Endereço final aplicado!")
+            finalLocation = googleMap.getActualLatLng()
+            mainView.showToastMessage(mainActivity.getString(R.string.message_final_location_applied))
         }
 
         mainView.expandBottomSheet(true)
     }
 
-    private fun geolocate(searchString: String): Address? {
+    private fun geoLocate(searchString: String): Address? {
 
         val geocode = Geocoder(mainActivity)
         var result: ArrayList<Address> = arrayListOf()
@@ -134,7 +121,7 @@ class MainActivityPresenter(
         return null
     }
 
-    private fun geolocate(latLng: LatLng): Address? {
+    private fun geoLocate(latLng: LatLng): Address? {
 
         val geocode = Geocoder(mainActivity)
         var result: ArrayList<Address> = arrayListOf()
@@ -153,70 +140,6 @@ class MainActivityPresenter(
         }
 
         return null
-    }
-
-    private fun isActualLocationEmpty(): Boolean {
-        if (actualLatLng == LatLng(0.0, 0.0)) {
-            mainView.showToastMessage("Não existe ponto marcado no mapa")
-            return true
-        }
-        return false
-    }
-
-    override fun onMapReady(googleMap: GoogleMap) {
-
-        mMap = googleMap
-
-        mMap.isMyLocationEnabled = true
-
-        navigateToLocation(getMyLocationLatLng())
-
-        mMap.setOnCameraIdleListener {
-
-            actualLatLng = mMap.cameraPosition.target
-        }
-    }
-
-    @SuppressLint("MissingPermission")
-    private fun getMyLocationLatLng(): LatLng {
-
-        val myLocation = locationManager
-            .getLastKnownLocation(LocationManager.GPS_PROVIDER)
-            ?: return LatLng(
-                -23.533773,
-                -46.625290
-                // latitude e longitude do centro de São Paulo
-            )
-        return LatLng(myLocation.latitude, myLocation.longitude)
-    }
-
-    private fun navigateToLocation(latLng: LatLng) {
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15f))
-    }
-
-    private fun showPermissionAlert() {
-
-        if (willShowDialog) {
-
-            val builder = AlertDialog.Builder(mainActivity)
-
-            with(builder) {
-
-                setTitle(context.getString(R.string.alert_title_warning))
-                setMessage(context.getString(R.string.alert_message_permission_denied))
-                setCancelable(true)
-                setPositiveButton(android.R.string.yes) { _, _ ->
-                    willShowDialog = !checkPermission.checkGpsPermission()
-                }
-
-                setNegativeButton(context.getString(R.string.label_exit)) { _, _ ->
-
-                    mainActivity.finish()
-                }
-
-                show()
-            }
-        }
     }
 
     override fun bottomSheetClicked() {

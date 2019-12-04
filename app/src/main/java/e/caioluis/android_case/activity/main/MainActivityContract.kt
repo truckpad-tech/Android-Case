@@ -6,7 +6,7 @@ interface MainActivityContract {
         fun showProgressBar(boolean: Boolean)
         fun expandBottomSheet(boolean: Boolean)
         fun showToastMessage(message: String)
-        fun showUseLocationButton(visible: Boolean)
+        fun showUseLocationButton(boolean: Boolean)
     }
 
     interface MainPresenter {
