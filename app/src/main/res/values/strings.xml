@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Android-Case</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="search_bar_hint">Insira o nome do local</string>
+    <string name="alert_message_permission_denied">Sem a permissão de localização, o app não pode ser inicializado.
+        Caso tenha sido marcada a opção \'Não mostrar novamente\' ao negar, é preciso dar a
+        permissão manualmente nas configurações do aparelho.
+    </string>
+
+    <string name="alert_title_warning">Atenção!</string>
+    <string name="label_exit">sair</string>
+    <string name="title_calculate_route">Calcular Rota</string>
+    <string name="label_initial_location">Local de partida</string>
+    <string name="label_final_location">Destino final</string>
+    <string name="label_axle_number">Número de eixos</string>
+    <string name="label_consumption">consumo em km/l</string>
+    <string name="label_diesel_price">Preço do diesel</string>
+    <string name="label_calculate">calcular</string>
+</resources>
