@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">TruckPad</string>
+
+    <!-- Dialog -->
+    <string name="cancel">Cancelar</string>
+    <string name="history_dialog_content">Apagar histórico?</string>
+
+    <!-- Main -->
+    <string name="current_location">Usar local atual</string>
+    <string name="text_current_location">Localização atual</string>
+    <string name="error_message">Ocorreu um erro ao processar a requisição</string>
+    <string name="error_try_again">Tentar novamente</string>
+
+    <!-- Calculator -->
+    <string name="calculator_title">Calculadora de custos</string>
+    <string name="calculator_tab_search">Pesquisa</string>
+    <string name="calculator_tab_results">Resultados</string>
+    <string name="calculator_tab_history">Histórico</string>
+
+    <!-- Search -->
+    <string name="calculator_search_origin_hint">Informe a origem</string>
+    <string name="calculator_search_destination_hint">Informe o destino</string>
+    <string name="calculator_search_label_axis">Eixos do veículo</string>
+    <string name="calculator_search_fuel_price_label">Preço do combustível</string>
+    <string name="calculator_search_fuel_consumption_label">Consumo médio de combustível (km/l)</string>
+    <string name="calculator_search_fuel_usage_and_price_pattern">##,##</string>
+    <string name="calculator_search_calculate">Calcular</string>
+
+    <string name="fuel_price_initial_value">3,97</string>
+    <string name="fuel_consumption_initial_price">1,70</string>
+
+    <!-- Results -->
+    <string name="calculator_results_label_origin">Origem</string>
+    <string name="calculator_results_label_destination">Destino</string>
+    <string name="calculator_results_axis_label">Eixos</string>
+    <string name="calculator_results_label_distance">Distância</string>
+    <string name="calculator_results_label_duration">Duração</string>
+    <string name="calculator_results_label_toll">Pedágio</string>
+    <string name="calculator_results_label_fuel_consumption">Combustível necessário</string>
+    <string name="calculator_results_label_fuel_total">Total de combustível</string>
+    <string name="calculator_results_label_total">Total</string>
+    <string name="calculator_results_show_map_route">Mostrar rota no mapa</string>
+    <string name="calculator_results_antt_table_title">Tabela de Preços Mínimos - ANTT</string>
+
+    <string name="antt_price_perigosa">Perigosa</string>
+    <string name="antt_price_frigorificada">Frigorificada</string>
+    <string name="antt_price_neogranel">Neogranel</string>
+    <string name="antt_price_granel">Granel</string>
+    <string name="antt_price_geral">Geral</string>
+
+    <string name="tools_suffix">+ pedágio</string>
+
+    <!-- History -->
+    <string name="history_recents">Recentes</string>
+    <string name="history_empty">Sem pesquisas recentes</string>
+    <string name="history_origin">Origem: %s</string>
+    <string name="history_destination">Destino: %s</string>
+
+</resources>

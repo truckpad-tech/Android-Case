@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.diegobezerra.truckpadcase.ui.main.MainViewModel" />
+
+        <variable
+            name="historyEntry"
+            type="com.diegobezerra.truckpadcase.domain.model.HistoryEntry" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:onClick="@{() -> viewModel.onHistoryEntryClick(historyEntry) }">
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.33" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.66" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/color_divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/origin"
+            style="@style/Widget.TruckPad.Calculator.History.Place"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:paddingStart="@dimen/spacing_normal"
+            android:paddingEnd="@dimen/spacing_normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/destination"
+            style="@style/Widget.TruckPad.Calculator.History.Place"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_micro"
+            android:paddingStart="@dimen/spacing_normal"
+            android:paddingEnd="@dimen/spacing_normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/origin" />
+
+        <TextView
+            android:id="@+id/axis"
+            style="@style/Widget.TruckPad.Calculator.History.Icon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:drawableStart="@drawable/ic_axis"
+            android:paddingStart="@dimen/spacing_normal"
+            android:paddingEnd="@dimen/spacing_normal"
+            android:paddingBottom="@dimen/spacing_normal"
+            android:text="@{Integer.toString(historyEntry.axis)}"
+            app:layout_constraintEnd_toEndOf="@id/guideline_one"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/destination"
+            tools:text="2" />
+
+        <TextView
+            android:id="@+id/fuel_consumption"
+            style="@style/Widget.TruckPad.Calculator.History.Icon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:drawableStart="@drawable/ic_fuel_consumption"
+            android:paddingStart="@dimen/spacing_normal"
+            android:paddingEnd="@dimen/spacing_normal"
+            android:paddingBottom="@dimen/spacing_normal"
+            app:decimal="@{historyEntry.fuelConsumption}"
+            app:layout_constraintEnd_toEndOf="@id/guideline_two"
+            app:layout_constraintStart_toStartOf="@id/guideline_one"
+            app:layout_constraintTop_toBottomOf="@id/destination"
+            tools:text="@string/fuel_consumption_initial_price" />
+
+        <TextView
+            android:id="@+id/fuel_price"
+            style="@style/Widget.TruckPad.Calculator.History.Icon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_normal"
+            android:drawableStart="@drawable/ic_fuel_price"
+            android:paddingStart="@dimen/spacing_normal"
+            android:paddingEnd="@dimen/spacing_normal"
+            android:paddingBottom="@dimen/spacing_normal"
+            app:decimal="@{historyEntry.fuelPrice}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guideline_two"
+            app:layout_constraintTop_toBottomOf="@id/destination"
+            tools:text="@string/fuel_price_initial_value" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

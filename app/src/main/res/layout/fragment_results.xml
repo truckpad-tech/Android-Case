@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.diegobezerra.truckpadcase.ui.main.MainViewModel" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/results_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/spacing_normal">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_values_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.7" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_values_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/spacing_micro" />
+
+            <Button
+                android:id="@+id/show_map_route"
+                style="@style/Widget.TruckPad.Calculator.Results.Button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> viewModel.onShowRoute()}"
+                android:text="@string/calculator_results_show_map_route"
+                android:enabled="@{viewModel.resultsUiModel.routeInfo != null}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/results_label_origin"
+                style="@style/Widget.TruckPad.Calculator.Results.Label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:text="@string/calculator_results_label_origin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/show_map_route" />
+
+            <TextView
+                android:id="@+id/results_value_origin"
+                style="@style/Widget.TruckPad.Calculator.Results.Value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_micro"
+                android:text="@{viewModel.resultsUiModel.origin.displayName}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/results_label_origin"
+                app:textWhenEmpty="@{`-`}"
+                tools:text="Brasil, Estado, Cidade" />
+
+            <TextView
+                android:id="@+id/results_label_destination"
+                style="@style/Widget.TruckPad.Calculator.Results.Label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:text="@string/calculator_results_label_destination"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/results_value_origin" />
+
+            <TextView
+                android:id="@+id/results_value_destination"
+                style="@style/Widget.TruckPad.Calculator.Results.Value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_micro"
+                android:text="@{viewModel.resultsUiModel.destination.displayName}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/results_label_destination"
+                app:textWhenEmpty="@{`-`}"
+                tools:text="Brasil, Estado, Cidade" />
+
+            <TextView
+                android:id="@+id/results_label_axis"
+                style="@style/Widget.TruckPad.Calculator.Results.Label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:text="@string/calculator_results_axis_label"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/results_value_destination" />
+
+            <TextView
+                android:id="@+id/results_value_axis"
+                style="@style/Widget.TruckPad.Calculator.Results.Value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{Integer.toString(viewModel.resultsUiModel.axis)}"
+                app:layout_constraintBottom_toBottomOf="@id/results_label_axis"
+                app:layout_constraintEnd_toEndOf="@id/guideline_values_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_values_start"
+                app:layout_constraintTop_toTopOf="@id/results_label_axis"
+                tools:text="2" />
+
+            <TextView
+                android:id="@+id/results_label_distance"
+                style="@style/Widget.TruckPad.Calculator.Results.Label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:text="@string/calculator_results_label_distance"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/results_label_axis" />
+
+            <TextView
+                android:id="@+id/results_value_distance"
+                style="@style/Widget.TruckPad.Calculator.Results.Value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:defaultUnit="@{`meters`}"
+                app:layout_constraintBottom_toBottomOf="@id/results_label_distance"
+                app:layout_constraintEnd_toEndOf="@id/guideline_values_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_values_start"
+                app:layout_constraintTop_toTopOf="@id/results_label_distance"
+                app:number="@{viewModel.resultsUiModel.routeInfo.distance}"
+                app:unit="@{viewModel.resultsUiModel.routeInfo.distanceUnit}"
+                tools:text="100 Km" />
+
+            <TextView
+                android:id="@+id/results_label_duration"
+                style="@style/Widget.TruckPad.Calculator.Results.Label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:text="@string/calculator_results_label_duration"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/results_label_distance" />
+
+            <TextView
+                android:id="@+id/results_value_duration"
+                style="@style/Widget.TruckPad.Calculator.Results.Value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:defaultUnit="@{`seconds`}"
+                app:layout_constraintBottom_toBottomOf="@id/results_label_duration"
+                app:layout_constraintEnd_toEndOf="@id/guideline_values_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_values_start"
+                app:layout_constraintTop_toTopOf="@id/results_label_duration"
+                app:number="@{viewModel.resultsUiModel.routeInfo.duration}"
+                app:unit="@{viewModel.resultsUiModel.routeInfo.durationUnit}"
+                tools:text="2 horas" />
+
+            <TextView
+                android:id="@+id/results_label_toll"
+                style="@style/Widget.TruckPad.Calculator.Results.Label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:text="@string/calculator_results_label_toll"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/results_label_duration" />
+
+            <TextView
+                android:id="@+id/results_value_toll"
+                style="@style/Widget.TruckPad.Calculator.Results.Value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:defaultUnit="@{`R$`}"
+                app:layout_constraintBottom_toBottomOf="@id/results_label_toll"
+                app:layout_constraintEnd_toEndOf="@id/guideline_values_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_values_start"
+                app:layout_constraintTop_toTopOf="@id/results_label_toll"
+                app:number="@{viewModel.resultsUiModel.routeInfo.tollCost}"
+                app:unit="@{viewModel.resultsUiModel.routeInfo.tollCostUnit}"
+                tools:text="0,00" />
+
+            <TextView
+                android:id="@+id/results_label_fuel_usage"
+                style="@style/Widget.TruckPad.Calculator.Results.Label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:text="@string/calculator_results_label_fuel_consumption"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/results_label_toll" />
+
+            <TextView
+                android:id="@+id/results_value_fuel_usage"
+                style="@style/Widget.TruckPad.Calculator.Results.Value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:defaultUnit="@{`liters`}"
+                app:layout_constraintBottom_toBottomOf="@id/results_label_fuel_usage"
+                app:layout_constraintEnd_toEndOf="@id/guideline_values_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_values_start"
+                app:layout_constraintTop_toTopOf="@id/results_label_fuel_usage"
+                app:number="@{viewModel.resultsUiModel.routeInfo.fuelUsage}"
+                app:unit="@{viewModel.resultsUiModel.routeInfo.fuelUsageUnit}"
+                tools:text="0,00 L" />
+
+            <TextView
+                android:id="@+id/results_label_fuel_total"
+                style="@style/Widget.TruckPad.Calculator.Results.Label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:text="@string/calculator_results_label_fuel_total"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/results_label_fuel_usage" />
+
+            <TextView
+                android:id="@+id/results_value_fuel_total"
+                style="@style/Widget.TruckPad.Calculator.Results.Value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:defaultUnit="@{`R$`}"
+                app:layout_constraintBottom_toBottomOf="@id/results_label_fuel_total"
+                app:layout_constraintEnd_toEndOf="@id/guideline_values_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_values_start"
+                app:layout_constraintTop_toTopOf="@id/results_label_fuel_total"
+                app:number="@{viewModel.resultsUiModel.routeInfo.fuelCost}"
+                app:unit="@{viewModel.resultsUiModel.routeInfo.fuelCostUnit}"
+                tools:text="0,00" />
+
+            <TextView
+                android:id="@+id/results_label_total"
+                style="@style/Widget.TruckPad.Calculator.Results.Label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:text="@string/calculator_results_label_total"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/results_label_fuel_total" />
+
+            <TextView
+                android:id="@+id/results_value_total"
+                style="@style/Widget.TruckPad.Calculator.Results.Value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:defaultUnit="@{`R$`}"
+                app:layout_constraintBottom_toBottomOf="@id/results_label_total"
+                app:layout_constraintEnd_toEndOf="@id/guideline_values_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_values_start"
+                app:layout_constraintTop_toTopOf="@id/results_label_total"
+                app:number="@{viewModel.resultsUiModel.routeInfo.totalCost}"
+                tools:text="0,00" />
+
+            <TextView
+                android:id="@+id/results_antt_table_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/calculator_results_antt_table_title"
+                android:layout_marginTop="@dimen/spacing_huge"
+                style="@style/Widget.TruckPad.Calculator.Results.ANTT"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/results_value_total" />
+
+
+            <TextView
+                android:id="@+id/results_label_antt_geral"
+                style="@style/Widget.TruckPad.Calculator.Results.Label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:text="@string/antt_price_geral"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/results_antt_table_title" />
+
+            <TextView
+                android:id="@+id/results_value_antt_geral"
+                style="@style/Widget.TruckPad.Calculator.Results.Value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/results_label_antt_geral"
+                app:layout_constraintEnd_toEndOf="@id/guideline_values_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_values_start"
+                app:layout_constraintTop_toTopOf="@id/results_label_antt_geral"
+                app:hasTolls="@{viewModel.resultsUiModel.routeInfo.hasTolls}"
+                app:number="@{viewModel.resultsUiModel.anttPrices.geral}"
+                tools:text="0,00" />
+
+            <TextView
+                android:id="@+id/results_label_antt_granel"
+                style="@style/Widget.TruckPad.Calculator.Results.Label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:text="@string/antt_price_granel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/results_value_antt_geral" />
+
+            <TextView
+                android:id="@+id/results_value_antt_granel"
+                style="@style/Widget.TruckPad.Calculator.Results.Value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/results_label_antt_granel"
+                app:layout_constraintEnd_toEndOf="@id/guideline_values_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_values_start"
+                app:layout_constraintTop_toTopOf="@id/results_label_antt_granel"
+                app:hasTolls="@{viewModel.resultsUiModel.routeInfo.hasTolls}"
+                app:number="@{viewModel.resultsUiModel.anttPrices.granel}"
+                tools:text="0,00" />
+
+            <TextView
+                android:id="@+id/results_label_antt_neogranel"
+                style="@style/Widget.TruckPad.Calculator.Results.Label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:text="@string/antt_price_neogranel"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/results_value_antt_granel" />
+
+            <TextView
+                android:id="@+id/results_value_antt_neogranel"
+                style="@style/Widget.TruckPad.Calculator.Results.Value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/results_label_antt_neogranel"
+                app:layout_constraintEnd_toEndOf="@id/guideline_values_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_values_start"
+                app:layout_constraintTop_toTopOf="@id/results_label_antt_neogranel"
+                app:hasTolls="@{viewModel.resultsUiModel.routeInfo.hasTolls}"
+                app:number="@{viewModel.resultsUiModel.anttPrices.neogranel}"
+                tools:text="0,00" />
+
+            <TextView
+                android:id="@+id/results_label_antt_frigorificada"
+                style="@style/Widget.TruckPad.Calculator.Results.Label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:text="@string/antt_price_frigorificada"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/results_value_antt_neogranel" />
+
+            <TextView
+                android:id="@+id/results_value_antt_frigorificada"
+                style="@style/Widget.TruckPad.Calculator.Results.Value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/results_label_antt_frigorificada"
+                app:layout_constraintEnd_toEndOf="@id/guideline_values_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_values_start"
+                app:layout_constraintTop_toTopOf="@id/results_label_antt_frigorificada"
+                app:hasTolls="@{viewModel.resultsUiModel.routeInfo.hasTolls}"
+                app:number="@{viewModel.resultsUiModel.anttPrices.frigorificada}"
+                tools:text="0,00" />
+
+            <TextView
+                android:id="@+id/results_label_antt_perigosa"
+                style="@style/Widget.TruckPad.Calculator.Results.Label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:text="@string/antt_price_perigosa"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/results_value_antt_frigorificada" />
+
+            <TextView
+                android:id="@+id/results_value_antt_perigosa"
+                style="@style/Widget.TruckPad.Calculator.Results.Value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@id/results_label_antt_perigosa"
+                app:layout_constraintEnd_toEndOf="@id/guideline_values_end"
+                app:layout_constraintStart_toStartOf="@id/guideline_values_start"
+                app:layout_constraintTop_toTopOf="@id/results_label_antt_perigosa"
+                app:hasTolls="@{viewModel.resultsUiModel.routeInfo.hasTolls}"
+                app:number="@{viewModel.resultsUiModel.anttPrices.perigosa}"
+                tools:text="0,00" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>
