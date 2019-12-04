@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_primary">#FFCE00</color>
+    <color name="color_primary_dark">#E0A800</color>
+    <color name="color_status_bar">#AAA</color>
+    <color name="color_divider">#DDD</color>
+</resources>

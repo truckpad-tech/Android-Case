@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CustomNumberPicker">
+        <attr name="cnpNumber" format="integer" />
+        <attr name="cnpMin" format="integer" />
+        <attr name="cnpMax" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="DecimalFormattedEditText">
+        <attr name="decimalFormat" format="string" />
+        <attr name="decimalNumber" format="float" />
+    </declare-styleable>
+
+</resources>

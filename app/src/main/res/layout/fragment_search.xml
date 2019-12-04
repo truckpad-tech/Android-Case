@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.diegobezerra.truckpadcase.ui.main.MainViewModel" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/search_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraint_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/spacing_normal">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_middle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.5" />
+
+            <AutoCompleteTextView
+                android:id="@+id/origin_text_view"
+                style="@style/Widget.TruckPad.Calculator.Place"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:completionThreshold="2"
+                android:hint="@string/calculator_search_origin_hint"
+                android:maxLines="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/use_location_button"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="@{() -> viewModel.onUseCurrentLocation()}"
+                android:text="@string/current_location"
+                android:textAllCaps="false"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/origin_text_view" />
+
+            <AutoCompleteTextView
+                android:id="@+id/destination_text_view"
+                style="@style/Widget.TruckPad.Calculator.Place"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:completionThreshold="2"
+                android:hint="@string/calculator_search_destination_hint"
+                android:maxLines="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/use_location_button" />
+
+            <TextView
+                android:id="@+id/search_axis_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:paddingTop="@dimen/spacing_micro"
+                android:paddingBottom="@dimen/spacing_micro"
+                android:text="@string/calculator_search_label_axis"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/destination_text_view" />
+
+            <com.diegobezerra.truckpadcase.widget.CustomNumberPicker
+                android:id="@+id/axis_picker"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cnpMax="@integer/axis_max_value"
+                app:cnpMin="@integer/axis_min_value"
+                app:cnpNumber="@integer/axis_min_value"
+                app:layout_constraintBottom_toBottomOf="@id/search_axis_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/search_axis_label" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="search_fuel_consumption_label,search_fuel_price_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/search_fuel_consumption_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:paddingTop="@dimen/spacing_micro"
+                android:paddingBottom="@dimen/spacing_micro"
+                android:text="@string/calculator_search_fuel_consumption_label"
+                app:layout_constraintEnd_toEndOf="@id/guideline_middle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/search_axis_label" />
+
+            <com.diegobezerra.truckpadcase.widget.DecimalFormattedEditText
+                android:id="@+id/fuel_consumption_edit_text"
+                style="@style/Widget.TruckPad.Calculator.InputField"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_fuel_consumption"
+                android:inputType="numberDecimal"
+                android:maxLength="5"
+                android:text="@string/fuel_consumption_initial_price"
+                app:layout_constraintEnd_toEndOf="@id/guideline_middle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/barrier" />
+
+            <TextView
+                android:id="@+id/search_fuel_price_label"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_normal"
+                android:paddingTop="@dimen/spacing_micro"
+                android:paddingBottom="@dimen/spacing_micro"
+                android:text="@string/calculator_search_fuel_price_label"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guideline_middle"
+                app:layout_constraintTop_toBottomOf="@id/search_axis_label" />
+
+            <com.diegobezerra.truckpadcase.widget.DecimalFormattedEditText
+                android:id="@+id/fuel_price_edit_text"
+                style="@style/Widget.TruckPad.Calculator.InputField"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_fuel_price"
+                android:inputType="numberDecimal"
+                android:maxLength="8"
+                android:text="@string/fuel_price_initial_value"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/guideline_middle"
+                app:layout_constraintTop_toBottomOf="@id/barrier" />
+
+            <Button
+                android:id="@+id/calculator_search_calculate"
+                style="@style/Widget.MaterialComponents.Button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_micro"
+                android:onClick="@{() -> viewModel.onCalculate()}"
+                android:text="@string/calculator_search_calculate"
+                android:textAllCaps="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fuel_price_edit_text" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

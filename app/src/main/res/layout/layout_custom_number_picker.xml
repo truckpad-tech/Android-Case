@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:gravity="center_vertical"
+    tools:layout_height="wrap_content"
+    tools:orientation="horizontal"
+    tools:parentTag="LinearLayout">
+
+    <ImageButton
+        android:id="@+id/button_minus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackgroundBorderless"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_remove" />
+
+    <TextView
+        android:id="@+id/number_text"
+        style="@style/TextAppearance.TruckPad.Body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/spacing_normal"
+        android:paddingEnd="@dimen/spacing_normal"
+        android:textSize="16sp"
+        tools:text="2" />
+
+    <ImageButton
+        android:id="@+id/button_plus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackgroundBorderless"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_add" />
+
+</merge>
