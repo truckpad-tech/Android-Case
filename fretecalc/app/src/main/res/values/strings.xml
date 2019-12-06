@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">FreteCalc</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_result">Resultado</string>
+    <string name="perigosa">Perigosa</string>
+    <string name="neogranel">Neogranel</string>
+    <string name="granel">Granel</string>
+    <string name="frigorifico">Frigorífico</string>
+    <string name="geral">Geral</string>
+    <string name="antt">ANTT</string>
+    <string name="valor_minimo_do_frete">Valor mínimo do frete</string>
+    <string name="pedagios">Pedágios</string>
+    <string name="combustivel">Combustível</string>
+    <string name="custo_total">Custo Total</string>
+    <string name="buscas_recentes">Buscas Recentes</string>
+</resources>

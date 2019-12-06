@@ -1,0 +1,23 @@
+<resources>
+    <!--
+
+    To get one, follow this link, follow the directions and press "Create" at the end:
+
+    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=5A:4D:11:42:67:15:DC:8D:EB:71:37:65:61:B8:74:10:57:8E:E3:E7%3Bcom.example.fretecalc.views
+
+    You can also add your credentials to an existing key, using these values:
+
+    Package name:
+    5A:4D:11:42:67:15:DC:8D:EB:71:37:65:61:B8:74:10:57:8E:E3:E7
+
+    SHA-1 certificate fingerprint:
+    5A:4D:11:42:67:15:DC:8D:EB:71:37:65:61:B8:74:10:57:8E:E3:E7
+
+    Alternatively, follow the directions here:
+    https://developers.google.com/maps/documentation/android/start#get-key
+
+    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
+    string in this file.
+    -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDKFv6eqUQY2gecrnR4T4bcpFk1DDDhmvg</string>
+</resources>
