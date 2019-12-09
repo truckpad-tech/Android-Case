@@ -1,8 +1,9 @@
 package e.caioluis.android_case.json
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-data class Response(
+data class RouteResponse(
 
     @SerializedName("points")
     val points: List<Points>,
@@ -38,7 +39,7 @@ data class Response(
     val fuel_cost_unit: String,
     @SerializedName("total_cost")
     val total_cost: Double
-)
+) : Serializable
 
 data class Points(
 
@@ -46,4 +47,4 @@ data class Points(
     val point: List<Double>,
     @SerializedName("provider")
     val provider: String
-)
+) : Serializable

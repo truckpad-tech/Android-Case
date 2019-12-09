@@ -1,26 +1,26 @@
 package e.caioluis.android_case.activity.main
 
 import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import e.caioluis.android_case.R
-import kotlinx.android.synthetic.main.activity_maps.*
+import kotlinx.android.synthetic.main.activity_main.*
+
 
 class MainActivity : AppCompatActivity(),
     MainActivityContract.MainView, View.OnClickListener {
 
-    private lateinit var bSheetBehavior: BottomSheetBehavior<View>
-    private lateinit var bottomSheet: View
     private lateinit var presenter: MainActivityContract.MainPresenter
     private lateinit var builder: AlertDialog.Builder
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_maps)
+        setContentView(R.layout.activity_main)
 
         initVars()
         initActions()
@@ -28,11 +28,7 @@ class MainActivity : AppCompatActivity(),
 
     private fun initVars() {
 
-        bottomSheet = findViewById<View>(R.id.frag_bottom_sheet)
-        bSheetBehavior = BottomSheetBehavior.from(bottomSheet)
-
         presenter = MainActivityPresenter(this)
-
         builder = AlertDialog.Builder(this)
     }
 
@@ -45,55 +41,38 @@ class MainActivity : AppCompatActivity(),
 
         when (view.id) {
 
-            R.id.frag_bottom_sheet -> {
-
+            R.id.main_bottom_sheet -> {
                 presenter.bottomSheetClicked()
             }
 
             R.id.bottom_btn_calculate -> {
-
+                presenter.handleCalculateClick()
             }
 
             R.id.map_btn_search -> {
-                presenter.handleSearch()
+                presenter.handleSearchClick()
             }
 
             R.id.bottom_tv_startPoint -> {
-
                 presenter.handleStartPointClick()
             }
 
-            R.id.bottom_tv_finalPoint -> {
-
-                presenter.handleFinalPointClick()
+            R.id.bottom_tv_destination -> {
+                presenter.handleDestinationClick()
             }
 
-            R.id.map_btn_useLocation -> {
-
-                presenter.handleUseLocationClick()
+            R.id.map_btn_setLocation -> {
+                presenter.handleSetLocationClick()
             }
-        }
-    }
 
-    override fun expandBottomSheet(boolean: Boolean) {
-
-        if (boolean) {
-            bSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
-        } else {
-            bSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+            R.id.bottom_btn_history -> {
+                presenter.handleSeeHistoryClick()
+            }
         }
     }
 
     override fun showToastMessage(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
-    override fun showUseLocationButton(boolean: Boolean) {
-        map_btn_useLocation.isVisible = boolean
-    }
-
-    override fun showProgressBar(boolean: Boolean) {
-        map_progressBar.isVisible = boolean
     }
 
     override fun onRequestPermissionsResult(
@@ -106,16 +85,13 @@ class MainActivity : AppCompatActivity(),
 
     private fun setListeners() {
 
-        frag_bottom_sheet.setOnClickListener(this)
+        main_bottom_sheet.setOnClickListener(this)
         bottom_btn_calculate.setOnClickListener(this)
         map_btn_search.setOnClickListener(this)
         bottom_tv_startPoint.setOnClickListener(this)
-        bottom_tv_finalPoint.setOnClickListener(this)
-        map_btn_useLocation.setOnClickListener(this)
-    }
-
-    override fun onBackPressed() {
-        showExitAlert()
+        bottom_tv_destination.setOnClickListener(this)
+        map_btn_setLocation.setOnClickListener(this)
+        bottom_btn_history.setOnClickListener(this)
     }
 
     private fun showExitAlert() {
@@ -132,6 +108,19 @@ class MainActivity : AppCompatActivity(),
             }
 
             show()
+        }
+    }
+
+    override fun onBackPressed() {
+        showExitAlert()
+    }
+
+    override fun closeKeyboard() {
+        val view: View? = this.currentFocus
+
+        if (view != null) {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
 }

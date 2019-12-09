@@ -1,25 +1,65 @@
 <resources>
-    <string name="app_name">Android-Case</string>
-    <string name="title_activity_maps">Map</string>
+
+    //Titles
+    <string name="app_name">TruckPad-Case</string>
+    <string name="title_calculate_route">Calcular Rota</string>
+    <string name="title_activity_main">Android_Case</string>
+    <string name="alert_title_warning">Atenção!</string>
+
+    //Hints
     <string name="search_bar_hint">Insira o nome do local</string>
+    <string name="hint_touchToDefineLocation">Toque para definir</string>
+
+    //Messages
     <string name="alert_message_permission_denied">Sem a permissão de localização, o app não pode ser inicializado.
         Caso tenha sido marcada a opção \'Não mostrar novamente\' ao negar, é preciso dar a
         permissão manualmente nas configurações do aparelho.
     </string>
+    <string name="exit_alert_message">Deseja realmente sair? Dados não finalizados serão perdidos</string>
+    <string name="alert_delete_all_history_confirmation">Esse comando apaga todo o histórico. Prosseguir?</string>
+    <string name="message_initial_location_applied">Endereço inicial aplicado!</string>
+    <string name="message_final_location_applied">Endereço final aplicado!</string>
 
-    <string name="alert_title_warning">Atenção!</string>
-    <string name="label_exit">sair</string>
-    <string name="title_calculate_route">Calcular Rota</string>
+
+    //Labels
+    <string name="label_number">número</string>
+    <string name="label_total_price">valor total</string>
+    <string name="label_exit">Sair</string>
     <string name="label_initial_location">Local de partida</string>
     <string name="label_final_location">Destino final</string>
     <string name="label_axle_number">Número de eixos</string>
-    <string name="label_consumption">consumo em km/l</string>
+    <string name="label_consumption">Consumo em Km/L</string>
     <string name="label_diesel_price">Preço do diesel</string>
-    <string name="label_calculate">calcular</string>
-    <string name="exit_alert_message">Deseja realmente sair? Dados não finalizados serão perdidos</string>
-    <string name="error_no_location">Não existe localização atual</string>
-    <string name="message_define_inicial_location">Defina o endereço INICIAL</string>
-    <string name="message_initial_location_applied">Endereço inicial aplicado!</string>
-    <string name="message_final_location_applied">Endereço final aplicado!</string>
+    <string name="label_calculate">Calcular</string>
     <string name="label_cancel">Cancelar</string>
+    <string name="label_route_duration">Duração da viagem:</string>
+    <string name="label_tolls">Pedágios</string>
+    <string name="label_kilometers_symbol">Km</string>
+    <string name="label_equal_sign">=</string>
+    <string name="label_brl_currency_symbol">R$</string>
+    <string name="label_distance">Distância:</string>
+    <string name="label_price">valor</string>
+    <string name="label_refrigerated">Frigorificada:</string>
+    <string name="label_general">Geral:</string>
+    <string name="label_granel">Granel:</string>
+    <string name="label_neogranel">Neogranel:</string>
+    <string name="label_dangerous">Perigosa:</string>
+    <string name="label_shipments_freight">Frete minimo das cargas:</string>
+    <string name="label_travel_total_cost">Custo total da viagem:</string>
+    <string name="label_see_history">Ver Histórico</string>
+    <string name="label_yes">Sim</string>
+    <string name="label_set_initial_location">Capturar localização inicial</string>
+    <string name="label_set_final_location">Capturar localização final</string>
+    <string name="label_delete_history">Apagar histórico</string>
+    <string name="label_fuel_consumption">Consumo de combustível:</string>
+
+    //Error
+    <string name="error_type_an_address">Digite um endereço</string>
+    <string name="error_no_location">Não existe localização atual</string>
+    <string name="error_requisition_failed">Requisição falhou, tente novamente!</string>
+    <string name="error_empty_fields">Faltam campos a serem preenchidos!</string>
+    <string name="error_something_went_wrong">Algo deu errado!</string>
+    <string name="message_same_initial_and_final_location">Destino inicial e final são iguais!</string>
+    <string name="title_routes_history">Histórico de rotas</string>
+
 </resources>

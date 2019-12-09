@@ -3,10 +3,9 @@ package e.caioluis.android_case.activity.main
 interface MainActivityContract {
 
     interface MainView {
-        fun showProgressBar(boolean: Boolean)
-        fun expandBottomSheet(boolean: Boolean)
+
         fun showToastMessage(message: String)
-        fun showUseLocationButton(boolean: Boolean)
+        fun closeKeyboard()
     }
 
     interface MainPresenter {
@@ -15,8 +14,10 @@ interface MainActivityContract {
         fun bottomSheetClicked()
         fun startApp()
         fun handleStartPointClick()
-        fun handleSearch()
-        fun handleFinalPointClick()
-        fun handleUseLocationClick()
+        fun handleSearchClick()
+        fun handleDestinationClick()
+        fun handleSetLocationClick()
+        fun handleCalculateClick()
+        fun handleSeeHistoryClick()
     }
 }

@@ -25,19 +25,20 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/map_searchBar_layout"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
-            android:background="#FFFFFF"
+            android:background="@drawable/rectangle_border"
             android:orientation="horizontal"
             android:padding="5dp"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.046">
+            app:layout_constraintVertical_bias="0.102">
 
             <EditText
                 android:id="@+id/map_et_searchBar"
@@ -45,7 +46,10 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:hint="@string/search_bar_hint" />
+                android:hint="@string/search_bar_hint"
+                android:imeOptions="actionDone"
+                android:inputType="text"
+                android:maxLines="1" />
 
             <Button
                 android:id="@+id/map_btn_search"
@@ -58,7 +62,7 @@
         </LinearLayout>
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/map_iv_pin"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/ic_place_black_24dp"
@@ -70,11 +74,12 @@
             app:layout_constraintVertical_bias="0.464" />
 
         <Button
-            android:id="@+id/map_btn_useLocation"
+            android:id="@+id/map_btn_setLocation"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginBottom="56dp"
-            android:text="capturar localização"
+            android:background="@drawable/button_shape"
+            android:textColor="@color/color_white"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -99,20 +104,20 @@
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
 
-        android:id="@+id/frag_bottom_sheet"
+        android:id="@+id/main_bottom_sheet"
         android:layout_width="match_parent"
-        android:layout_height="509dp"
-        android:background="#FFFFFF"
+        android:layout_height="550dp"
+        android:background="@color/colorPrimary"
         app:behavior_peekHeight="50dp"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
         <TextView
-            android:id="@+id/title_calculate"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
+            android:layout_height="50dp"
             android:gravity="center"
             android:text="@string/title_calculate_route"
             android:textAllCaps="false"
+            android:textColor="@color/colorAccent"
             android:textSize="30sp" />
 
         <LinearLayout
@@ -120,23 +125,26 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="10dp"
-            tools:context=".activity.route.RouteActivity">
+            tools:context=".activity.route.RouteResultActivity">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="60dp"
+                android:layout_marginTop="50dp"
                 android:gravity="center_vertical"
                 android:text="@string/label_initial_location"
+                android:textColor="@color/colorAccent"
                 android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/bottom_tv_startPoint"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="10dp"
-                android:gravity="center_vertical"
+                android:background="@drawable/rectangle_border"
+                android:gravity="center"
+                android:hint="@string/hint_touchToDefineLocation"
                 android:maxLines="2"
                 android:textSize="20sp" />
 
@@ -147,14 +155,18 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center_vertical"
                 android:text="@string/label_final_location"
+                android:textColor="@color/colorAccent"
                 android:textSize="15sp" />
 
             <TextView
-                android:id="@+id/bottom_tv_finalPoint"
+                android:id="@+id/bottom_tv_destination"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="60dp"
                 android:layout_marginTop="10dp"
-                android:gravity="center_vertical"
+                android:background="@drawable/rectangle_border"
+                android:gravity="center"
+                android:hint="@string/hint_touchToDefineLocation"
+                android:maxLines="2"
                 android:textSize="20sp" />
 
             <LinearLayout
@@ -164,7 +176,6 @@
                 android:layout_marginTop="20dp"
                 android:orientation="horizontal">
 
-
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -173,6 +184,7 @@
                     android:layout_weight="1"
                     android:gravity="center_horizontal"
                     android:text="@string/label_axle_number"
+                    android:textColor="@color/colorAccent"
                     android:textSize="15sp" />
 
                 <TextView
@@ -183,6 +195,7 @@
                     android:layout_weight="1"
                     android:gravity="center_horizontal"
                     android:text="@string/label_consumption"
+                    android:textColor="@color/colorAccent"
                     android:textSize="15sp" />
 
                 <TextView
@@ -193,6 +206,7 @@
                     android:layout_weight="1"
                     android:gravity="center_horizontal"
                     android:text="@string/label_diesel_price"
+                    android:textColor="@color/colorAccent"
                     android:textSize="15sp" />
 
             </LinearLayout>
@@ -203,17 +217,17 @@
                 android:orientation="horizontal">
 
                 <EditText
-                    android:id="@+id/bottom_et_axle"
+                    android:id="@+id/bottom_et_axis"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:imeOptions="actionNext"
                     android:inputType="number"
                     android:maxLength="2"
                     android:maxLines="1" />
-
 
                 <EditText
                     android:id="@+id/bottom_et_consumption"
@@ -223,10 +237,10 @@
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:imeOptions="actionNext"
                     android:inputType="number"
                     android:maxLength="4"
                     android:maxLines="1" />
-
 
                 <EditText
                     android:id="@+id/bottom_et_dieselPrice"
@@ -236,18 +250,35 @@
                     android:layout_marginTop="10dp"
                     android:layout_weight="1"
                     android:gravity="center"
+                    android:imeOptions="actionDone"
                     android:inputType="numberDecimal"
                     android:maxLength="7"
                     android:maxLines="1" />
             </LinearLayout>
 
             <Button
-                android:id="@+id/bottom_btn_calculate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/bottom_btn_history"
+                android:layout_width="270dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:text="@string/label_calculate" />
+                android:layout_marginTop="10dp"
+                android:background="@drawable/button_shape"
+                android:text="@string/label_see_history"
+                android:textAllCaps="false"
+                android:textColor="@color/color_white"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/bottom_btn_calculate"
+                android:layout_width="270dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/button_shape"
+                android:text="@string/label_calculate"
+                android:textAllCaps="false"
+                android:textColor="@color/color_white"
+                android:textSize="30sp" />
 
         </LinearLayout>
     </com.google.android.material.bottomnavigation.BottomNavigationView>
