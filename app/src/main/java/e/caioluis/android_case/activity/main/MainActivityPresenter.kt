@@ -187,12 +187,12 @@ class MainActivityPresenter(
         if (defining) {
             expandBottomSheet(false)
             mainActivity.map_btn_setLocation.isVisible = true
-            mainActivity.map_et_searchBar.isVisible = true
+            mainActivity.map_searchBar_layout.isVisible = true
 
         } else {
             expandBottomSheet(true)
             mainActivity.map_btn_setLocation.isVisible = false
-            mainActivity.map_et_searchBar.isVisible = false
+            mainActivity.map_searchBar_layout.isVisible = false
         }
     }
 
