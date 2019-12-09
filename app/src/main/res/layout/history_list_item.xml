@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:background="@drawable/rectangle_border"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/item_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        tools:text="Distance here" />
+
+    <TextView
+        android:id="@+id/item_initial_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginTop="5dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        tools:text="Address here" />
+
+    <TextView
+        android:id="@+id/item_final_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:ellipsize="end"
+        android:maxLines="1"
+        tools:text="Address here" />
+
+</LinearLayout>
