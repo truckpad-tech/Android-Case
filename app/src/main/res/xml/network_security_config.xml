@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config>
+        <domain includeSubdomains="true">www.recalculafrete.com.br</domain>
+        <domain includeSubdomains="true">geo.api.truckpad.io</domain>
+        <domain includeSubdomains="true">nominatim.openstreetmap.org</domain>
+        <domain includeSubdomains="true">tictac.api.truckpad.io</domain>
+    </domain-config>
+</network-security-config>

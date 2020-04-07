@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_screen">15dp</dimen>
+    <dimen name="app_bar_height">180dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
+    <dimen name="font_size_title">20sp</dimen>
+    <dimen name="font_size_subtitle">18sp</dimen>
+    <dimen name="margin_valor_frete">25dp</dimen>
+</resources>

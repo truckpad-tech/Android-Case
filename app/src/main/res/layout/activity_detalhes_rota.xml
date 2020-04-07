@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetalhesRotaActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_screen"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/origem"
+            android:textSize="@dimen/font_size_title" />
+
+        <TextView
+            android:id="@+id/txtOrigem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_screen"
+            android:layout_marginEnd="@dimen/margin_screen"
+            android:text="@string/origem"
+            android:textSize="@dimen/font_size_subtitle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/destino"
+            android:textSize="@dimen/font_size_title" />
+
+        <TextView
+            android:id="@+id/txtDestino"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_screen"
+            android:layout_marginEnd="@dimen/margin_screen"
+            android:text="@string/destino"
+            android:textSize="@dimen/font_size_subtitle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/eixos"
+            android:textSize="@dimen/font_size_title" />
+
+        <TextView
+            android:id="@+id/txtEixos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_screen"
+            android:layout_marginEnd="@dimen/margin_screen"
+            android:text="@string/zero"
+            android:textSize="@dimen/font_size_subtitle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dist_ncia"
+            android:textSize="@dimen/font_size_title" />
+
+        <TextView
+            android:id="@+id/txtDistancia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_screen"
+            android:layout_marginEnd="@dimen/margin_screen"
+            android:text="@string/_0_00km"
+            android:textSize="@dimen/font_size_subtitle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dura_o_da_viagem"
+            android:textSize="@dimen/font_size_title" />
+
+        <TextView
+            android:id="@+id/txtDuracaoViagem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_screen"
+            android:layout_marginEnd="@dimen/margin_screen"
+            android:text="@string/dura_o_da_viagem"
+            android:textSize="@dimen/font_size_subtitle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ped_gios"
+            android:textSize="@dimen/font_size_title" />
+
+        <TextView
+            android:id="@+id/txtPedagios"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_screen"
+            android:layout_marginEnd="@dimen/margin_screen"
+            android:text="@string/_0_00"
+            android:textSize="@dimen/font_size_subtitle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/combust_vel_necess_rio"
+            android:textSize="@dimen/font_size_title" />
+
+        <TextView
+            android:id="@+id/txtCombustivel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_screen"
+            android:layout_marginEnd="@dimen/margin_screen"
+            android:text="@string/_0_00"
+            android:textSize="@dimen/font_size_subtitle" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/total_de_combust_vel"
+            android:textSize="@dimen/font_size_title" />
+
+        <TextView
+            android:id="@+id/txtTotalCombustivel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_screen"
+            android:layout_marginEnd="@dimen/margin_screen"
+            android:text="@string/_0_00"
+            android:textSize="@dimen/font_size_subtitle" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/total"
+            android:textSize="@dimen/font_size_title" />
+
+        <TextView
+            android:id="@+id/txtTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_screen"
+            android:layout_marginEnd="@dimen/margin_screen"
+            android:text="@string/_0_00"
+            android:textSize="@dimen/font_size_subtitle" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/valor_m_nimo_frete"
+            android:textSize="@dimen/font_size_title" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_screen"
+            android:layout_marginEnd="@dimen/margin_screen"
+            android:text="@string/geral" />
+
+        <TextView
+            android:id="@+id/txtValorFreteGeral"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_valor_frete"
+            android:layout_marginEnd="@dimen/margin_valor_frete"
+            android:text="@string/_0_00_pedagio" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_screen"
+            android:layout_marginEnd="@dimen/margin_screen"
+            android:text="@string/granel" />
+
+        <TextView
+            android:id="@+id/txtValorFreteGranel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_valor_frete"
+            android:layout_marginEnd="@dimen/margin_valor_frete"
+            android:text="@string/_0_00_pedagio" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_screen"
+            android:layout_marginEnd="@dimen/margin_screen"
+            android:text="@string/neogranel" />
+
+        <TextView
+            android:id="@+id/txtValorFreteNeogranel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_valor_frete"
+            android:layout_marginEnd="@dimen/margin_valor_frete"
+            android:text="@string/_0_00_pedagio" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_screen"
+            android:layout_marginEnd="@dimen/margin_screen"
+            android:text="@string/frigorificada" />
+
+        <TextView
+            android:id="@+id/txtValorFreteFrigorificada"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_valor_frete"
+            android:layout_marginEnd="@dimen/margin_valor_frete"
+            android:text="@string/_0_00_pedagio" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_screen"
+            android:layout_marginEnd="@dimen/margin_screen"
+            android:text="@string/perigosa" />
+
+        <TextView
+            android:id="@+id/txtValorFretePerigosa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_valor_frete"
+            android:layout_marginEnd="@dimen/margin_valor_frete"
+            android:text="@string/_0_00_pedagio" />
+    </LinearLayout>
+
+</ScrollView>
