@@ -9,6 +9,7 @@ import com.truckpadcase.calculatefreight.domain.model.remote.RouteResponse
 interface RouteAndPriceServiceRepository {
 
     suspend fun getRoute(routeRequest: RouteRequest) : ResultWrapper<RouteResponse?>
+
     suspend fun getPrice(priceRequest: PriceRequest) : ResultWrapper<PriceResponse?>
 
 }

@@ -14,6 +14,8 @@ object Constants {
 
     /*-- UTILS --*/
     const val LOCATION_PERMISSION_REQUEST_CODE = 1
+    const val SEARCH_RESULT_ID = "Search-result-id"
+
 
 
     /*-- DATABASE --*/

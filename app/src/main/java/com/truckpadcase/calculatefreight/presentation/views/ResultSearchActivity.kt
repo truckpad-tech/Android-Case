@@ -17,16 +17,19 @@ import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.PolylineOptions
 import com.truckpadcase.calculatefreight.R
-import com.truckpadcase.calculatefreight.presentation.viewmodels.ResultSearchViewModel
+import com.truckpadcase.calculatefreight.presentation.viewmodels.ResultSearchViewModelImpl
 import com.truckpadcase.calculatefreight.presentation.views.base.BaseActivity
 import com.truckpadcase.calculatefreight.utils.Constants
+import com.truckpadcase.calculatefreight.utils.UnitConversion.Companion.metersToKm
+import com.truckpadcase.calculatefreight.utils.UnitConversion.Companion.replacePrices
+import com.truckpadcase.calculatefreight.utils.UnitConversion.Companion.secondsToHours
 import kotlinx.android.synthetic.main.activity_result_search.*
 
 
 class ResultSearchActivity : BaseActivity(), OnMapReadyCallback {
 
-    private val viewModel: ResultSearchViewModel by lazy {
-        ViewModelProviders.of(this).get(ResultSearchViewModel::class.java)
+    private val viewModelImpl: ResultSearchViewModelImpl by lazy {
+        ViewModelProviders.of(this).get(ResultSearchViewModelImpl::class.java)
     }
 
     private lateinit var mMap: GoogleMap
@@ -39,22 +42,22 @@ class ResultSearchActivity : BaseActivity(), OnMapReadyCallback {
 
         prepareMap()
 
-        viewModel.searchData(intent.getLongExtra("Search-result-id", Long.MIN_VALUE)).observe(this, Observer { freightData ->
+        viewModelImpl.searchData(intent.getLongExtra("Search-result-id", Long.MIN_VALUE)).observe(this, Observer { freightData ->
             if (freightData != null ){
 
                 origin_result_fiel.text = freightData.initial_address
                 destination_result_fiel.text = freightData.final_address
                 axes_result_fiel.text = freightData.axes.toString()
-                distance_result_fiel.text = freightData.distance.toString()+" KM"
-                duration_result_field.text = freightData.duration.toString()+" Horas"
+                distance_result_fiel.text = metersToKm(freightData.distance.toString())
+                duration_result_field.text = secondsToHours(freightData.duration.toString())
                 tools_result_fiel.text = freightData.toll_cost.toString()
                 fuel_usage_result_fiel.text = freightData.fuel_usage.toString()+" Litros"
                 fuel_cost_result_fiel.text = "R$: "+freightData.fuel_cost.toString()
-                refrigerated_result_fiel.text = "R$: "+freightData.refrigerated.toString()
-                general_result_fiel.text = "R$: "+freightData.general.toString()
-                granel_result_fiel.text = "R$: "+freightData.granel.toString()
-                neogranel_result_fiel.text = "R$: "+freightData.neogranel.toString()
-                hazardous_result_fiel.text = "R$: "+freightData.hazardous.toString()
+                refrigerated_result_fiel.text = replacePrices(freightData.refrigerated.toString())
+                general_result_fiel.text = replacePrices(freightData.general.toString())
+                granel_result_fiel.text = replacePrices(freightData.granel.toString())
+                neogranel_result_fiel.text = replacePrices(freightData.neogranel.toString())
+                hazardous_result_fiel.text = replacePrices(freightData.hazardous.toString())
 
                 drawMapRoute(freightData.route[0])
             }

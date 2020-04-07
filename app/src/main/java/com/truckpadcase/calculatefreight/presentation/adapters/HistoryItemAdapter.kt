@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.truckpadcase.calculatefreight.R
 import com.truckpadcase.calculatefreight.domain.model.local.FreightData
 import com.truckpadcase.calculatefreight.presentation.views.ResultSearchActivity
+import com.truckpadcase.calculatefreight.utils.Constants.SEARCH_RESULT_ID
 import kotlinx.android.synthetic.main.route_history_item.view.*
 
 class HistoryItemAdapter(private val history_search: List<FreightData>, private val context : Context) : RecyclerView.Adapter<HistoryItemAdapter.HistoryHolder>() {
@@ -43,7 +44,7 @@ class HistoryItemAdapter(private val history_search: List<FreightData>, private 
             itemView.setOnClickListener( View.OnClickListener {
                 view ->
                 val intent = ResultSearchActivity.getStartIntent( context )
-                intent.putExtra("Search-result-id", freightData.uid.toLong() )
+                intent.putExtra(SEARCH_RESULT_ID, freightData.uid.toLong() )
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 context.startActivity(intent)
 

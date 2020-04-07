@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewmodel"
-            type="com.truckpadcase.calculatefreight.presentation.viewmodels.RequestViewModel"/>
+            type="com.truckpadcase.calculatefreight.presentation.viewmodels.RequestViewModelImpl"/>
     </data>
 
     <RelativeLayout
@@ -82,16 +82,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#000"
-                    android:text="Quantidade de eixos do caminhão" />
+                    android:text="@string/axes_quantity" />
 
                 <EditText
                     android:id="@+id/numb_axles_edt_txt"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:backgroundTint="#000"
-                    android:hint="Ex: 2"
+                    android:hint="Ex: 2 - 9"
                     android:text="@={viewmodel.axes}"
                     android:textColorHint="#bbb"
+                    android:inputType="number"
+                    android:digits = "0123456789"
                     android:textColor="#000" />
 
                 <TextView

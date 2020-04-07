@@ -5,15 +5,16 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.truckpadcase.calculatefreight.data.repository.FreightCalculateRepositoryImpl
 import com.truckpadcase.calculatefreight.domain.model.local.FreightData
+import com.truckpadcase.calculatefreight.presentation.viewmodels.contratcs.ResultSearchViewModel
 
-class ResultSearchViewModel (application: Application) : AndroidViewModel(application)  {
+class ResultSearchViewModelImpl (application: Application) : AndroidViewModel(application), ResultSearchViewModel {
 
     /*-- Context --*/
     private val context = application
 
     private var freightCalculateRepositoryImpl: FreightCalculateRepositoryImpl = FreightCalculateRepositoryImpl()
 
-    fun searchData(id: Long) : LiveData<FreightData> {
+    override fun searchData(id: Long) : LiveData<FreightData> {
         return freightCalculateRepositoryImpl.getByIdFreightCalculate(context,id.toInt())
     }
 

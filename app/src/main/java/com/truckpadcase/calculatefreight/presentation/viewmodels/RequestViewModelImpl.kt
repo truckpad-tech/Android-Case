@@ -14,24 +14,26 @@ import com.truckpadcase.calculatefreight.data.repository.FreightCalculateReposit
 import com.truckpadcase.calculatefreight.data.repository.RouteAndPriceServiceRepositoryImpl
 import com.truckpadcase.calculatefreight.domain.model.local.FreightData
 import com.truckpadcase.calculatefreight.domain.model.remote.*
+import com.truckpadcase.calculatefreight.presentation.viewmodels.contratcs.RequestViewModel
 import com.truckpadcase.calculatefreight.presentation.views.ResultSearchActivity
+import com.truckpadcase.calculatefreight.utils.Constants.SEARCH_RESULT_ID
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 
 
-class RequestViewModel (application: Application) : AndroidViewModel(application) {
+class RequestViewModelImpl (application: Application) : AndroidViewModel(application),
+    RequestViewModel {
     /*-- Context --*/
     private val context = application
 
-    /*-- Repository --*/
+    /*-- Repositories --*/
     private var freightCalculateRepositoryImpl: FreightCalculateRepositoryImpl = FreightCalculateRepositoryImpl()
     private var routeAndPriceServiceRepository : RouteAndPriceServiceRepositoryImpl = RouteAndPriceServiceRepositoryImpl()
 
     private lateinit var localityLits: List<Locations>
 
-    /*Control UI */
     val showProgress = MutableLiveData<Boolean>()
     val showError = MutableLiveData<String>()
 
@@ -49,7 +51,7 @@ class RequestViewModel (application: Application) : AndroidViewModel(application
 
     var job: Job = Job()
 
-    fun submitData() {
+    override fun submitData() {
 
         showProgress.value = true
         if (checkInputs() && convertAddress()){
@@ -77,13 +79,10 @@ class RequestViewModel (application: Application) : AndroidViewModel(application
                         }
                     }.await()
                 }
-
             }
         }
-        else
-            return
-
     }
+
 
     private fun convertAddress(): Boolean {
 
@@ -106,14 +105,19 @@ class RequestViewModel (application: Application) : AndroidViewModel(application
         }else if (destinyCity.value.isNullOrBlank()){
             showError.postValue("Endereço destino inválido")
             return false
-        }else if (axes.value!!.isNullOrBlank() && axes.value!!.isEmpty()) {
+        }else if (axes.value.isNullOrBlank()){
             showError.postValue("Eixos inválidos")
             return false
-        }else if (averageFuel.value!!.isNullOrBlank()) {
+        }else if (averageFuel.value.isNullOrBlank()) {
             showError.postValue("Consumo médio de combustivel inválido")
             return false
-        }else if (dieselPrice.value!!.isNullOrBlank() ){
+        }else if (dieselPrice.value.isNullOrBlank() ){
             showError.postValue("Preço do diesel invalido")
+            return false
+        }
+        val axesNumber = axes.value!!.toInt()
+        if (axesNumber > 10 || axesNumber <= 1 ){
+            showError.postValue("O número de eixos devem ser entre 2 e 9")
             return false
         }
         return true
@@ -140,7 +144,6 @@ class RequestViewModel (application: Application) : AndroidViewModel(application
                 val locationGeo : Geocoder = Geocoder(context)
                 val address : MutableList<Address> = locationGeo.getFromLocation(location.latitude, location.longitude, 1)
                 originCity.value = address[0].getAddressLine(0)
-
             }
         }
     }
@@ -163,11 +166,10 @@ class RequestViewModel (application: Application) : AndroidViewModel(application
 
 
         val intent = ResultSearchActivity.getStartIntent(context )
-        intent.putExtra("Search-result-id", id.toLong())
+        intent.putExtra(SEARCH_RESULT_ID, id.toLong())
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         showProgress.postValue(false)
         context.startActivity(intent)
-
     }
 
     private fun showGenericError(routeResponse: ResultWrapper<RouteResponse?>) {
@@ -183,7 +185,5 @@ class RequestViewModel (application: Application) : AndroidViewModel(application
     override fun onCleared() {
         super.onCleared()
         job.cancel()
-
     }
-
 }

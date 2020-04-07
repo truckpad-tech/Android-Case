@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.truckpadcase.calculatefreight.R
 import com.truckpadcase.calculatefreight.databinding.ActivityRequestBinding
-import com.truckpadcase.calculatefreight.presentation.viewmodels.RequestViewModel
+import com.truckpadcase.calculatefreight.presentation.viewmodels.RequestViewModelImpl
 import com.truckpadcase.calculatefreight.presentation.views.base.BaseActivity
 import com.truckpadcase.calculatefreight.utils.Constants.hideKeyboard
 import kotlinx.android.synthetic.main.activity_request.*
@@ -20,8 +20,8 @@ open class RequestActivity :  BaseActivity() {
 
     lateinit var mainBinding : ActivityRequestBinding
 
-    val viewModel: RequestViewModel by lazy {
-        ViewModelProviders.of(this).get(RequestViewModel::class.java)
+    val viewModelImpl: RequestViewModelImpl by lazy {
+        ViewModelProviders.of(this).get(RequestViewModelImpl::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,11 +31,11 @@ open class RequestActivity :  BaseActivity() {
 
         mainBinding.lifecycleOwner = this
 
-        mainBinding.viewmodel = viewModel
+        mainBinding.viewmodel = viewModelImpl
 
         setupToolbar(toolbar_search_route, R.string.app_name, true)
 
-        viewModel.foundMyLocation()
+        viewModelImpl.foundMyLocation()
 
         destination_city_edt_txt.requestFocus()
 
@@ -45,7 +45,7 @@ open class RequestActivity :  BaseActivity() {
     }
 
     private fun identifyError() {
-        viewModel.showError.observe(this, Observer { errorMsg ->
+        viewModelImpl.showError.observe(this, Observer { errorMsg ->
             form_layout.visibility = View.VISIBLE
             indeterminateBar.visibility = View.INVISIBLE
             Toast.makeText(this, errorMsg, Toast.LENGTH_LONG).show()
@@ -53,7 +53,7 @@ open class RequestActivity :  BaseActivity() {
     }
 
     private fun loadingObserve() {
-        viewModel.showProgress.observe(this, Observer { showProgresBar ->
+        viewModelImpl.showProgress.observe(this, Observer { showProgresBar ->
             if (!showProgresBar){
                 finish()
             }
