@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewmodel"
+            type="com.truckpadcase.calculatefreight.presentation.viewmodels.RequestViewModelImpl"/>
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".presentation.views.RequestActivity">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_search_route"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="@color/colorPrimary" />
+
+        <ProgressBar
+            android:id="@+id/indeterminateBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:visibility="invisible"
+            />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?android:attr/actionBarSize">
+
+            <LinearLayout
+                android:id="@+id/form_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible"
+                android:padding="8dp">
+
+                <TextView
+                    android:id="@+id/origin_city_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="@string/initial_address_txt"
+
+                    />
+
+                <EditText
+                    android:id="@+id/origin_city_edt_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="#000"
+                    android:hint="@string/city_state_hint"
+                    android:textColorHint="#bbb"
+                    android:text="@={viewmodel.originCity}"
+                    android:textColor="#000" />
+
+                <TextView
+                    android:id="@+id/destination_city_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="@string/final_address_txt" />
+
+                <EditText
+                    android:id="@+id/destination_city_edt_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="#000"
+                    android:hint="@string/final_address_hint"
+                    android:text="@={viewmodel.destinyCity}"
+                    android:textColorHint="#bbb"
+                    android:textColor="#000" />
+
+                <TextView
+                    android:id="@+id/numb_axles_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="@string/axes_quantity" />
+
+                <EditText
+                    android:id="@+id/numb_axles_edt_txt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="#000"
+                    android:hint="Ex: 2 - 9"
+                    android:text="@={viewmodel.axes}"
+                    android:textColorHint="#bbb"
+                    android:inputType="number"
+                    android:digits = "0123456789"
+                    android:textColor="#000" />
+
+                <TextView
+                    android:id="@+id/average_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="@string/average_fuel_txt" />
+
+                <EditText
+                    android:id="@+id/average_edt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="#000"
+                    android:hint="@string/average_fuel_hint"
+                    android:text="@={viewmodel.averageFuel}"
+                    android:textColorHint="#bbb"
+                    android:inputType="number"
+                    android:digits = "0123456789."
+                    android:textColor="#000" />
+
+                <TextView
+                    android:id="@+id/disel_price_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000"
+                    android:text="@string/diesel_price_txt" />
+
+                <EditText
+                    android:id="@+id/disel_price_edt"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="#000"
+                    android:hint="@string/diesel_price_hint"
+                    android:textColorHint="#bbb"
+                    android:inputType="number"
+                    android:digits = "0123456789."
+                    android:text="@={viewmodel.dieselPrice}"
+                    android:textColor="#000" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:background="@color/colorPrimary"
+                    android:onClick="@{() -> viewmodel.submitData()}"
+                    android:text="@string/calcular_text_btn"
+                    android:textAllCaps="false"
+                    android:textColor="#fff" />
+
+            </LinearLayout>
+        </ScrollView>
+
+    </RelativeLayout>
+</layout>

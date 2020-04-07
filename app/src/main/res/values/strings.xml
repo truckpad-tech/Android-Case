@@ -1,0 +1,50 @@
+<resources>
+    <!-- Common -->
+    <string name="app_name">Calcula Frete</string>
+    <!--  -->
+
+    <!-- Calculate Freight Activity -->
+    <string name="title_activity_maps">Map</string>
+    <string name="calculate_btn">Calcular ?</string>
+    <string name="show_history_btn">Histórico de Busca</string>
+    <!--  -->
+
+    <!-- Request Activity -->
+    <string name="initial_address_txt">Endereço inicial</string>
+    <string name="city_state_hint">Cidade, Estado</string>
+    <string name="final_address_txt">Endereço final</string>
+    <string name="final_address_hint">Cidade, Estado</string>
+    <string name="average_fuel_txt">Consumo médio de combustivel ( Litros )</string>
+    <string name="axes_quantity">Quantidade de eixos do caminhão</string>
+    <string name="average_fuel_hint">Ex: 7.50</string>
+    <string name="diesel_price_txt">Preço do disel ( R$ )</string>
+    <string name="diesel_price_hint">Ex: 3.73</string>
+    <!--  -->
+
+    <!-- HistorySearch Activity -->
+    <string name="historic_title">Histórico de Busca</string>
+    <!--  -->
+
+    <!-- ResultSearch Activity -->
+    <string name="origin_label">Origem</string>
+    <string name="destination_label">Destino</string>
+    <string name="axes_label">Eixos</string>
+    <string name="distance_label">Distância</string>
+    <string name="duration_label">Duração</string>
+    <string name="toll_label">Pedágio</string>
+    <string name="fuel_usage_label">Combustível necessário</string>
+    <string name="fuel_cost_label">Total de combustível</string>
+
+    <string name="refrigerated_label">Frigorificada</string>
+    <string name="general_label">Geral</string>
+    <string name="granel_label">Granel</string>
+    <string name="neogranel_label">Neogranel</string>
+    <string name="hazardous_label">Perigosa</string>
+    <string name="prices_table_label">Tabela Frete- Preços Mínimos -ANTT</string>
+    <string name="results_field">--</string>
+    <string name="results">Resultado</string>
+    <string name="calcular_text_btn">Calcular</string>
+
+    <!--  -->
+
+</resources>
