@@ -1,0 +1,24 @@
+<resources>
+    <!--
+    TODO: Before you run your application, you need a Google Maps API key.
+
+    To get one, follow this link, follow the directions and press "Create" at the end:
+
+    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=E9:BE:19:6D:11:A7:F4:58:49:3D:C2:CA:6A:6F:8D:29:FF:7F:98:DB%3Bcom.truckpadcase.calculatefreight.presentation
+
+    You can also add your credentials to an existing key, using these values:
+
+    Package name:
+    com.truckpadcase.calculatefreight.presentation
+
+    SHA-1 certificate fingerprint:
+    E9:BE:19:6D:11:A7:F4:58:49:3D:C2:CA:6A:6F:8D:29:FF:7F:98:DB
+
+    Alternatively, follow the directions here:
+    https://developers.google.com/maps/documentation/android/start#get-key
+
+    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
+    string in this file.
+    -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDSasxMV4V_cTRBnFPA3RblMMhoskJ6wqA</string>
+</resources>
