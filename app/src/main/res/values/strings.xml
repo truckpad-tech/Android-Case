@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">Calculo de rotas</string>
+    <string name="cidade_de_origem">Cidade de origem</string>
+    <string name="cidade_de_destino">Cidade de destino</string>
+    <string name="quantidade_de_eixos">Quantidade de eixos</string>
+    <string name="menos">-</string>
+    <string name="mais">+</string>
+    <string name="consumo_m_dio_km_l">Consumo médio (Km/l)</string>
+    <string name="pre_o_do_diesel_r">Preço do diesel (R$)</string>
+    <string name="calcular">Calcular</string>
+    <string name="title_activity_detalhes_rota">Detalhes da Rota</string>
+
+    <string name="dura_o_da_viagem">Duração da viagem</string>
+    <string name="ped_gios">Pedágio</string>
+    <string name="valor_m_nimo_frete">Valor mínimo frete</string>
+    <string name="geral">Geral</string>
+    <string name="granel">Granel</string>
+    <string name="_0_00_pedagio">0,00 + pedagio</string>
+    <string name="neogranel">Neogranel</string>
+    <string name="frigorificada">Frigorificada</string>
+    <string name="perigosa">Perigosa</string>
+    <string name="origem">Origem</string>
+    <string name="destino">Destino</string>
+    <string name="dist_ncia">Distância</string>
+    <string name="_0_00km">0,00Km</string>
+    <string name="_0_00">0,00</string>
+    <string name="combust_vel_necess_rio">Combustível necessário</string>
+    <string name="total_de_combust_vel">Total de combustível</string>
+    <string name="total">Total</string>
+    <string name="eixos">Eixos</string>
+    <string name="zero">0</string>
+    <string name="carregando">Carregando...</string>
+    <string name="carregando_localizacao_atual">Carregando localização atual...</string>
+
+</resources>

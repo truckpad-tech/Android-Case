@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_screen">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/llCidadeOrigem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/progressBar">
+
+            <AutoCompleteTextView
+                android:id="@+id/edtOrigem"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:drawablePadding="@dimen/margin_screen"
+                android:ems="10"
+                android:hint="@string/cidade_de_origem"
+                android:inputType="text"
+                android:singleLine="true" />
+
+            <Button
+                android:id="@+id/btnLocalAtual"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:drawableStart="@android:drawable/ic_dialog_map"
+                android:drawableTint="@color/colorPrimaryDark" />
+
+        </LinearLayout>
+
+        <AutoCompleteTextView
+            android:id="@+id/edtDestino"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawablePadding="@dimen/margin_screen"
+            android:ems="10"
+            android:hint="@string/cidade_de_destino"
+            android:inputType="text"
+            android:singleLine="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/llCidadeOrigem" />
+
+        <LinearLayout
+            android:id="@+id/llEixos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/edtDestino">
+
+            <EditText
+                android:id="@+id/edtQuantidadeEixos"
+                android:layout_width="0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0"
+                android:clickable="true"
+                android:ems="10"
+                android:focusable="false"
+                android:hint="@string/quantidade_de_eixos"
+                android:inputType="none"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <Button
+                android:id="@+id/btnMenosEixos"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="@string/menos" />
+
+            <Button
+                android:id="@+id/btnMaisEixos"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="@string/mais" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/edtConsumoMedio"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/consumo_m_dio_km_l"
+            android:inputType="numberDecimal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/llEixos" />
+
+        <EditText
+            android:id="@+id/edtPrecoDiesel"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/pre_o_do_diesel_r"
+            android:inputType="numberDecimal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtConsumoMedio" />
+
+        <Button
+            android:id="@+id/btnCalcular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/calcular"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtPrecoDiesel"
+            tools:layout_editor_absoluteY="276dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
