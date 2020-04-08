@@ -7,36 +7,44 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_margin="@dimen/margin_screen"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_screen">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/llCidadeOrigem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:orientation="horizontal">
+            app:layout_constraintTop_toBottomOf="@id/progressBar">
+
             <AutoCompleteTextView
                 android:id="@+id/edtOrigem"
                 android:layout_width="0dp"
-                android:layout_weight="1.0"
                 android:layout_height="wrap_content"
-                android:ems="10"
+                android:layout_weight="1.0"
                 android:drawablePadding="@dimen/margin_screen"
+                android:ems="10"
                 android:hint="@string/cidade_de_origem"
                 android:inputType="text"
-                android:singleLine="true"
-                />
+                android:singleLine="true" />
 
             <Button
                 android:id="@+id/btnLocalAtual"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:drawableStart="@android:drawable/ic_dialog_map"
-                android:drawableTint="@color/colorPrimaryDark"
-                android:onClick="getLastLocation"
-                android:layout_height="wrap_content" />
+                android:drawableTint="@color/colorPrimaryDark" />
 
         </LinearLayout>
 
@@ -44,11 +52,11 @@
             android:id="@+id/edtDestino"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:ems="10"
             android:drawablePadding="@dimen/margin_screen"
+            android:ems="10"
+            android:hint="@string/cidade_de_destino"
             android:inputType="text"
             android:singleLine="true"
-            android:hint="@string/cidade_de_destino"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/llCidadeOrigem" />
@@ -57,19 +65,19 @@
             android:id="@+id/llEixos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/edtDestino"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/edtDestino">
 
             <EditText
                 android:id="@+id/edtQuantidadeEixos"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0"
+                android:clickable="true"
                 android:ems="10"
+                android:focusable="false"
                 android:hint="@string/quantidade_de_eixos"
                 android:inputType="none"
-                android:clickable="true"
-                android:focusable="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 

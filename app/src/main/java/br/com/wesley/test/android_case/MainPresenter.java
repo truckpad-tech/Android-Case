@@ -24,24 +24,28 @@ public class MainPresenter implements MainContract.Presenter {
     @Override
     public void buscarOrigem(String lugar) {
         Log.d("Main", "Presenter::buscarOrigem");
+        this.view.showProgressBarCarregandoListaLugares();
         this.model.buscarLugares(lugar, true);
     }
 
     @Override
     public void buscarDestino(String lugar) {
         Log.d("Main", "Presenter::buscarDestino");
+        this.view.showProgressBarCarregandoListaLugares();
         this.model.buscarLugares(lugar, false);
     }
 
     @Override
     public void atualizaListaOrigem(List<Place> places) {
         Log.d("Main", "Presenter::atualizaListaOrigem");
+        this.view.hideProgressBarCarregandoListaLugares();
         this.view.atualizaListaOrigem(places);
     }
 
     @Override
     public void atualizaListaDestino(List<Place> places) {
         Log.d("Main", "Presenter::atualizaListaDestino");
+        this.view.hideProgressBarCarregandoListaLugares();
         this.view.atualizaListaDestino(places);
     }
 
@@ -100,6 +104,7 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void mensagemError(String error) {
+        this.view.hideProgressBarCarregandoListaLugares();
         this.view.hidePregressBar();
         this.view.mensagemError(error);
     }

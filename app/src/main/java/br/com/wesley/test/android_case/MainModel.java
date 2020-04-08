@@ -2,6 +2,8 @@ package br.com.wesley.test.android_case;
 
 import android.util.Log;
 
+import java.net.SocketTimeoutException;
+
 import br.com.wesley.test.android_case.model.AddressNominatim;
 import br.com.wesley.test.android_case.model.Place;
 import br.com.wesley.test.android_case.model.PlaceRoute;
@@ -49,12 +51,14 @@ public class MainModel implements MainContract.Model {
                         presenter.atualizaListaDestino(placesApi.getPlaces());
                 } else {
                     Log.d("Main", "places null");
+                    presenter.mensagemError("Erro ao buscar lugares");
                 }
             }
 
             @Override
             public void onFailure(Call<PlacesApi> call, Throwable t) {
                 Log.d("Main", "error", t);
+                presenter.mensagemError("Erro ao buscar lugares");
             }
         });
     }
@@ -72,7 +76,11 @@ public class MainModel implements MainContract.Model {
             @Override
             public void onFailure(Call<PlaceRouteResponse> call, Throwable t) {
                 Log.e("Main", t.getMessage(), t);
-                presenter.mensagemError(t.getMessage());
+                if (t instanceof SocketTimeoutException) {
+                    presenter.mensagemError("Tempo de conexão excedido, tente novamente.");
+                }else {
+                    presenter.mensagemError(t.getMessage());
+                }
             }
         });
     }
@@ -94,7 +102,11 @@ public class MainModel implements MainContract.Model {
             @Override
             public void onFailure(Call<PrecoCargaResponse> call, Throwable t) {
                 Log.e("Main", t.getMessage(), t);
-                presenter.mensagemError(t.getMessage());
+                if (t instanceof SocketTimeoutException) {
+                    presenter.mensagemError("Tempo de conexão excedido, tente novamente.");
+                }else {
+                    presenter.mensagemError(t.getMessage());
+                }
             }
         });
     }
@@ -129,7 +141,11 @@ public class MainModel implements MainContract.Model {
             @Override
             public void onFailure(Call<AddressNominatim> call, Throwable t) {
                 Log.d("Main", "error", t);
-                presenter.mensagemError("Erro ao consultar localização atual");
+                if (t instanceof SocketTimeoutException) {
+                    presenter.mensagemError("Tempo de conexão excedido, tente novamente.");
+                }else {
+                    presenter.mensagemError("Erro ao consultar localização atual");
+                }
             }
         });
     }

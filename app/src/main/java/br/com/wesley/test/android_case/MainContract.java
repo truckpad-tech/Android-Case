@@ -1,5 +1,7 @@
 package br.com.wesley.test.android_case;
 
+import android.view.View;
+
 import java.util.List;
 
 import br.com.wesley.test.android_case.model.Place;
@@ -20,6 +22,8 @@ public interface MainContract {
         void showPregressBar(String mensagem);
         void showPregressBar();
         void hidePregressBar();
+        void showProgressBarCarregandoListaLugares();
+        void hideProgressBarCarregandoListaLugares();
     }
 
     interface Presenter {

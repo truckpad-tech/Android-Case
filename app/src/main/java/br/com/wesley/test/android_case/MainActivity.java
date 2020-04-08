@@ -61,7 +61,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     private Place destino;
     private int eixos;
     private AlertDialog alertDialogProgress;
-
+    private Button btnCalcular;
+    private Button btnLocalAtual;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,11 +71,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         presenter = new MainPresenter(this);
         edtOrigem = findViewById(R.id.edtOrigem);
+        btnLocalAtual = findViewById(R.id.btnLocalAtual);
+        btnLocalAtual.setOnClickListener(v -> getLastLocation());
         edtDestino = findViewById(R.id.edtDestino);
         edtQuantidadeEixos = findViewById(R.id.edtQuantidadeEixos);
         edtConsumoMedio = findViewById(R.id.edtConsumoMedio);
         edtPrecoDiesel = findViewById(R.id.edtPrecoDiesel);
-        Button btnCalcular = findViewById(R.id.btnCalcular);
+        btnCalcular = findViewById(R.id.btnCalcular);
         btnCalcular.setOnClickListener(v -> calcular());
 
         findViewById(R.id.btnMenosEixos)
@@ -115,6 +118,20 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             Place place = destinoAdapter.getItem(position);
             edtDestino.setTag(place);
         });
+    }
+
+    @Override
+    public void showProgressBarCarregandoListaLugares() {
+        findViewById(R.id.progressBar).setVisibility(View.VISIBLE);
+        btnCalcular.setEnabled(false);
+        btnLocalAtual.setEnabled(false);
+    }
+
+    @Override
+    public void hideProgressBarCarregandoListaLugares() {
+        findViewById(R.id.progressBar).setVisibility(View.GONE);
+        btnCalcular.setEnabled(true);
+        btnLocalAtual.setEnabled(true);
     }
 
     private void inicializaEdtOrigem() {
@@ -164,29 +181,29 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     public void calcular() {
         Optional<Object> origemOptional = Optional.ofNullable(edtOrigem.getTag());
         if (!origemOptional.isPresent()) {
-            Toast.makeText(this, "Informe a origem.", Toast.LENGTH_LONG).show();
+            mensagemError("Informe a origem.");
             return;
         }
 
         Optional<Object> destinoOptional = Optional.ofNullable(edtDestino.getTag());
         if (!destinoOptional.isPresent()) {
-            Toast.makeText(this, "Informe o destino.", Toast.LENGTH_LONG).show();
+            mensagemError("Informe o destino.");
             return;
         }
 
         String qtdEixosStr = edtQuantidadeEixos.getText().toString();
         if (TextUtils.isEmpty(qtdEixosStr)) {
-            Toast.makeText(this, "Informe a quantidade de eixos.", Toast.LENGTH_LONG).show();
+            mensagemError("Informe a quantidade de eixos.");
             return;
         }
         String consumoMedioStr = edtConsumoMedio.getText().toString();
         if (TextUtils.isEmpty(consumoMedioStr)) {
-            Toast.makeText(this, "Informe o consumo médio.", Toast.LENGTH_LONG).show();
+            mensagemError("Informe o consumo médio.");
             return;
         }
         String precoDieselStr = edtPrecoDiesel.getText().toString();
         if (TextUtils.isEmpty(precoDieselStr)) {
-            Toast.makeText(this, "Informe o preço do diesel.", Toast.LENGTH_LONG).show();
+            mensagemError("Informe o preço do diesel.");
             return;
         }
 
@@ -209,7 +226,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public void abrirConfiguracoesHabilitarLocalizacao() {
-        Toast.makeText(this, "Habilite a localização", Toast.LENGTH_LONG).show();
+        mensagemError("Habilite a localização");
         Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
         startActivity(intent);
     }
@@ -275,7 +292,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         }
     }
 
-    public void getLastLocation(View view) {
+    public void getLastLocation() {
         if (checkPermissions()) {
             if (isLocationEnabled()) {
                 showPregressBar(getString(R.string.carregando_localizacao_atual));
@@ -329,7 +346,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == PERMISSION_ID) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                getLastLocation(null);
+                getLastLocation();
             }
         }
     }
