@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Truckpad</string>
+    <string name="api">https://geo.api.truckpad.io/v1/route</string>
+</resources>

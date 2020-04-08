@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:text="Frigorificada:"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textV_frigorif"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/textView11"
+        app:layout_constraintStart_toEndOf="@+id/textView11"
+        app:layout_constraintTop_toTopOf="@+id/textView11" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:text="Geral:"
+        app:layout_constraintStart_toEndOf="@+id/textV_frigorif"
+        app:layout_constraintTop_toTopOf="@+id/textV_frigorif" />
+
+    <TextView
+        android:id="@+id/textV_geral"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/textView20"
+        app:layout_constraintTop_toTopOf="@+id/textView13" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Granel:"
+        app:layout_constraintStart_toStartOf="@+id/textView11"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <TextView
+        android:id="@+id/textV_granel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/textView11"
+        app:layout_constraintTop_toBottomOf="@+id/textV_frigorif" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Neogranel:"
+        app:layout_constraintStart_toStartOf="@+id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <TextView
+        android:id="@+id/textV_neogranel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintStart_toEndOf="@+id/textView20"
+        app:layout_constraintTop_toBottomOf="@+id/textV_geral" />
+
+    <TextView
+        android:id="@+id/textView23"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Perigosa:"
+        app:layout_constraintStart_toStartOf="@+id/textView16"
+        app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+    <TextView
+        android:id="@+id/textV_perigosa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="@+id/textV_granel"
+        app:layout_constraintTop_toBottomOf="@+id/textV_granel" />
+</androidx.constraintlayout.widget.ConstraintLayout>
