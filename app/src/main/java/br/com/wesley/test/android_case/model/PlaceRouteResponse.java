@@ -21,7 +21,7 @@ public class PlaceRouteResponse {
     private double tollCost;
     @SerializedName("toll_cost_unit")
     private String tollCostUnit;
-    private List<List<Double>> route;
+    private List<List<List<Double>>> route;
     private String provider;
     private boolean cached;
     @SerializedName("fuel_usage")
@@ -107,11 +107,11 @@ public class PlaceRouteResponse {
         this.tollCostUnit = tollCostUnit;
     }
 
-    public List<List<Double>> getRoute() {
+    public List<List<List<Double>>> getRoute() {
         return route;
     }
 
-    public void setRoute(List<List<Double>> route) {
+    public void setRoute(List<List<List<Double>>> route) {
         this.route = route;
     }
 

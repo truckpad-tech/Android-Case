@@ -72,11 +72,13 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void atualizarOrigemLocalizacaoAtual(Place place) {
+        this.view.hidePregressBar();
         this.view.atualizarOrigemLocalizacaoAtual(place);
     }
 
     @Override
     public void buscarInformacoesRotas(PlaceRoute placeRoute) {
+        this.view.showPregressBar();
         this.model.buscarInformacoesRotas(placeRoute);
     }
 
@@ -87,11 +89,18 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void mostraInformacoesPrecoCarga(PrecoCargaResponse precoCargaResponse) {
+        this.view.hidePregressBar();
         this.view.mostraInformacoesPrecoCarga(precoCargaResponse);
     }
 
     @Override
     public void buscarInformacoesPrecoCarga(double distance, int axis) {
         this.model.buscarInformacoesPrecoCarga(distance, axis);
+    }
+
+    @Override
+    public void mensagemError(String error) {
+        this.view.hidePregressBar();
+        this.view.mensagemError(error);
     }
 }

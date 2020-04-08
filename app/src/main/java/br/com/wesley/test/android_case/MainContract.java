@@ -16,6 +16,10 @@ public interface MainContract {
         void abrirConfiguracoesHabilitarLocalizacao();
         void mostraInformacoesRotas(PlaceRouteResponse placeRouteResponse);
         void mostraInformacoesPrecoCarga(PrecoCargaResponse precoCargaResponse);
+        void mensagemError(String error);
+        void showPregressBar(String mensagem);
+        void showPregressBar();
+        void hidePregressBar();
     }
 
     interface Presenter {
@@ -31,6 +35,7 @@ public interface MainContract {
         void buscarPrecoCarga(PlaceRouteResponse placeRouteResponse);
         void mostraInformacoesPrecoCarga(PrecoCargaResponse precoCargaResponse);
         void buscarInformacoesPrecoCarga(double distance, int axis);
+        void mensagemError(String error);
     }
 
     interface Model {

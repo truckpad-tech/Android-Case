@@ -71,7 +71,8 @@ public class MainModel implements MainContract.Model {
 
             @Override
             public void onFailure(Call<PlaceRouteResponse> call, Throwable t) {
-
+                Log.e("Main", t.getMessage(), t);
+                presenter.mensagemError(t.getMessage());
             }
         });
     }
@@ -81,7 +82,8 @@ public class MainModel implements MainContract.Model {
         TruckPadCargaService truckPadCargaService = CalculaPrecoCargaRetrofit.getInstance().getTruckPadCargaService();
         PrecoCarga precoCarga = new PrecoCarga();
         precoCarga.setAxis(axis);
-        precoCarga.setDistance(distance);
+        precoCarga.setDistance(distance / 1000);
+        precoCarga.setHasReturnShipment(true);
         Call<PrecoCargaResponse> precoCargaResponseCall = truckPadCargaService.getPrecoCarga(precoCarga);
         precoCargaResponseCall.enqueue(new Callback<PrecoCargaResponse>() {
             @Override
@@ -91,7 +93,8 @@ public class MainModel implements MainContract.Model {
 
             @Override
             public void onFailure(Call<PrecoCargaResponse> call, Throwable t) {
-
+                Log.e("Main", t.getMessage(), t);
+                presenter.mensagemError(t.getMessage());
             }
         });
     }
@@ -126,6 +129,7 @@ public class MainModel implements MainContract.Model {
             @Override
             public void onFailure(Call<AddressNominatim> call, Throwable t) {
                 Log.d("Main", "error", t);
+                presenter.mensagemError("Erro ao consultar localização atual");
             }
         });
     }

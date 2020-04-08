@@ -3,7 +3,6 @@ package br.com.wesley.test.android_case;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
@@ -13,13 +12,16 @@ import android.os.Looper;
 import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     private Place origem;
     private Place destino;
     private int eixos;
+    private AlertDialog alertDialogProgress;
 
 
     @Override
@@ -194,6 +197,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         PlaceRoute placeRoute = new PlaceRoute();
         placeRoute.setFuelConsumption(Double.parseDouble(consumoMedioStr));
         placeRoute.setFuelPrice(Double.parseDouble(precoDieselStr));
+        placeRoute.setAxis(eixos);
 
         PlaceRoute.PlaceRoutePoint pointOrigem = new PlaceRoute.PlaceRoutePoint(origem.getPoint());
         PlaceRoute.PlaceRoutePoint pointDestino = new PlaceRoute.PlaceRoutePoint(destino.getPoint());
@@ -218,10 +222,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     @Override
     public void mostraInformacoesPrecoCarga(PrecoCargaResponse precoCargaResponse) {
-
         DetalhesViagem viagem = new DetalhesViagem();
-        viagem.setOrigem(origem.getCity());
-        viagem.setDestino(destino.getCity());
+        viagem.setOrigem(origem.getDisplayName());
+        viagem.setDestino(destino.getDisplayName());
         viagem.setEixos(eixos);
         viagem.setDistancia(placeRouteResponse.getDistance());
         viagem.setDuracao(placeRouteResponse.getDuration());
@@ -240,9 +243,42 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         startActivity(intent);
     }
 
+    @Override
+    public void mensagemError(String error) {
+        Toast.makeText(this, error, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void showPregressBar(String mensagem) {
+        if (alertDialogProgress == null || !alertDialogProgress.isShowing()) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            View view = LayoutInflater.from(this).inflate(R.layout.progress_dialog, null, false);
+            if (!TextUtils.isEmpty(mensagem)) {
+                TextView txtMensagem = view.findViewById(R.id.txtMensagem);
+                txtMensagem.setText(mensagem);
+            }
+            builder.setView(view);
+            alertDialogProgress = builder.create();
+            alertDialogProgress.show();
+        }
+    }
+
+    @Override
+    public void showPregressBar() {
+       showPregressBar(null);
+    }
+
+    @Override
+    public void hidePregressBar() {
+        if (alertDialogProgress != null && alertDialogProgress.isShowing()) {
+            alertDialogProgress.dismiss();
+        }
+    }
+
     public void getLastLocation(View view) {
         if (checkPermissions()) {
             if (isLocationEnabled()) {
+                showPregressBar(getString(R.string.carregando_localizacao_atual));
                 mFusedLocationClient.getLastLocation().addOnCompleteListener(
                         task -> {
                             Location location = task.getResult();
@@ -251,7 +287,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                             } else {
                                 Place place = new Place();
                                 place.setPoint(new double[]{location.getLatitude(), location.getLongitude()});
-                                atualizaOrigemLocalizacao(place);
+                                buscarDescricaoLocalizacao(place);
                             }
                         }
                 );
@@ -263,7 +299,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         }
     }
 
-    private void atualizaOrigemLocalizacao(Place place) {
+    private void buscarDescricaoLocalizacao(Place place) {
         presenter.buscarLocalizacaoAtual(place.getPoint()[0], place.getPoint()[1]);
     }
 
@@ -304,7 +340,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             Location mLastLocation = locationResult.getLastLocation();
             Place place = new Place();
             place.setPoint(new double[]{mLastLocation.getLatitude(), mLastLocation.getLongitude()});
-            atualizaOrigemLocalizacao(place);
+            buscarDescricaoLocalizacao(place);
         }
     };
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        hidePregressBar();
+    }
 }

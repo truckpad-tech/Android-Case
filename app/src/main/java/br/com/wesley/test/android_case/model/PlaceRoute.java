@@ -9,6 +9,7 @@ public class PlaceRoute {
     private double fuelConsumption;
     @SerializedName("fuel_price")
     private double fuelPrice;
+    private int axis;
 
     public PlaceRoutePoint[] getPlaces() {
         return places;
@@ -32,6 +33,14 @@ public class PlaceRoute {
 
     public void setFuelPrice(double fuelPrice) {
         this.fuelPrice = fuelPrice;
+    }
+
+    public int getAxis() {
+        return axis;
+    }
+
+    public void setAxis(int axis) {
+        this.axis = axis;
     }
 
     public static class PlaceRoutePoint {
