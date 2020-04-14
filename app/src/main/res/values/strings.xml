@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Android Case</string>
+
+    <string name="search_location">Pesquisar local</string>
+    <string name="result">Resultado</string>
+    <string name="origin_city">Cidade de origem</string>
+    <string name="destination_city">Cidade de destino</string>
+    <string name="use_my_location">Usar minha localização atual</string>
+    <string name="location">Localização</string>
+    <string name="location_required">O aplicativo precisa da sua localização paraexecutar essa ação. Vá até as configurações e ative o modo "Alta precisão".</string>
+    <string name="settings">Configurações</string>
+    <string name="cancel">Cancelar</string>
+    <string name="origin_icon">Ícone de origem</string>
+    <string name="destination_icon">Ícone de destino</string>
+    <string name="axis_icon">Ícone de eixos</string>
+    <string name="axis_quantity">Quantidade de eixos</string>
+    <string name="fuel_consumption">Consumo médio (Km/L)</string>
+    <string name="fuel_consumption_icon">Ícone de consumo médio</string>
+    <string name="fuel_price">Preço do diesel</string>
+    <string name="fuel_price_icon">Ícone de preço</string>
+    <string name="calculate_cost">Caclulcar custo R$</string>
+    <string name="error_result_params">Ocorreu um erro ao passar os parâmetros para a tela de resultado :(</string>
+    <string name="header_antt">Tabela Frete - Preços Mínimos - ANTT</string>
+    <string name="source">Origem</string>
+    <string name="destiny">Destino</string>
+    <string name="axis">Eixos</string>
+    <string name="distance">Distância</string>
+    <string name="duration">Duração</string>
+    <string name="toll">Pedágio</string>
+    <string name="necessary_fuel">Combustível necessário</string>
+    <string name="total_fuel">Total de combustível</string>
+    <string name="total">Total</string>
+    <string name="general">Geral</string>
+    <string name="bulk">Granel</string>
+    <string name="neo_bulk">NeoGranel</string>
+    <string name="refrigerated">Frigorificada</string>
+    <string name="dangerous">Perigosa</string>
+    <string name="price_toll">%1$s + pedágio</string>
+    <string name="history">Histórico</string>
+    <string name="clear_history">Limpar histórico</string>
+    <string name="no_records_yet">Nenhum registro para mostrar.</string>
+    <string name="confirm">Confirmar</string>
+    <string name="confirmation">Confirmação</string>
+    <string name="confirm_clear_history">Realmente quer apagar seu histórico?\n\nEsse processo é irreversível.</string>
+    <string name="history_deleted">Histórico apagado com sucesso!</string>
+</resources>
