@@ -1,13 +1,23 @@
 <resources>
 
-    <style name="Theme.App" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimary</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
+  <style name="Theme.App" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <item name="colorPrimaryDark">@color/colorPrimary</item>
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorAccent">@color/colorAccent</item>
+  </style>
 
 
-    <style name="Theme.Splash" parent="Theme.App">
-        <item name="android:windowBackground">@drawable/splash_background</item>
-    </style>
+  <style name="Theme.Splash" parent="Theme.App">
+    <item name="android:windowBackground">@drawable/splash_background</item>
+  </style>
+
+  <style name="TextAppearance.FreightPad.Location" parent="Widget.MaterialComponents.TextView">
+    <item name="android:fontFamily">sans-serif-medium</item>
+    <item name="android:gravity">center_vertical</item>
+    <item name="android:paddingEnd">@dimen/f_info_location_padding</item>
+    <item name="android:paddingStart">@dimen/f_info_location_padding</item>
+    <item name="android:textSize">@dimen/f_info_location_text_size</item>
+    <item name="android:drawablePadding">@dimen/f_info_location_drawable_padding</item>
+  </style>
+
 </resources>

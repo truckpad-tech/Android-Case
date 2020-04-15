@@ -1,4 +1,20 @@
 <resources>
-    <string name="app_name">FreightPad</string>
-    <string name="calculator_title">Freight calculator</string>
+  <string name="app_name">FreightPad</string>
+
+  <!-- Calculator Fragment-->
+  <string name="calculator_title">Freight Route Calculator</string>
+  <string name="tab_info">Info</string>
+  <string name="tab_route">Route</string>
+  <string name="tab_history">History</string>
+
+  <!-- Info Fragment-->
+  <string name="f_info_location_from">From where?</string>
+  <string name="f_info_location_to">To where?</string>
+  <string name="f_info_axis_display_default_value">2</string>
+  <string name="f_info_many_axis">How many axes does the\nvehicle have?</string>
+  <string name="f_info_fuel_consume">What is the average fuel\nconsumption (km/l)?</string>
+  <string name="f_info_fuel_price">What is the price of fuel?</string>
+  <string name="f_info_fuel_consume_default">2.45</string>
+  <string name="f_info_fuel_price_default">R$ 2.50</string>
+
 </resources>

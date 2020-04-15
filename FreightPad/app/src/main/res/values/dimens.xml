@@ -3,8 +3,10 @@
     <!--  Default-->
     <dimen name="default_8">8dp</dimen>
     <dimen name="default_16">16dp</dimen>
+    <dimen name="default_24">24dp</dimen>
     <dimen name="default_64">64dp</dimen>
     <dimen name="font_14">14sp</dimen>
+    <dimen name="font_16">16sp</dimen>
     <dimen name="font_18">18sp</dimen>
     <dimen name="default_constraint">0dp</dimen>
 
@@ -28,5 +30,25 @@
     <dimen name="v_error_button_margin_top">16dp</dimen>
     <dimen name="v_error_button_padding_vertical">4dp</dimen>
     <dimen name="v_error_button_padding_horizontal">16dp</dimen>
+
+    <!-- Info Fragment-->
+    <dimen name="f_info_padding">@dimen/default_16</dimen>
+    <dimen name="f_info_location_width">@dimen/default_constraint</dimen>
+    <dimen name="f_info_location_height">40dp</dimen>
+    <dimen name="f_info_location_drawable_padding">@dimen/default_8</dimen>
+    <dimen name="f_info_location_padding">@dimen/default_8</dimen>
+    <dimen name="f_info_location_text_size">@dimen/font_14</dimen>
+    <dimen name="f_info_location_margin_top">@dimen/default_8</dimen>
+    <dimen name="f_info_axis_button_width">@dimen/default_24</dimen>
+    <dimen name="f_info_axis_button_height">@dimen/default_constraint</dimen>
+    <dimen name="f_info_axis_display_size">40dp</dimen>
+    <dimen name="f_info_details_margin_top">@dimen/default_16</dimen>
+    <dimen name="f_info_axis_display_text_size">@dimen/font_16</dimen>
+    <dimen name="f_info_label_width">@dimen/default_constraint</dimen>
+    <dimen name="f_info_label_height">40dp</dimen>
+    <dimen name="f_info_label_margin_end">@dimen/default_16</dimen>
+    <dimen name="f_info_label_text_size">14sp</dimen>
+    <dimen name="f_info_fuel_height">40dp</dimen>
+    <dimen name="f_info_fuel_text_size">@dimen/font_16</dimen>
 
 </resources>
