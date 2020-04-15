@@ -1,15 +1,13 @@
 <resources>
 
-    <style name="Theme.App"
-        parent="Theme.MaterialComponents.Light">
+    <style name="Theme.App" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
 
-    <style name="Theme.Splash"
-        parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="Theme.Splash" parent="Theme.App">
         <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
 </resources>

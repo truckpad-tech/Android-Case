@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/error_description"
+            android:layout_width="@dimen/v_error_description_width"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/truckPadGrey"
+            android:textSize="@dimen/v_error_description_text_size"
+            app:layout_constraintBottom_toTopOf="@+id/error_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Error Example Test" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/error_button"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/v_error_button_margin_top"
+            android:paddingStart="@dimen/v_error_button_padding_horizontal"
+            android:paddingTop="@dimen/v_error_button_padding_vertical"
+            android:paddingEnd="@dimen/v_error_button_padding_horizontal"
+            android:paddingBottom="@dimen/v_error_button_padding_vertical"
+            android:textColor="@color/truckPadGrey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/error_description"
+            app:layout_constraintStart_toStartOf="@+id/error_description"
+            app:layout_constraintTop_toBottomOf="@+id/error_description"
+            tools:text="Try Again" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
