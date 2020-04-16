@@ -51,4 +51,26 @@
     <dimen name="f_info_fuel_height">40dp</dimen>
     <dimen name="f_info_fuel_text_size">@dimen/font_16</dimen>
 
+    <!-- Route Fragment-->
+    <dimen name="f_route_card_margin">@dimen/default_16</dimen>
+    <dimen name="f_route_card_radius">@dimen/default_16</dimen>
+    <dimen name="f_route_card_elevation">5dp</dimen>
+    <dimen name="f_route_header_margin">@dimen/default_8</dimen>
+    <dimen name="f_route_header_text_size">18sp</dimen>
+    <dimen name="f_route_divider_height">1dp</dimen>
+    <dimen name="f_route_divider_margin_top">4dp</dimen>
+    <dimen name="f_route_label_margin_top">@dimen/default_8</dimen>
+    <dimen name="f_route_label_width">@dimen/default_constraint</dimen>
+    <dimen name="f_route_label_margin_vertical">@dimen/default_16</dimen>
+    <dimen name="f_route_label_margin_horizontal">@dimen/default_16</dimen>
+    <dimen name="f_route_location_margin_horizontal">@dimen/default_16</dimen>
+    <dimen name="f_route_location_width">@dimen/default_constraint</dimen>
+    <dimen name="f_route_location_text_size">12sp</dimen>
+    <dimen name="f_route_info_details_margin_vertical">@dimen/default_16</dimen>
+    <dimen name="f_route_info_details_text_size">12sp</dimen>
+    <dimen name="f_route_nav_height">@dimen/default_constraint</dimen>
+    <dimen name="f_route_nav_drawable_padding">@dimen/default_8</dimen>
+    <dimen name="f_route_values_width">@dimen/default_constraint</dimen>
+    <dimen name="f_route_values_margin_end">@dimen/default_16</dimen>
+
 </resources>

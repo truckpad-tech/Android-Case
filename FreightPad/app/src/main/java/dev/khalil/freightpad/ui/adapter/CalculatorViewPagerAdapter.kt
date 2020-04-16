@@ -7,9 +7,10 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import dev.khalil.freightpad.R
 import dev.khalil.freightpad.model.UiState
 import dev.khalil.freightpad.model.UiState.HISTORY
-import dev.khalil.freightpad.model.UiState.RESULT
-import dev.khalil.freightpad.model.UiState.SEARCH
+import dev.khalil.freightpad.model.UiState.INFO
+import dev.khalil.freightpad.model.UiState.ROUTE
 import dev.khalil.freightpad.ui.fragment.InfoFragment
+import dev.khalil.freightpad.ui.fragment.RouteFragment
 
 class CalculatorViewPagerAdapter(
   private val context: Context,
@@ -19,16 +20,16 @@ class CalculatorViewPagerAdapter(
 
   override fun getPageTitle(position: Int): CharSequence? {
     return when (states[position]) {
-      SEARCH  -> context.getString(R.string.tab_info)
-      RESULT  -> context.getString(R.string.tab_route)
+      INFO    -> context.getString(R.string.tab_info)
+      ROUTE   -> context.getString(R.string.tab_route)
       HISTORY -> context.getString(R.string.tab_history)
     }
   }
 
   override fun getItem(position: Int): Fragment {
     return when (states[position]) {
-      SEARCH  -> InfoFragment()
-      RESULT  -> Fragment()
+      INFO    -> InfoFragment()
+      ROUTE   -> RouteFragment()
       HISTORY -> Fragment()
     }
   }

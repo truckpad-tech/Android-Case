@@ -11,13 +11,50 @@
     <item name="android:windowBackground">@drawable/splash_background</item>
   </style>
 
-  <style name="TextAppearance.FreightPad.Location" parent="Widget.MaterialComponents.TextView">
+  <style name="FreightPad.Info.Location.TextAppearance" parent="Widget.MaterialComponents.TextView">
     <item name="android:fontFamily">sans-serif-medium</item>
     <item name="android:gravity">center_vertical</item>
     <item name="android:paddingEnd">@dimen/f_info_location_padding</item>
     <item name="android:paddingStart">@dimen/f_info_location_padding</item>
     <item name="android:textSize">@dimen/f_info_location_text_size</item>
     <item name="android:drawablePadding">@dimen/f_info_location_drawable_padding</item>
+  </style>
+
+  <style name="FreightPad.Route.CardView" parent="Widget.MaterialComponents.CardView">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_margin">@dimen/f_route_card_margin</item>
+    <item name="cardCornerRadius">@dimen/f_route_card_radius</item>
+    <item name="cardElevation">@dimen/f_route_card_elevation</item>
+  </style>
+
+  <style name="FreightPad.Route.CardView.Divider" parent="Theme.MaterialComponents">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">@dimen/f_route_divider_height</item>
+    <item name="android:layout_marginTop">@dimen/f_route_divider_margin_top</item>
+    <item name="android:background">@color/grey300</item>
+  </style>
+
+  <style name="FreightPad.Route.CardView.Header" parent="Widget.MaterialComponents.TextView">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_margin">@dimen/f_route_header_margin</item>
+    <item name="android:fontFamily">sans-serif-medium</item>
+    <item name="android:textColor">@color/truckPadGrey</item>
+    <item name="android:textSize">@dimen/f_route_header_text_size</item>
+  </style>
+
+  <style name="FreightPad.Route.CardView.Labels" parent="Widget.MaterialComponents.TextView">
+    <item name="android:layout_width">@dimen/f_route_label_width</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:layout_marginTop">@dimen/f_route_label_margin_top</item>
+    <item name="android:fontFamily">sans-serif-medium</item>
+  </style>
+
+  <style name="FreightPad.Route.CardView.Values" parent="Widget.MaterialComponents.TextView">
+    <item name="android:layout_width">@dimen/f_route_values_width</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:gravity">end</item>
   </style>
 
 </resources>
