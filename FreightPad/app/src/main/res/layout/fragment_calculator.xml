@@ -4,7 +4,7 @@
   xmlns:tools="http://schemas.android.com/tools">
 
   <androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/sheet"
+    android:id="@+id/bottom_sheet"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/calculator_background"
@@ -21,18 +21,6 @@
       android:text="@string/calculator_title"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-      android:id="@+id/expand_icon"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginEnd="@dimen/f_calculator_margin_icon"
-      android:padding="@dimen/f_calculator_padding_icon"
-      android:contentDescription="@null"
-      android:src="@drawable/arrow_up"
-      app:layout_constraintBottom_toBottomOf="@id/title"
-      app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.tabs.TabLayout

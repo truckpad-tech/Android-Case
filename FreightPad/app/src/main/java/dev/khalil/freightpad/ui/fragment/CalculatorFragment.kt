@@ -4,9 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import dev.khalil.freightpad.R
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import dev.khalil.freightpad.databinding.FragmentCalculatorBinding
 import dev.khalil.freightpad.model.UiState
 import dev.khalil.freightpad.ui.adapter.CalculatorViewPagerAdapter
@@ -14,23 +13,28 @@ import dev.khalil.freightpad.ui.adapter.CalculatorViewPagerAdapter
 class CalculatorFragment : Fragment() {
 
   private lateinit var binding: FragmentCalculatorBinding
+  private val bottomSheetBehavior by lazy { BottomSheetBehavior.from(binding.bottomSheet) }
 
   override fun onCreateView(
-    inflater: LayoutInflater,
-    container: ViewGroup?,
-    savedInstanceState: Bundle?
+    inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
   ): View? {
-    binding = DataBindingUtil.inflate(inflater, R.layout.fragment_calculator, container, false)
+    binding = FragmentCalculatorBinding.inflate(inflater, container, false)
 
     return binding.root
   }
 
-  override fun onViewCreated(
-    view: View,
-    savedInstanceState: Bundle?
-  ) {
-    super.onViewCreated(view, savedInstanceState)
+  override fun onActivityCreated(savedInstanceState: Bundle?) {
+    super.onActivityCreated(savedInstanceState)
 
+    initViewPager()
+    initBottomSheet()
+  }
+
+  private fun initBottomSheet() {
+    bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+  }
+
+  private fun initViewPager() {
     binding.viewPager.apply {
       val viewPagerAdapter =
         CalculatorViewPagerAdapter(this.context, childFragmentManager, UiState.values())
@@ -39,4 +43,5 @@ class CalculatorFragment : Fragment() {
       binding.tabLayout.setupWithViewPager(this)
     }
   }
+
 }

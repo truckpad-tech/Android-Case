@@ -10,7 +10,7 @@
     android:padding="@dimen/f_info_padding"
     tools:context=".ui.fragment.InfoFragment">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <com.google.android.material.textview.MaterialTextView
       android:id="@+id/start_location"
       style="@style/FreightPad.Info.Location.TextAppearance"
       android:layout_width="@dimen/f_info_location_width"
@@ -24,7 +24,7 @@
       app:layout_constraintTop_toTopOf="parent"
       tools:text="Sua localização" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <com.google.android.material.textview.MaterialTextView
       android:id="@+id/end_location"
       style="@style/FreightPad.Info.Location.TextAppearance"
       android:layout_width="@dimen/f_info_location_width"
@@ -51,7 +51,7 @@
       app:layout_constraintEnd_toStartOf="@+id/axis_display"
       app:layout_constraintTop_toTopOf="@+id/axis_display" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <com.google.android.material.textview.MaterialTextView
       android:id="@+id/axis_display"
       android:layout_width="@dimen/f_info_axis_display_size"
       android:layout_height="@dimen/f_info_axis_display_size"
@@ -75,7 +75,7 @@
       app:layout_constraintEnd_toEndOf="@+id/start_location"
       app:layout_constraintTop_toTopOf="@+id/axis_display" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <com.google.android.material.textview.MaterialTextView
       android:id="@+id/appCompatTextView3"
       android:layout_width="@dimen/f_info_label_width"
       android:layout_height="@dimen/f_info_label_height"
@@ -91,7 +91,7 @@
       app:layout_constraintTop_toTopOf="@+id/axis_display"
       app:layout_constraintVertical_bias="0.0" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <com.google.android.material.textview.MaterialTextView
       android:id="@+id/appCompatTextView4"
       android:layout_width="@dimen/f_info_label_width"
       android:layout_height="@dimen/f_info_label_height"
@@ -106,7 +106,8 @@
       app:layout_constraintStart_toStartOf="@+id/start_location"
       app:layout_constraintTop_toTopOf="@+id/gas_consume" />
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <com.google.android.material.textview.MaterialTextView
+      android:id="@+id/materialTextView"
       android:layout_width="@dimen/f_info_label_width"
       android:layout_height="@dimen/f_info_label_height"
       android:layout_marginEnd="@dimen/f_info_label_margin_end"
@@ -119,7 +120,7 @@
       app:layout_constraintStart_toStartOf="@+id/start_location"
       app:layout_constraintTop_toTopOf="@+id/gas_price" />
 
-    <androidx.appcompat.widget.AppCompatEditText
+    <com.google.android.material.textfield.TextInputEditText
       android:id="@+id/gas_consume"
       android:layout_width="wrap_content"
       android:layout_height="@dimen/f_info_fuel_height"
@@ -131,7 +132,7 @@
       app:layout_constraintEnd_toEndOf="@+id/start_location"
       app:layout_constraintTop_toBottomOf="@+id/axis_display" />
 
-    <androidx.appcompat.widget.AppCompatEditText
+    <com.google.android.material.textfield.TextInputEditText
       android:id="@+id/gas_price"
       android:layout_width="wrap_content"
       android:layout_height="@dimen/f_info_fuel_height"
@@ -143,6 +144,16 @@
       android:background="@android:color/transparent"
       app:layout_constraintEnd_toEndOf="@+id/start_location"
       app:layout_constraintTop_toBottomOf="@+id/gas_consume" />
+
+    <com.google.android.material.button.MaterialButton
+      android:id="@+id/calculate"
+      android:layout_width="@dimen/f_info_label_width"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="32dp"
+      android:text="Calculate"
+      app:layout_constraintEnd_toEndOf="@+id/start_location"
+      app:layout_constraintStart_toStartOf="@+id/start_location"
+      app:layout_constraintTop_toBottomOf="@+id/materialTextView" />
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -5,6 +5,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
@@ -12,17 +14,30 @@ import dev.khalil.freightpad.R
 import dev.khalil.freightpad.R.id
 import dev.khalil.freightpad.common.ZERO
 import dev.khalil.freightpad.databinding.ActivityMapsBinding
+import dev.khalil.freightpad.ui.fragment.CalculatorFragment
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
   private lateinit var googleMap: GoogleMap
   private lateinit var binding: ActivityMapsBinding
+  private lateinit var calculatorFragment: CalculatorFragment
+
+  private val fusedLocationClient: FusedLocationProviderClient by lazy {
+    LocationServices.getFusedLocationProviderClient(this)
+  }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     binding = DataBindingUtil.setContentView(this, R.layout.activity_maps)
 
     initMap()
+    initCalculator()
+  }
+
+  private fun initCalculator() {
+    supportFragmentManager.findFragmentById(R.id.calculator_fragment).let { fragment ->
+      calculatorFragment = fragment as CalculatorFragment
+    }
   }
 
   override fun onMapReady(map: GoogleMap) {

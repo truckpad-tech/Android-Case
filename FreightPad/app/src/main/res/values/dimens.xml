@@ -13,7 +13,7 @@
   <!-- Maps Activity-->
   <dimen name="a_maps_margin_bottom_calculator">@dimen/default_64</dimen>
   <dimen name="a_maps_margin_horizontal_calculator">@dimen/default_8</dimen>
-  <dimen name="a_maps_peek_height">@dimen/default_64</dimen>
+  <dimen name="a_maps_peek_height">112dp</dimen>
 
   <!-- Calculator Fragment-->
   <dimen name="f_calculator_font_size_title">@dimen/font_18</dimen>
@@ -77,13 +77,23 @@
   <dimen name="i_history_card_margin">@dimen/default_16</dimen>
   <dimen name="i_history_card_radius">@dimen/default_16</dimen>
   <dimen name="i_history_card_elevation">5dp</dimen>
-  <dimen name="i_history_card_margin_top">16dp</dimen>
-  <dimen name="i_history_card_margin_start">16dp</dimen>
+  <dimen name="i_history_card_margin_top">@dimen/default_16</dimen>
+  <dimen name="i_history_card_margin_start">@dimen/default_16</dimen>
   <dimen name="i_history_card_label_margin_top">8dp</dimen>
-  <dimen name="i_history_card_margin_end">16dp</dimen>
-  <dimen name="i_history_card_location_margin_start">16dp</dimen>
+  <dimen name="i_history_card_margin_end">@dimen/default_16</dimen>
+  <dimen name="i_history_card_location_margin_start">@dimen/default_16</dimen>
   <dimen name="i_history_card_location_font_size">12sp</dimen>
-  <dimen name="i_history_card_location_width">0dp</dimen>
-  <dimen name="i_history_card_details_margin">16dp</dimen>
+  <dimen name="i_history_card_location_width">@dimen/default_constraint</dimen>
+  <dimen name="i_history_card_details_margin">@dimen/default_16</dimen>
+
+  <!-- Search Activity-->
+  <dimen name="a_search_app_bar_elevation">0dp</dimen>
+  <dimen name="a_search_input_margin_end">@dimen/default_16</dimen>
+  <dimen name="a_search_input_drawable_padding">@dimen/default_8</dimen>
+  <dimen name="a_search_location_padding">@dimen/default_16</dimen>
+  <dimen name="a_search_location_drawable_padding">@dimen/default_8</dimen>
+  <dimen name="a_search_location_text_size">@dimen/font_16</dimen>
+  <dimen name="a_search_recycler_height">@dimen/default_constraint</dimen>
+
 
 </resources>
