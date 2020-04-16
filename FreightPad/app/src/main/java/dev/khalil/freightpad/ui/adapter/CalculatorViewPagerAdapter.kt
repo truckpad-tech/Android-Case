@@ -9,6 +9,7 @@ import dev.khalil.freightpad.model.UiState
 import dev.khalil.freightpad.model.UiState.HISTORY
 import dev.khalil.freightpad.model.UiState.INFO
 import dev.khalil.freightpad.model.UiState.ROUTE
+import dev.khalil.freightpad.ui.fragment.HistoryFragment
 import dev.khalil.freightpad.ui.fragment.InfoFragment
 import dev.khalil.freightpad.ui.fragment.RouteFragment
 
@@ -30,7 +31,7 @@ class CalculatorViewPagerAdapter(
     return when (states[position]) {
       INFO    -> InfoFragment()
       ROUTE   -> RouteFragment()
-      HISTORY -> Fragment()
+      HISTORY -> HistoryFragment()
     }
   }
 

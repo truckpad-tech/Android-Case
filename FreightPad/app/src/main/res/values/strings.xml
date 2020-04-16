@@ -1,5 +1,7 @@
 <resources>
   <string name="app_name">FreightPad</string>
+  <string name="origin_label">Origin</string>
+  <string name="destination_label">Destination</string>
 
   <!-- Calculator Fragment-->
   <string name="calculator_title">Freight Route Calculator</string>
@@ -19,11 +21,11 @@
 
   <!-- Route Fragment-->
   <string name="f_route_info_header">Route Info</string>
-  <string name="f_route_origin_label">Origin</string>
-  <string name="f_route_destination_label">Destination</string>
+  <string name="f_route_origin_label">@string/origin_label</string>
+  <string name="f_route_destination_label">@string/destination_label</string>
   <string name="f_route_distance_label">Distance</string>
   <string name="f_route_duration_label">Duration</string>
-  <string name="f_route_nav_map">Rota no\nmapa</string>
+  <string name="f_route_nav_map">Route on\map</string>
   <string name="f_route_fuel_toll_header">Fuel and Toll Values</string>
   <string name="f_route_toll_count_label">Toll count</string>
   <string name="f_route_sum_toll">Total toll amount</string>
@@ -36,5 +38,12 @@
   <string name="f_route_refrigerated">Refrigerated</string>
   <string name="f_route_dangerous">Dangerous</string>
   <string name="f_route_antt_header">Minimun ANTT Prices</string>
+
+
+  <!--  History Fragment-->
+  <string name="i_history_origin_label">@string/origin_label</string>
+  <string name="i_history_destination_label">@string/destination_label</string>
+  <string name="f_history_clear">Clear history</string>
+  <string name="f_history_empty">No recent searches</string>
 
 </resources>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto">
+
+  <androidx.cardview.widget.CardView
+    android:id="@+id/route_info_card_view"
+    style="@style/FreightPad.History.List.CardView"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+      <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/item_history_start_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/i_history_card_margin_top"
+        android:layout_marginStart="@dimen/i_history_card_margin_start"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/i_history_origin_label"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+      <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/item_history_end_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/i_history_card_label_margin_top"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/i_history_destination_label"
+        app:layout_constraintStart_toStartOf="@+id/item_history_start_label"
+        app:layout_constraintTop_toBottomOf="@+id/item_history_start_label" />
+
+      <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/item_history_start_location"
+        android:layout_width="@dimen/i_history_card_location_width"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/i_history_card_margin_end"
+        android:layout_marginStart="@dimen/i_history_card_location_margin_start"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-light"
+        android:hint="Localização inicial"
+        android:textSize="@dimen/i_history_card_location_font_size"
+        app:layout_constraintBottom_toBottomOf="@+id/item_history_start_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/item_history_start_label"
+        app:layout_constraintTop_toTopOf="@+id/item_history_start_label" />
+
+      <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/item_history_end_location"
+        android:layout_width="@dimen/i_history_card_location_width"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/i_history_card_location_margin_start"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-light"
+        android:hint="Localização final"
+        android:textSize="@dimen/i_history_card_location_font_size"
+        app:layout_constraintBottom_toBottomOf="@+id/item_history_end_label"
+        app:layout_constraintEnd_toEndOf="@+id/item_history_start_location"
+        app:layout_constraintStart_toEndOf="@+id/item_history_end_label"
+        app:layout_constraintTop_toTopOf="@+id/item_history_end_label" />
+
+      <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/item_history_axis"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/i_history_card_details_margin"
+        android:fontFamily="sans-serif-medium"
+        android:hint="9"
+        app:layout_constraintEnd_toEndOf="@+id/item_history_axis_label"
+        app:layout_constraintStart_toStartOf="@+id/item_history_axis_label"
+        app:layout_constraintTop_toBottomOf="@+id/item_history_end_label" />
+
+      <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/item_history_axis_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/i_history_card_details_margin"
+        android:text="Axis"
+        app:layout_constraintEnd_toStartOf="@+id/item_history_fuel_price"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/item_history_axis" />
+
+      <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/item_history_fuel_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/i_history_card_details_margin"
+        android:fontFamily="sans-serif-medium"
+        android:hint="R$ 999,99"
+        app:layout_constraintEnd_toStartOf="@+id/item_history_fuel_consume"
+        app:layout_constraintStart_toEndOf="@+id/item_history_axis_label"
+        app:layout_constraintTop_toTopOf="@+id/item_history_axis" />
+
+      <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/item_history_fuel_price_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/i_history_card_details_margin"
+        android:fontFamily="sans-serif-medium"
+        android:hint="Fuel price"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/item_history_fuel_price"
+        app:layout_constraintStart_toStartOf="@+id/item_history_fuel_price"
+        app:layout_constraintTop_toBottomOf="@+id/item_history_fuel_price" />
+
+      <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/item_history_fuel_consume"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/i_history_card_details_margin"
+        android:layout_marginStart="@dimen/i_history_card_details_margin"
+        android:text="999,99 km/l"
+        app:layout_constraintEnd_toEndOf="@+id/item_history_start_location"
+        app:layout_constraintStart_toEndOf="@+id/item_history_fuel_price"
+        app:layout_constraintTop_toTopOf="@+id/item_history_axis" />
+
+      <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/item_history_fuel_consume_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Fuel Consume"
+        app:layout_constraintEnd_toEndOf="@+id/item_history_fuel_consume"
+        app:layout_constraintStart_toStartOf="@+id/item_history_fuel_consume"
+        app:layout_constraintTop_toBottomOf="@+id/item_history_fuel_consume" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+  </androidx.cardview.widget.CardView>
+
+</layout>

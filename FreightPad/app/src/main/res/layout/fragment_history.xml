@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools">
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+      android:id="@+id/history_scroll_view"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:nestedScrollingEnabled="true"
+      android:overScrollMode="never"
+      android:scrollbars="none">
+
+      <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+          android:id="@+id/view"
+          android:layout_width="match_parent"
+          android:layout_height="60dp"
+          android:orientation="horizontal"
+          android:background="@color/grey300"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+          android:id="@+id/clean_history"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="16dp"
+          android:padding="8dp"
+          android:drawablePadding="8dp"
+          android:fontFamily="sans-serif-light"
+          android:gravity="center_vertical"
+          android:textSize="16sp"
+          android:text="@string/f_history_clear"
+          app:drawableEndCompat="@drawable/ic_delete"
+          app:drawableTint="@color/grey700"
+          app:layout_constraintBottom_toBottomOf="@+id/view"
+          app:layout_constraintEnd_toEndOf="@+id/view"
+          app:layout_constraintTop_toTopOf="@+id/view" />
+
+        <androidx.recyclerview.widget.RecyclerView
+          android:id="@+id/history_recycler_view"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:overScrollMode="never"
+          android:scrollbars="none"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/view"
+          tools:listitem="@layout/layout_history_item" />
+
+      </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <include
+      android:id="@+id/history_empty"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:visibility="gone"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      layout="@layout/layout_history_empty" />
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

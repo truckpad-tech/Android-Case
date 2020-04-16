@@ -6,11 +6,11 @@
     <item name="colorAccent">@color/colorAccent</item>
   </style>
 
-
   <style name="Theme.Splash" parent="Theme.App">
     <item name="android:windowBackground">@drawable/splash_background</item>
   </style>
 
+  <!--  Info Fragment-->
   <style name="FreightPad.Info.Location.TextAppearance" parent="Widget.MaterialComponents.TextView">
     <item name="android:fontFamily">sans-serif-medium</item>
     <item name="android:gravity">center_vertical</item>
@@ -20,6 +20,7 @@
     <item name="android:drawablePadding">@dimen/f_info_location_drawable_padding</item>
   </style>
 
+  <!--  Route Fragment-->
   <style name="FreightPad.Route.CardView" parent="Widget.MaterialComponents.CardView">
     <item name="android:layout_width">match_parent</item>
     <item name="android:layout_height">wrap_content</item>
@@ -55,6 +56,14 @@
     <item name="android:layout_width">@dimen/f_route_values_width</item>
     <item name="android:layout_height">wrap_content</item>
     <item name="android:gravity">end</item>
+  </style>
+
+  <!-- History Fragment-->
+  <style name="FreightPad.History.List.CardView" parent="Widget.MaterialComponents.CardView">
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="cardCornerRadius">@dimen/i_history_card_radius</item>
+    <item name="cardElevation">@dimen/i_history_card_elevation</item>
   </style>
 
 </resources>

@@ -1,76 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--  Default-->
-    <dimen name="default_8">8dp</dimen>
-    <dimen name="default_16">16dp</dimen>
-    <dimen name="default_24">24dp</dimen>
-    <dimen name="default_64">64dp</dimen>
-    <dimen name="font_14">14sp</dimen>
-    <dimen name="font_16">16sp</dimen>
-    <dimen name="font_18">18sp</dimen>
-    <dimen name="default_constraint">0dp</dimen>
+  <!--  Default-->
+  <dimen name="default_8">8dp</dimen>
+  <dimen name="default_16">16dp</dimen>
+  <dimen name="default_24">24dp</dimen>
+  <dimen name="default_64">64dp</dimen>
+  <dimen name="font_14">14sp</dimen>
+  <dimen name="font_16">16sp</dimen>
+  <dimen name="font_18">18sp</dimen>
+  <dimen name="default_constraint">0dp</dimen>
 
-    <!-- Maps Activity-->
-    <dimen name="a_maps_margin_bottom_calculator">@dimen/default_64</dimen>
-    <dimen name="a_maps_margin_horizontal_calculator">@dimen/default_8</dimen>
-    <dimen name="a_maps_peek_height">@dimen/default_64</dimen>
+  <!-- Maps Activity-->
+  <dimen name="a_maps_margin_bottom_calculator">@dimen/default_64</dimen>
+  <dimen name="a_maps_margin_horizontal_calculator">@dimen/default_8</dimen>
+  <dimen name="a_maps_peek_height">@dimen/default_64</dimen>
 
-    <!-- Calculator Fragment-->
-    <dimen name="f_calculator_font_size_title">@dimen/font_18</dimen>
-    <dimen name="f_calculator_padding_title">@dimen/default_16</dimen>
-    <dimen name="f_calculator_margin_icon">@dimen/default_16</dimen>
-    <dimen name="f_calculator_padding_icon">@dimen/default_8</dimen>
-    <dimen name="f_calculator_width_tab">@dimen/default_constraint</dimen>
-    <dimen name="f_calculator_width_view_pager">@dimen/default_constraint</dimen>
-    <dimen name="f_calculator_height_view_pager">@dimen/default_constraint</dimen>
+  <!-- Calculator Fragment-->
+  <dimen name="f_calculator_font_size_title">@dimen/font_18</dimen>
+  <dimen name="f_calculator_padding_title">@dimen/default_16</dimen>
+  <dimen name="f_calculator_margin_icon">@dimen/default_16</dimen>
+  <dimen name="f_calculator_padding_icon">@dimen/default_8</dimen>
+  <dimen name="f_calculator_width_tab">@dimen/default_constraint</dimen>
+  <dimen name="f_calculator_width_view_pager">@dimen/default_constraint</dimen>
+  <dimen name="f_calculator_height_view_pager">@dimen/default_constraint</dimen>
 
-    <!-- Error View-->
-    <dimen name="v_error_description_width">230dp</dimen>
-    <dimen name="v_error_description_text_size">@dimen/font_18</dimen>
-    <dimen name="v_error_button_margin_top">16dp</dimen>
-    <dimen name="v_error_button_padding_vertical">4dp</dimen>
-    <dimen name="v_error_button_padding_horizontal">16dp</dimen>
+  <!-- Error View-->
+  <dimen name="v_error_description_width">230dp</dimen>
+  <dimen name="v_error_description_text_size">@dimen/font_18</dimen>
+  <dimen name="v_error_button_margin_top">16dp</dimen>
+  <dimen name="v_error_button_padding_vertical">4dp</dimen>
+  <dimen name="v_error_button_padding_horizontal">16dp</dimen>
 
-    <!-- Info Fragment-->
-    <dimen name="f_info_padding">@dimen/default_16</dimen>
-    <dimen name="f_info_location_width">@dimen/default_constraint</dimen>
-    <dimen name="f_info_location_height">40dp</dimen>
-    <dimen name="f_info_location_drawable_padding">@dimen/default_8</dimen>
-    <dimen name="f_info_location_padding">@dimen/default_8</dimen>
-    <dimen name="f_info_location_text_size">@dimen/font_14</dimen>
-    <dimen name="f_info_location_margin_top">@dimen/default_8</dimen>
-    <dimen name="f_info_axis_button_width">@dimen/default_24</dimen>
-    <dimen name="f_info_axis_button_height">@dimen/default_constraint</dimen>
-    <dimen name="f_info_axis_display_size">40dp</dimen>
-    <dimen name="f_info_details_margin_top">@dimen/default_16</dimen>
-    <dimen name="f_info_axis_display_text_size">@dimen/font_16</dimen>
-    <dimen name="f_info_label_width">@dimen/default_constraint</dimen>
-    <dimen name="f_info_label_height">40dp</dimen>
-    <dimen name="f_info_label_margin_end">@dimen/default_16</dimen>
-    <dimen name="f_info_label_text_size">14sp</dimen>
-    <dimen name="f_info_fuel_height">40dp</dimen>
-    <dimen name="f_info_fuel_text_size">@dimen/font_16</dimen>
+  <!-- Info Fragment-->
+  <dimen name="f_info_padding">@dimen/default_16</dimen>
+  <dimen name="f_info_location_width">@dimen/default_constraint</dimen>
+  <dimen name="f_info_location_height">40dp</dimen>
+  <dimen name="f_info_location_drawable_padding">@dimen/default_8</dimen>
+  <dimen name="f_info_location_padding">@dimen/default_8</dimen>
+  <dimen name="f_info_location_text_size">@dimen/font_14</dimen>
+  <dimen name="f_info_location_margin_top">@dimen/default_8</dimen>
+  <dimen name="f_info_axis_button_width">@dimen/default_24</dimen>
+  <dimen name="f_info_axis_button_height">@dimen/default_constraint</dimen>
+  <dimen name="f_info_axis_display_size">40dp</dimen>
+  <dimen name="f_info_details_margin_top">@dimen/default_16</dimen>
+  <dimen name="f_info_axis_display_text_size">@dimen/font_16</dimen>
+  <dimen name="f_info_label_width">@dimen/default_constraint</dimen>
+  <dimen name="f_info_label_height">40dp</dimen>
+  <dimen name="f_info_label_margin_end">@dimen/default_16</dimen>
+  <dimen name="f_info_label_text_size">14sp</dimen>
+  <dimen name="f_info_fuel_height">40dp</dimen>
+  <dimen name="f_info_fuel_text_size">@dimen/font_16</dimen>
 
-    <!-- Route Fragment-->
-    <dimen name="f_route_card_margin">@dimen/default_16</dimen>
-    <dimen name="f_route_card_radius">@dimen/default_16</dimen>
-    <dimen name="f_route_card_elevation">5dp</dimen>
-    <dimen name="f_route_header_margin">@dimen/default_8</dimen>
-    <dimen name="f_route_header_text_size">18sp</dimen>
-    <dimen name="f_route_divider_height">1dp</dimen>
-    <dimen name="f_route_divider_margin_top">4dp</dimen>
-    <dimen name="f_route_label_margin_top">@dimen/default_8</dimen>
-    <dimen name="f_route_label_width">@dimen/default_constraint</dimen>
-    <dimen name="f_route_label_margin_vertical">@dimen/default_16</dimen>
-    <dimen name="f_route_label_margin_horizontal">@dimen/default_16</dimen>
-    <dimen name="f_route_location_margin_horizontal">@dimen/default_16</dimen>
-    <dimen name="f_route_location_width">@dimen/default_constraint</dimen>
-    <dimen name="f_route_location_text_size">12sp</dimen>
-    <dimen name="f_route_info_details_margin_vertical">@dimen/default_16</dimen>
-    <dimen name="f_route_info_details_text_size">12sp</dimen>
-    <dimen name="f_route_nav_height">@dimen/default_constraint</dimen>
-    <dimen name="f_route_nav_drawable_padding">@dimen/default_8</dimen>
-    <dimen name="f_route_values_width">@dimen/default_constraint</dimen>
-    <dimen name="f_route_values_margin_end">@dimen/default_16</dimen>
+  <!-- Route Fragment-->
+  <dimen name="f_route_card_margin">@dimen/default_16</dimen>
+  <dimen name="f_route_card_radius">@dimen/default_16</dimen>
+  <dimen name="f_route_card_elevation">5dp</dimen>
+  <dimen name="f_route_header_margin">@dimen/default_8</dimen>
+  <dimen name="f_route_header_text_size">18sp</dimen>
+  <dimen name="f_route_divider_height">1dp</dimen>
+  <dimen name="f_route_divider_margin_top">4dp</dimen>
+  <dimen name="f_route_label_margin_top">@dimen/default_8</dimen>
+  <dimen name="f_route_label_width">@dimen/default_constraint</dimen>
+  <dimen name="f_route_label_margin_vertical">@dimen/default_16</dimen>
+  <dimen name="f_route_label_margin_horizontal">@dimen/default_16</dimen>
+  <dimen name="f_route_location_margin_horizontal">@dimen/default_16</dimen>
+  <dimen name="f_route_location_width">@dimen/default_constraint</dimen>
+  <dimen name="f_route_location_text_size">12sp</dimen>
+  <dimen name="f_route_info_details_margin_vertical">@dimen/default_16</dimen>
+  <dimen name="f_route_info_details_text_size">12sp</dimen>
+  <dimen name="f_route_nav_height">@dimen/default_constraint</dimen>
+  <dimen name="f_route_nav_drawable_padding">@dimen/default_8</dimen>
+  <dimen name="f_route_values_width">@dimen/default_constraint</dimen>
+  <dimen name="f_route_values_margin_end">@dimen/default_16</dimen>
+
+  <!-- History Fragment-->
+  <dimen name="i_history_card_margin">@dimen/default_16</dimen>
+  <dimen name="i_history_card_radius">@dimen/default_16</dimen>
+  <dimen name="i_history_card_elevation">5dp</dimen>
+  <dimen name="i_history_card_margin_top">16dp</dimen>
+  <dimen name="i_history_card_margin_start">16dp</dimen>
+  <dimen name="i_history_card_label_margin_top">8dp</dimen>
+  <dimen name="i_history_card_margin_end">16dp</dimen>
+  <dimen name="i_history_card_location_margin_start">16dp</dimen>
+  <dimen name="i_history_card_location_font_size">12sp</dimen>
+  <dimen name="i_history_card_location_width">0dp</dimen>
+  <dimen name="i_history_card_details_margin">16dp</dimen>
 
 </resources>
