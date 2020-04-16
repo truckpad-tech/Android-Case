@@ -1,7 +1,7 @@
 ext {
   compileVersion = 29
   targetVersion = 29
-  minVersion = 19
+  minVersion = 21
   buildVersion = "29.0.3"
 
   kotlinVersion = "1.3.72"
