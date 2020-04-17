@@ -1,0 +1,24 @@
+<resources>
+    <!--
+    TODO: Before you run your application, you need a Google Maps API key.
+
+    To get one, follow this link, follow the directions and press "Create" at the end:
+
+    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=5A:7F:61:E8:E3:B6:5B:2C:AC:C4:04:CF:9A:D0:48:59:A8:0B:CE:BD%3Bcom.fernandacadena.truckpad_app
+
+    You can also add your credentials to an existing key, using these values:
+
+    Package name:
+    com.fernandacadena.truckpad_app
+
+    SHA-1 certificate fingerprint:
+    5A:7F:61:E8:E3:B6:5B:2C:AC:C4:04:CF:9A:D0:48:59:A8:0B:CE:BD
+
+    Alternatively, follow the directions here:
+    https://developers.google.com/maps/documentation/android/start#get-key
+
+    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
+    string in this file.
+    -->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAwObAYhg1AHJVGAv0ciLTBIUE64KaWZsE</string>
+</resources>

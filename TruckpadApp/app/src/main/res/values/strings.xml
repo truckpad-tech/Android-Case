@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Truckpad</string>
+    <string name="title_activity_maps">Truckpad</string>
+    <string name="nextButton">Próximo</string>
+    <string name="localizacaoInicial">Origem</string>
+    <string name="localizacaoFinal">Destino</string>
+    <string name="numeroTrechos">Número de trechos</string>
+    <string name="consumoMedio">Consumo médio</string>
+    <string name="valorCombustivel">Valor do combustível</string>
+    <string name="calcularRota">Calcular custo</string>
+    <string name="resultado">Resultado:</string>
+    <string name="API_KEY">"AIzaSyAwObAYhg1AHJVGAv0ciLTBIUE64KaWZsE"</string>
+</resources>
