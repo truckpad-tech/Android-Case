@@ -16,8 +16,8 @@
   <string name="f_info_many_axis">How many axes does the\nvehicle have?</string>
   <string name="f_info_fuel_consume">What is the average fuel\nconsumption (km/l)?</string>
   <string name="f_info_fuel_price">What is the price of fuel?</string>
-  <string name="f_info_fuel_consume_default">2.45</string>
-  <string name="f_info_fuel_price_default">R$ 2.50</string>
+  <string name="f_info_fuel_consume_default">2,45</string>
+  <string name="f_info_fuel_price_default">R$ 2,50</string>
 
   <!-- Route Fragment-->
   <string name="f_route_info_header">Route Info</string>
@@ -48,5 +48,6 @@
   <!-- Search Activity-->
   <string name="a_search_header">Search</string>
   <string name="a_search_location">My Location</string>
+  <string name="f_info_calculate">Calculate</string>
 
 </resources>

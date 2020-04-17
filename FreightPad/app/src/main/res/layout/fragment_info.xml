@@ -101,10 +101,10 @@
       android:lines="2"
       android:textSize="@dimen/f_info_label_text_size"
       android:text="@string/f_info_fuel_consume"
-      app:layout_constraintBottom_toBottomOf="@+id/gas_consume"
-      app:layout_constraintEnd_toStartOf="@+id/gas_consume"
+      app:layout_constraintBottom_toBottomOf="@+id/fuel_consume"
+      app:layout_constraintEnd_toStartOf="@+id/fuel_consume"
       app:layout_constraintStart_toStartOf="@+id/start_location"
-      app:layout_constraintTop_toTopOf="@+id/gas_consume" />
+      app:layout_constraintTop_toTopOf="@+id/fuel_consume" />
 
     <com.google.android.material.textview.MaterialTextView
       android:id="@+id/materialTextView"
@@ -115,17 +115,18 @@
       android:gravity="center_vertical"
       android:textSize="@dimen/f_info_label_text_size"
       android:text="@string/f_info_fuel_price"
-      app:layout_constraintBottom_toBottomOf="@+id/gas_price"
-      app:layout_constraintEnd_toStartOf="@+id/gas_price"
+      app:layout_constraintBottom_toBottomOf="@+id/fuel_price"
+      app:layout_constraintEnd_toStartOf="@+id/fuel_price"
       app:layout_constraintStart_toStartOf="@+id/start_location"
-      app:layout_constraintTop_toTopOf="@+id/gas_price" />
+      app:layout_constraintTop_toTopOf="@+id/fuel_price" />
 
     <com.google.android.material.textfield.TextInputEditText
-      android:id="@+id/gas_consume"
+      android:id="@+id/fuel_consume"
       android:layout_width="wrap_content"
       android:layout_height="@dimen/f_info_fuel_height"
       android:layout_marginTop="@dimen/f_info_details_margin_top"
       android:inputType="numberDecimal"
+      android:maxLength="5"
       android:textSize="@dimen/f_info_fuel_text_size"
       android:text="@string/f_info_fuel_consume_default"
       android:background="@android:color/transparent"
@@ -133,24 +134,24 @@
       app:layout_constraintTop_toBottomOf="@+id/axis_display" />
 
     <com.google.android.material.textfield.TextInputEditText
-      android:id="@+id/gas_price"
+      android:id="@+id/fuel_price"
       android:layout_width="wrap_content"
       android:layout_height="@dimen/f_info_fuel_height"
       android:layout_marginTop="@dimen/f_info_details_margin_top"
       android:inputType="numberDecimal"
-      android:maxLength="7"
+      android:maxLength="11"
       android:textSize="@dimen/f_info_fuel_text_size"
       android:text="@string/f_info_fuel_price_default"
       android:background="@android:color/transparent"
       app:layout_constraintEnd_toEndOf="@+id/start_location"
-      app:layout_constraintTop_toBottomOf="@+id/gas_consume" />
+      app:layout_constraintTop_toBottomOf="@+id/fuel_consume" />
 
     <com.google.android.material.button.MaterialButton
       android:id="@+id/calculate"
       android:layout_width="@dimen/f_info_label_width"
       android:layout_height="wrap_content"
       android:layout_marginTop="32dp"
-      android:text="Calculate"
+      android:text="@string/f_info_calculate"
       app:layout_constraintEnd_toEndOf="@+id/start_location"
       app:layout_constraintStart_toStartOf="@+id/start_location"
       app:layout_constraintTop_toBottomOf="@+id/materialTextView" />

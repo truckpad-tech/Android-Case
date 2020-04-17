@@ -9,35 +9,35 @@
     tools:context=".ui.activity.SearchActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-      android:id="@+id/search_appbar"
+      android:id="@+id/appbar"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:background="@android:color/transparent"
-      app:elevation="@dimen/a_search_app_bar_elevation"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent">
 
       <androidx.appcompat.widget.Toolbar
-        android:id="@+id/search_toolbar"
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:minHeight="?attr/actionBarSize"
-        android:background="@android:color/transparent">
-
-        <com.google.android.material.textfield.TextInputEditText
-          android:id="@+id/place_edit"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginEnd="@dimen/a_search_input_margin_end"
-          android:drawableEnd="@drawable/ic_search"
-          android:drawablePadding="@dimen/a_search_input_drawable_padding"
-          android:hint="@string/a_search_header"
-          android:inputType="text"
-          android:textColor="@color/truckPadGrey" />
-      </androidx.appcompat.widget.Toolbar>
+        android:layout_height="wrap_content"
+        app:logo="@drawable/truckpad_full_logo" />
 
     </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.textfield.TextInputEditText
+      android:id="@+id/place_edit"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginEnd="@dimen/a_search_location_margin"
+      android:layout_marginStart="@dimen/a_search_location_margin"
+      android:drawableEnd="@drawable/ic_search"
+      android:drawablePadding="@dimen/a_search_input_drawable_padding"
+      android:hint="@string/a_search_header"
+      android:inputType="text"
+      android:textColor="@color/truckPadGrey"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/appbar" />
 
     <TextView
       android:id="@+id/my_location_text"
@@ -51,18 +51,18 @@
       android:text="@string/a_search_location"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/search_appbar" />
+      app:layout_constraintTop_toBottomOf="@+id/place_edit" />
 
     <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/places_recycler"
       android:layout_width="match_parent"
+      android:overScrollMode="never"
       android:layout_height="@dimen/a_search_recycler_height"
-      android:layout_below="@id/search_appbar"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/my_location_text"
-      tools:listitem="@layout/item_address" />
+      tools:listitem="@layout/item_search_location" />
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

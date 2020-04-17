@@ -12,11 +12,12 @@
     android:fullBackupContent="false"
     android:icon="@mipmap/ic_launcher"
     android:label="@string/app_name"
+    android:name=".FreightApp"
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
     android:theme="@style/Theme.App"
     tools:ignore="AllowBackup">
-    <activity android:name=".ui.activity.SearchActivity"></activity>
+    <activity android:name=".ui.activity.SearchActivity" />
 
     <meta-data
       android:name="com.google.android.geo.API_KEY"
