@@ -20,12 +20,12 @@
         android:layout_marginTop="@dimen/i_history_card_margin_top"
         android:layout_marginStart="@dimen/i_history_card_margin_start"
         android:fontFamily="sans-serif-medium"
-        android:text="@string/i_history_origin_label"
+        android:text="@string/i_history_start_label"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
       <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/item_history_end_label"
+        android:id="@+id/item_history_destination_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/i_history_card_label_margin_top"
@@ -58,10 +58,10 @@
         android:fontFamily="sans-serif-light"
         android:hint="Localização final"
         android:textSize="@dimen/i_history_card_location_font_size"
-        app:layout_constraintBottom_toBottomOf="@+id/item_history_end_label"
+        app:layout_constraintBottom_toBottomOf="@+id/item_history_destination_label"
         app:layout_constraintEnd_toEndOf="@+id/item_history_start_location"
-        app:layout_constraintStart_toEndOf="@+id/item_history_end_label"
-        app:layout_constraintTop_toTopOf="@+id/item_history_end_label" />
+        app:layout_constraintStart_toEndOf="@+id/item_history_destination_label"
+        app:layout_constraintTop_toTopOf="@+id/item_history_destination_label" />
 
       <com.google.android.material.textview.MaterialTextView
         android:id="@+id/item_history_axis"
@@ -72,7 +72,7 @@
         android:hint="9"
         app:layout_constraintEnd_toEndOf="@+id/item_history_axis_label"
         app:layout_constraintStart_toStartOf="@+id/item_history_axis_label"
-        app:layout_constraintTop_toBottomOf="@+id/item_history_end_label" />
+        app:layout_constraintTop_toBottomOf="@+id/item_history_destination_label" />
 
       <com.google.android.material.textview.MaterialTextView
         android:id="@+id/item_history_axis_label"

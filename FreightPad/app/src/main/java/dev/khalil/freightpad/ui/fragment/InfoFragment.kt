@@ -1,5 +1,7 @@
 package dev.khalil.freightpad.ui.fragment
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,12 +10,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import dev.khalil.freightpad.R
+import dev.khalil.freightpad.common.ADDRESS_KEY
 import dev.khalil.freightpad.common.BRAZIL_CURRENCY_SYMBOL
-import dev.khalil.freightpad.common.END_LOCATION_INTENT
-import dev.khalil.freightpad.common.ORIGIN_LOCATION_INTENT
+import dev.khalil.freightpad.common.DESTINATION_LOCATION_CODE
+import dev.khalil.freightpad.common.LAT_KEY
+import dev.khalil.freightpad.common.LONG_KEY
+import dev.khalil.freightpad.common.START_LOCATION_CODE
 import dev.khalil.freightpad.databinding.FragmentInfoBinding
 import dev.khalil.freightpad.di.infoModule
 import dev.khalil.freightpad.extensions.viewModel
+import dev.khalil.freightpad.model.Place
 import dev.khalil.freightpad.ui.activity.SearchActivity
 import dev.khalil.freightpad.ui.viewModel.InfoFragmentViewModel
 import dev.khalil.freightpad.utils.DecimalNumberFormatter
@@ -47,16 +53,38 @@ class InfoFragment : Fragment(), KodeinAware {
     initObservers()
   }
 
+  override fun onActivityResult(fromCode: Int, resultCode: Int, data: Intent?) {
+    when (resultCode) {
+      RESULT_OK -> {
+        data?.let {
+          val name = it.getStringExtra(ADDRESS_KEY)
+          val lat = it.getDoubleExtra(LAT_KEY, 0.0)
+          val long = it.getDoubleExtra(LONG_KEY, 0.0)
+
+          if (!name.isNullOrEmpty()) {
+            infoViewModel.setLocation(Place(name, listOf(lat, long)), fromCode)
+          }
+        }
+      }
+    }
+  }
+
   private fun initViewModel() {
   }
 
   private fun initObservers() {
     infoViewModel.axis.observe(viewLifecycleOwner, Observer { binding.axisDisplay.text = "$it" })
+    infoViewModel.start.observe(
+      viewLifecycleOwner,
+      Observer { binding.startLocation.text = it.displayName })
+    infoViewModel.destination.observe(
+      viewLifecycleOwner,
+      Observer { binding.destinationLocation.text = it.displayName })
   }
 
   private fun initListeners() {
-    binding.startLocation.setOnClickListener { openSearchActivity(ORIGIN_LOCATION_INTENT) }
-    binding.endLocation.setOnClickListener { openSearchActivity(END_LOCATION_INTENT) }
+    binding.startLocation.setOnClickListener { openSearchActivity(START_LOCATION_CODE) }
+    binding.destinationLocation.setOnClickListener { openSearchActivity(DESTINATION_LOCATION_CODE) }
     binding.axisDecrement.setOnClickListener { infoViewModel.decrementAxis() }
     binding.axisIncrement.setOnClickListener { infoViewModel.incrementAxis() }
     binding.fuelConsume.addTextChangedListener(DecimalNumberFormatter(binding.fuelConsume))
@@ -68,9 +96,9 @@ class InfoFragment : Fragment(), KodeinAware {
     )
   }
 
-  private fun openSearchActivity(requestCode: Int) {
-    activity?.run {
-      startActivityForResult(SearchActivity.createIntent(this), requestCode)
+  private fun openSearchActivity(intentCode: Int) {
+    context?.run {
+      startActivityForResult(SearchActivity.createIntent(this), intentCode)
     }
   }
 

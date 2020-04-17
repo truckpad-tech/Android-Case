@@ -16,6 +16,8 @@
       android:layout_width="@dimen/f_info_location_width"
       android:layout_height="@dimen/f_info_location_height"
       android:hint="@string/f_info_location_from"
+      android:ellipsize="end"
+      android:maxLines="1"
       android:background="@drawable/location_start_background"
       app:drawableStartCompat="@drawable/dot"
       app:drawableTint="@android:color/holo_green_light"
@@ -25,13 +27,15 @@
       tools:text="Sua localização" />
 
     <com.google.android.material.textview.MaterialTextView
-      android:id="@+id/end_location"
+      android:id="@+id/destination_location"
       style="@style/FreightPad.Info.Location.TextAppearance"
       android:layout_width="@dimen/f_info_location_width"
       android:layout_height="@dimen/f_info_location_height"
       android:layout_marginTop="@dimen/f_info_location_margin_top"
       android:hint="@string/f_info_location_to"
-      android:background="@drawable/location_end_background"
+      android:ellipsize="end"
+      android:maxLines="1"
+      android:background="@drawable/location_destination_background"
       app:drawableStartCompat="@drawable/dot"
       app:drawableTint="@android:color/holo_orange_light"
       app:layout_constraintEnd_toEndOf="@+id/start_location"
@@ -61,7 +65,7 @@
       android:textSize="@dimen/f_info_axis_display_text_size"
       android:text="@string/f_info_axis_display_default_value"
       app:layout_constraintEnd_toStartOf="@+id/axis_increment"
-      app:layout_constraintTop_toBottomOf="@+id/end_location" />
+      app:layout_constraintTop_toBottomOf="@+id/destination_location" />
 
     <androidx.appcompat.widget.AppCompatImageButton
       android:id="@+id/axis_increment"

@@ -45,12 +45,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/f_route_label_margin_top"
             android:fontFamily="sans-serif-medium"
-            android:text="@string/f_route_origin_label"
+            android:text="@string/f_route_start_label"
             app:layout_constraintStart_toStartOf="@+id/route_info_header"
             app:layout_constraintTop_toBottomOf="@+id/route_info_divider" />
 
           <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/route_info_end_label"
+            android:id="@+id/route_info_destination_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/f_route_label_margin_top"
@@ -75,7 +75,7 @@
             app:layout_constraintTop_toTopOf="@+id/route_info_start_label" />
 
           <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/route_info_end_location"
+            android:id="@+id/route_info_destination_location"
             android:layout_width="@dimen/f_route_location_width"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/f_route_location_margin_horizontal"
@@ -83,10 +83,10 @@
             android:fontFamily="sans-serif-light"
             android:hint="Localização final"
             android:textSize="@dimen/f_route_location_text_size"
-            app:layout_constraintBottom_toBottomOf="@+id/route_info_end_label"
+            app:layout_constraintBottom_toBottomOf="@+id/route_info_destination_label"
             app:layout_constraintEnd_toEndOf="@+id/route_info_start_location"
-            app:layout_constraintStart_toEndOf="@+id/route_info_end_label"
-            app:layout_constraintTop_toTopOf="@+id/route_info_end_label" />
+            app:layout_constraintStart_toEndOf="@+id/route_info_destination_label"
+            app:layout_constraintTop_toTopOf="@+id/route_info_destination_label" />
 
           <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/route_info_distance"
@@ -97,7 +97,7 @@
             android:hint="99999 KM"
             app:layout_constraintEnd_toStartOf="@+id/route_info_duration"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/route_info_end_label" />
+            app:layout_constraintTop_toBottomOf="@+id/route_info_destination_label" />
 
           <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/route_info_distance_label"
