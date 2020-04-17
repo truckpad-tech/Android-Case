@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".DetailsActivity">
+
+    <Button
+        android:id="@+id/calcularRotaButton"
+        android:layout_width="314dp"
+        android:layout_height="54dp"
+        android:layout_below="@id/valorCombustivelInput"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="64dp"
+        android:background="#FFC107"
+        android:baselineAligned="false"
+        android:text="@string/calcularRota"
+        android:textColor="#333232"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/valorCombustivelInput" />
+
+    <EditText
+        android:id="@+id/valorCombustivelInput"
+        android:layout_width="313dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/consumoMedioInput"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="40dp"
+        android:background="#FFFFFF"
+        android:baselineAligned="false"
+        android:ems="10"
+        android:hint="@string/valorCombustivel"
+        android:inputType="numberDecimal"
+        android:textColorHint="#bbb"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/consumoMedioInput" />
+
+    <EditText
+        android:id="@+id/consumoMedioInput"
+        android:layout_width="313dp"
+        android:layout_height="60dp"
+        android:layout_below="@id/numeroTrechosInput"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="40dp"
+        android:background="#FFFFFF"
+        android:baselineAligned="false"
+        android:ems="10"
+        android:hint="@string/consumoMedio"
+        android:inputType="numberDecimal"
+        android:textColorHint="#bbb"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numeroTrechosInput" />
+
+    <EditText
+        android:id="@+id/numeroTrechosInput"
+        android:layout_width="313dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="100dp"
+        android:background="#FFFFFF"
+        android:baselineAligned="false"
+        android:ems="10"
+        android:hint="@string/numeroTrechos"
+        android:inputType="number"
+        android:isScrollContainer="false"
+        android:textColorHint="#bbb"
+        android:textColorLink="#FFFFFF"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/resultTextView"
+        android:layout_width="227dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/calcularRotaButton"
+        android:layout_marginTop="62dp"
+        android:layout_toRightOf="@id/resultTextView2"
+        android:gravity="right"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/resultTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/calcularRotaButton"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="62dp"
+        android:gravity="start"
+        android:text="@string/resultado"
+        android:textSize="18sp" />
+</RelativeLayout>
