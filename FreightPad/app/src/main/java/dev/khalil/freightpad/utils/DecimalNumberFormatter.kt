@@ -4,7 +4,7 @@ import android.text.Editable
 import android.text.InputFilter
 import android.text.TextWatcher
 import androidx.appcompat.widget.AppCompatEditText
-import dev.khalil.freightpad.extensions.formatNumber
+import dev.khalil.freightpad.extensions.formatPrice
 
 class DecimalNumberFormatter(
   private val editText: AppCompatEditText,
@@ -36,7 +36,7 @@ class DecimalNumberFormatter(
 
     try {
       val value = rawNumberInput.toDouble() / 100.0
-      val formatted = value.formatNumber(currencySymbol)
+      val formatted = value.formatPrice(currencySymbol)
       allowChangesAfter {
         editText.setText(formatted)
         editText.setSelection(formatted.length)

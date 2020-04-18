@@ -1,5 +1,6 @@
 package dev.khalil.freightpad.extensions
 
+import com.google.android.gms.maps.model.LatLng
 import dev.khalil.freightpad.common.BRAZIL
 import dev.khalil.freightpad.common.HOUR_FORMAT
 import java.text.SimpleDateFormat
@@ -29,3 +30,10 @@ fun Int.toTime(timeUnit: String): String {
   }
 }
 
+fun List<Double>.toLatLng(): LatLng? {
+  return if (size == 2) {
+    LatLng(this.last(), this.first())
+  } else {
+    null
+  }
+}

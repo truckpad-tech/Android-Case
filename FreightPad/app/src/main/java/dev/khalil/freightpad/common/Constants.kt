@@ -1,10 +1,15 @@
 package dev.khalil.freightpad.common
 
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import java.util.Locale
 
 const val ZERO = 0
 val BRAZIL = Locale("pt", "BR")
+val BRAZIL_GEO_LOCATION = LatLng(-14.235004, -51.92528)
+val BRAZIL_BOUNDS = LatLngBounds(LatLng(-33.69111, -72.89583), LatLng(2.81972, -34.80861))
 const val BRAZIL_CURRENCY_SYMBOL = "R$ "
+const val LITER_SYMBOL = "L"
 
 const val START_LOCATION_CODE = 1
 const val DESTINATION_LOCATION_CODE = 2

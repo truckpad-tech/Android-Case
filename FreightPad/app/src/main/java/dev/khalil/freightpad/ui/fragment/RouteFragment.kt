@@ -10,12 +10,13 @@ import dev.khalil.freightpad.R
 import dev.khalil.freightpad.databinding.FragmentRouteBinding
 import dev.khalil.freightpad.model.RouteUiModel
 import dev.khalil.freightpad.model.UiState.ROUTE
+import dev.khalil.freightpad.ui.activity.OnShowRoute
 
 class RouteFragment : Fragment(), RouteInfo {
 
   private lateinit var binding: FragmentRouteBinding
 
-  private lateinit var route: RouteUiModel
+  private var route: RouteUiModel? = null
 
   override fun onCreateView(
     inflater: LayoutInflater, container: ViewGroup?,
@@ -23,6 +24,29 @@ class RouteFragment : Fragment(), RouteInfo {
   ): View? {
     binding = DataBindingUtil.inflate(inflater, R.layout.fragment_route, container, false)
     return binding.root
+  }
+
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+
+    initView()
+  }
+
+  private fun initView() {
+    binding.routeInfoNavMap.setOnClickListener {
+      route?.let {
+        activity?.run {
+          val onShowRoute = this as OnShowRoute
+          onShowRoute.showRoute(it.route.first())
+
+          val calculatorFragment = this.supportFragmentManager.fragments.first { fragment ->
+            fragment is CalculatorFragment
+          } as CalculatorFragment
+
+          calculatorFragment.collapseBottomSheet()
+        }
+      }
+    }
   }
 
   override fun showRoute(route: RouteUiModel) {
@@ -42,21 +66,23 @@ class RouteFragment : Fragment(), RouteInfo {
   }
 
   private fun showRouteInfo() {
-    with(binding) {
-      routeInfoStartLocation.text = route.points.first().displayName
-      routeInfoDestinationLocation.text = route.points.last().displayName
-      routeInfoDistance.text = route.distance
-      routeInfoDuration.text = route.duration
-      routeTollCount.text = route.tollCount
-      routeTollCost.text = route.tollCost
-      routeFuelNeeded.text = route.fuelNeeded
-      routeFuelTotalCost.text = route.fuelTotalCost
-      routeFuelTollTotal.text = route.totalCost
-      routeAnttGeneral.text = route.general
-      routeAnttBulk.text = route.bulk
-      routeAnttNeobulk.text = route.neoBulk
-      routeAnttRefrigerated.text = route.refrigerated
-      routeAnttDangerous.text = route.dangerous
+    route?.let { route ->
+      with(binding) {
+        routeInfoStartLocation.text = route.points.first().displayName
+        routeInfoDestinationLocation.text = route.points.last().displayName
+        routeInfoDistance.text = route.distance
+        routeInfoDuration.text = route.duration
+        routeTollCount.text = route.tollCount
+        routeTollCost.text = route.tollCost
+        routeFuelNeeded.text = route.fuelNeeded
+        routeFuelTotalCost.text = route.fuelTotalCost
+        routeFuelTollTotal.text = route.totalCost
+        routeAnttGeneral.text = route.general
+        routeAnttBulk.text = route.bulk
+        routeAnttNeobulk.text = route.neoBulk
+        routeAnttRefrigerated.text = route.refrigerated
+        routeAnttDangerous.text = route.dangerous
+      }
     }
   }
 

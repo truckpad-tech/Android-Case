@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_COLLAPSED
+import com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED
 import dev.khalil.freightpad.databinding.FragmentCalculatorBinding
 import dev.khalil.freightpad.model.UiState
 import dev.khalil.freightpad.ui.adapter.CalculatorViewPagerAdapter
@@ -30,8 +32,14 @@ class CalculatorFragment : Fragment(), ViewPagerControl {
     initBottomSheet()
   }
 
+  fun collapseBottomSheet() {
+    if (bottomSheetBehavior.state == STATE_EXPANDED) {
+      bottomSheetBehavior.state = STATE_COLLAPSED
+    }
+  }
+
   private fun initBottomSheet() {
-    bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+    bottomSheetBehavior.state = STATE_EXPANDED
   }
 
   private fun initViewPager() {
