@@ -1,9 +1,12 @@
 package dev.khalil.freightpad.di
 
 import dev.khalil.freightpad.BuildConfig
-import dev.khalil.freightpad.api.repository.SearchLocationRepository
-import dev.khalil.freightpad.api.repository.SearchLocationRepositoryImpl
-import dev.khalil.freightpad.api.service.SearchLocationService
+import dev.khalil.freightpad.api.repository.GeoApiRepository
+import dev.khalil.freightpad.api.repository.GeoApiRepositoryImpl
+import dev.khalil.freightpad.api.repository.SearchApiRepository
+import dev.khalil.freightpad.api.repository.SearchApiRepositoryImpl
+import dev.khalil.freightpad.api.service.GeoApiService
+import dev.khalil.freightpad.api.service.SearchApiService
 import dev.khalil.freightpad.ui.viewModel.InfoFragmentViewModel
 import dev.khalil.freightpad.ui.viewModel.SearchActivityViewModel
 import org.kodein.di.Kodein
@@ -16,26 +19,40 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 private const val INFO_MODULE = "infoModule"
-private const val SEARCH_MODULE = "infoModule"
+private const val SEARCH_MODULE = "searchModule"
+private const val CALCULATE_MODULE = "calculateModule"
 
 val infoModule = Kodein.Module(INFO_MODULE) {
   import(viewModelProviderModule)
-  import(networkModule)
+  import(calculate)
 
-  bind<InfoFragmentViewModel>() with provider { InfoFragmentViewModel() }
+  bind<InfoFragmentViewModel>() with provider { InfoFragmentViewModel(instance()) }
+}
+
+val calculate = Kodein.Module(CALCULATE_MODULE) {
+
+  bind<GeoApiRepository>() with singleton { GeoApiRepositoryImpl(instance()) }
+  bind<GeoApiService>() with singleton {
+    Retrofit.Builder()
+      .baseUrl(BuildConfig.GEO_API_BASE_URL)
+      .addConverterFactory(GsonConverterFactory.create())
+      .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+      .build()
+      .create(GeoApiService::class.java)
+  }
 }
 
 val searchModule = Kodein.Module(SEARCH_MODULE) {
   import(viewModelProviderModule)
 
   bind<SearchActivityViewModel>() with provider { SearchActivityViewModel(instance()) }
-  bind<SearchLocationRepository>() with singleton { SearchLocationRepositoryImpl(instance()) }
-  bind<SearchLocationService>() with singleton {
+  bind<SearchApiRepository>() with singleton { SearchApiRepositoryImpl(instance()) }
+  bind<SearchApiService>() with singleton {
     Retrofit.Builder()
-      .baseUrl(BuildConfig.SEARCH_BASE_URL)
+      .baseUrl(BuildConfig.SEARCH_API_BASE_URL)
       .addConverterFactory(GsonConverterFactory.create())
       .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
       .build()
-      .create(SearchLocationService::class.java)
+      .create(SearchApiService::class.java)
   }
 }

@@ -18,6 +18,7 @@ import dev.khalil.freightpad.common.LONG_KEY
 import dev.khalil.freightpad.common.START_LOCATION_CODE
 import dev.khalil.freightpad.databinding.FragmentInfoBinding
 import dev.khalil.freightpad.di.infoModule
+import dev.khalil.freightpad.extensions.removeMeasureUnit
 import dev.khalil.freightpad.extensions.viewModel
 import dev.khalil.freightpad.model.Place
 import dev.khalil.freightpad.ui.activity.SearchActivity
@@ -69,6 +70,11 @@ class InfoFragment : Fragment(), KodeinAware {
     }
   }
 
+  override fun onDestroy() {
+    infoViewModel.onDestroy()
+    super.onDestroy()
+  }
+
   private fun initViewModel() {
   }
 
@@ -94,6 +100,11 @@ class InfoFragment : Fragment(), KodeinAware {
         BRAZIL_CURRENCY_SYMBOL
       )
     )
+    binding.calculate.setOnClickListener {
+      val fuelConsume = binding.fuelConsume.text.removeMeasureUnit()
+      val fuelPrice = binding.fuelPrice.text.removeMeasureUnit()
+      infoViewModel.calculate(fuelConsume, fuelPrice)
+    }
   }
 
   private fun openSearchActivity(intentCode: Int) {

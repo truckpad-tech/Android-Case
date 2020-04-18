@@ -5,7 +5,7 @@ import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface SearchLocationService {
+interface SearchApiService {
 
   @GET("autocomplete")
   fun searchLocation(@Query("search") search: String): Single<SearchLocationResponse>

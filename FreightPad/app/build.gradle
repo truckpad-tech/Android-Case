@@ -27,7 +27,9 @@ android {
 
     debug {
       minifyEnabled = false
-      buildConfigField "String", "SEARCH_BASE_URL", "\"https://api.recalculafrete.com.br/\""
+      buildConfigField "String", "SEARCH_API_BASE_URL", "\"https://api.recalculafrete.com.br/\""
+      buildConfigField "String", "GEO_API_BASE_URL", "\"https://geo.api.truckpad.io/v1/\""
+      buildConfigField "String", "TICTAC_API_BASE_URL", "\"https://tictac.api.truckpad.io/v1/\""
     }
   }
   compileOptions {
@@ -82,10 +84,8 @@ dependencies {
   implementation "org.kodein.di:kodein-di-generic-jvm:$kodeinVersion"
   implementation "org.kodein.di:kodein-di-framework-android-x:$kodeinVersion"
 
-  //Gson + OkHttp
+  //Gson
   implementation "com.google.code.gson:gson:$gsonVersion"
-  implementation "com.squareup.okhttp3:okhttp:$okhttpVersion"
-  implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
 
   //Test
   testImplementation "junit:junit:$junitVersion"

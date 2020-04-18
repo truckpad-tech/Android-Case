@@ -3,7 +3,7 @@ package dev.khalil.freightpad.ui.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import dev.khalil.freightpad.api.repository.SearchLocationRepository
+import dev.khalil.freightpad.api.repository.SearchApiRepository
 import dev.khalil.freightpad.model.Place
 import io.reactivex.BackpressureStrategy
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -12,7 +12,7 @@ import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
 import java.util.concurrent.TimeUnit
 
-class SearchActivityViewModel(private val repository: SearchLocationRepository) : ViewModel() {
+class SearchActivityViewModel(private val repository: SearchApiRepository) : ViewModel() {
 
   private val searchResultLiveData = MutableLiveData<List<Place>>()
   val searchResult: LiveData<List<Place>>
@@ -49,7 +49,11 @@ class SearchActivityViewModel(private val repository: SearchLocationRepository) 
       .subscribe { responseList ->
         searchResultLiveData.value = responseList
         lastSearch = query
-      })
+      }) //TODO Implement an error scenario
   }
 
+  fun onDestroy() {
+    compositeDisposable.dispose()
+    compositeDisposable.clear()
+  }
 }

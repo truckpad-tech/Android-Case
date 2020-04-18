@@ -1,6 +1,6 @@
 package dev.khalil.freightpad.di
 
-import dev.khalil.freightpad.BuildConfig.SEARCH_BASE_URL
+import dev.khalil.freightpad.BuildConfig.SEARCH_API_BASE_URL
 import dev.khalil.freightpad.di.KodeinTags.SEARCH_RETRO_FIT
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
@@ -15,7 +15,7 @@ val networkModule = Kodein.Module(TAG) {
 
   bind<Retrofit>(SEARCH_RETRO_FIT) with singleton {
     Retrofit.Builder()
-      .baseUrl(SEARCH_BASE_URL)
+      .baseUrl(SEARCH_API_BASE_URL)
       .addConverterFactory(GsonConverterFactory.create())
       .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
       .build()

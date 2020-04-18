@@ -77,10 +77,15 @@ class SearchActivity : AppCompatActivity(), KodeinAware, LocationClick {
       LOCATION_PERMISSION_CODE -> {
         if (grantResults.isNotEmpty() && grantResults.first() == PERMISSION_GRANTED) {
           getUserLocation()
-        }
+        } //TODO Create a response if permission was denied
       }
     }
     super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+  }
+
+  override fun onDestroy() {
+    searchViewModel.onDestroy()
+    super.onDestroy()
   }
 
   private fun initListeners() {
@@ -92,11 +97,7 @@ class SearchActivity : AppCompatActivity(), KodeinAware, LocationClick {
       }
 
     }
-  }
-
-  private fun requestLocationPermission() {
-    val permissions = arrayOf(ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION)
-    ActivityCompat.requestPermissions(this, permissions, LOCATION_PERMISSION_CODE)
+    binding.placeEdit.addTextChangedListener(searchTextWatcher())
   }
 
   private fun initView() {
@@ -115,8 +116,10 @@ class SearchActivity : AppCompatActivity(), KodeinAware, LocationClick {
     searchViewModel.searchResult.observe(this, Observer { locationList ->
       locationsAdapter.updateLocations(locationList)
     })
+  }
 
-    binding.placeEdit.addTextChangedListener(object : TextWatcher {
+  private fun searchTextWatcher(): TextWatcher {
+    return object : TextWatcher {
       override fun afterTextChanged(s: Editable?) {
         searchViewModel.search(s.toString())
       }
@@ -127,12 +130,17 @@ class SearchActivity : AppCompatActivity(), KodeinAware, LocationClick {
 
       override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
       }
-    })
+    }
   }
 
   private fun isLocationPermissionGranted(): Boolean {
     return checkSelfPermission(this, ACCESS_FINE_LOCATION) == PERMISSION_GRANTED &&
         checkSelfPermission(this, ACCESS_COARSE_LOCATION) == PERMISSION_GRANTED
+  }
+
+  private fun requestLocationPermission() {
+    val permissions = arrayOf(ACCESS_FINE_LOCATION, ACCESS_COARSE_LOCATION)
+    ActivityCompat.requestPermissions(this, permissions, LOCATION_PERMISSION_CODE)
   }
 
   @SuppressLint("MissingPermission")
@@ -141,7 +149,8 @@ class SearchActivity : AppCompatActivity(), KodeinAware, LocationClick {
       .addOnSuccessListener { location: Location ->
         val place = Place(
           getString(R.string.your_location),
-          listOf(location.latitude, location.longitude))
+          listOf(location.longitude, location.latitude))
+        //TODO TEST THIS SHIT
         setLocation(place)
       }
   }
@@ -155,4 +164,5 @@ class SearchActivity : AppCompatActivity(), KodeinAware, LocationClick {
     setResult(Activity.RESULT_OK, intent)
     finish()
   }
+
 }

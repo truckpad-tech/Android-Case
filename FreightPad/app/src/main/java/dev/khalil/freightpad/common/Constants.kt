@@ -17,5 +17,4 @@ const val LONG_KEY = "longitude"
 
 const val MIN_AXIS_VALUE = 2
 const val MAX_AXIS_VALUE = 9
-
-
+const val DEFAULT_AXIS_VALUE = 2
