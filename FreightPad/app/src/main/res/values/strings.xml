@@ -39,6 +39,13 @@
   <string name="f_route_refrigerated">Refrigerated</string>
   <string name="f_route_dangerous">Dangerous</string>
   <string name="f_route_antt_header">Minimun ANTT Prices</string>
+  <string name="f_route_hint_start_location">Start location</string>
+  <string name="f_route_hint_destination_location">Final location</string>
+  <string name="f_route_hint_distance">0 KM</string>
+  <string name="f_route_hint_duration">00:00</string>
+  <string name="f_route_hint_toll_count">0</string>
+  <string name="f_route_hint_money">R$ 00,00</string>
+  <string name="f_route_hint_fuel_needed">0 L</string>
 
   <!--  History Fragment-->
   <string name="i_history_start_label">@string/start_label</string>
@@ -50,5 +57,6 @@
   <string name="a_search_header">Search</string>
   <string name="a_search_location">My Location</string>
   <string name="f_info_calculate">Calculate</string>
+
 
 </resources>

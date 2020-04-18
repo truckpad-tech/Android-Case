@@ -50,3 +50,18 @@ data class Point(
   @SerializedName("provider")
   val provider: String
 )
+
+data class TictacResponse(
+  @SerializedName("frigorificada")
+  val refrigerated: Double,
+  @SerializedName("geral")
+  val general: Double,
+  @SerializedName("granel")
+  val bulk: Double,
+  @SerializedName("neogranel")
+  val neoBulk: Double,
+  @SerializedName("perigosa")
+  val dangerous: Double
+)
+
+

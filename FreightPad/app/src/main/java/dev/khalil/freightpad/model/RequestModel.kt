@@ -15,3 +15,13 @@ data class PlaceRequest(
   @SerializedName("point")
   val point: List<Double>
 )
+
+data class TictacRequest(
+  @SerializedName("axis")
+  val axis: Int,
+  @SerializedName("distance")
+  val distance: Double,
+  @SerializedName("has_return_shipment")
+  val hasReturnShipment: Boolean
+)
+

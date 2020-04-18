@@ -1,7 +1,5 @@
 package dev.khalil.freightpad.api.repository
 
-import android.util.Log
-import com.google.gson.Gson
 import dev.khalil.freightpad.api.service.GeoApiService
 import dev.khalil.freightpad.model.Place
 import dev.khalil.freightpad.model.PlaceRequest
@@ -22,8 +20,6 @@ class GeoApiRepositoryImpl(private val api: GeoApiService) :
         PlaceRequest(start.point),
         PlaceRequest(destination.point)),
       fuelConsume, fuelPrice)
-
-    Log.d("DEBUG", Gson().toJson(routeRequest))
     return api.getRoute(routeRequest)
   }
 }

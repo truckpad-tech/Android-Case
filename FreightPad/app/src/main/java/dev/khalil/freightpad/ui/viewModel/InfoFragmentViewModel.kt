@@ -1,21 +1,26 @@
 package dev.khalil.freightpad.ui.viewModel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import dev.khalil.freightpad.api.repository.GeoApiRepository
+import dev.khalil.freightpad.api.repository.TictacApiRepository
 import dev.khalil.freightpad.common.DEFAULT_AXIS_VALUE
 import dev.khalil.freightpad.common.DESTINATION_LOCATION
 import dev.khalil.freightpad.common.MAX_AXIS_VALUE
 import dev.khalil.freightpad.common.MIN_AXIS_VALUE
 import dev.khalil.freightpad.common.START_LOCATION
+import dev.khalil.freightpad.extensions.toKm
 import dev.khalil.freightpad.model.Place
+import dev.khalil.freightpad.model.RouteResponse
+import dev.khalil.freightpad.model.RouteUiModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class InfoFragmentViewModel(private val geoRepository: GeoApiRepository) : ViewModel() {
+class InfoFragmentViewModel(
+  private val geoRepository: GeoApiRepository,
+  private val tictacRepository: TictacApiRepository) : ViewModel() {
 
   private val axisMutableLiveData = MutableLiveData<Int>()
   val axis: LiveData<Int>
@@ -29,14 +34,14 @@ class InfoFragmentViewModel(private val geoRepository: GeoApiRepository) : ViewM
   val destination: LiveData<Place>
     get() = destinationMutableLiveData
 
+  private val routeMutableLiveData = MutableLiveData<RouteUiModel>()
+  val route: LiveData<RouteUiModel>
+    get() = routeMutableLiveData
+
   private val compositeDisposable = CompositeDisposable()
 
   init {
     start()
-  }
-
-  private fun start() {
-    axisMutableLiveData.value = DEFAULT_AXIS_VALUE
   }
 
   fun incrementAxis() {
@@ -62,26 +67,76 @@ class InfoFragmentViewModel(private val geoRepository: GeoApiRepository) : ViewM
     }
   }
 
-  fun onDestroy() {
-
-  }
-
   fun calculate(fuelConsume: Double, fuelPrice: Double) {
-    if (fuelConsume > 0 || fuelPrice > 0) {
+
+    val startPlace = startMutableLiveData.value
+    val destinationPlace = destinationMutableLiveData.value
+    val axisValue = axisMutableLiveData.value
+
+    if (fuelConsume > 0 && fuelPrice > 0 && startPlace != null && destinationPlace != null) {
       compositeDisposable.add(
         geoRepository.getRoute(
           fuelConsume,
           fuelPrice,
-          startMutableLiveData.value!!,
-          destinationMutableLiveData.value!!)
+          startPlace,
+          destinationPlace)
           .subscribeOn(Schedulers.io())
           .observeOn(AndroidSchedulers.mainThread())
-          .subscribe({ response ->
-            Log.d("TEST", response.toString())
+          .subscribe({ routeResponse ->
+            if (axisValue != null) {
+              calculatePrices(
+                routeResponse,
+                startPlace,
+                destinationPlace,
+                axisValue,
+                fuelConsume,
+                fuelPrice)
+            }
           }, {
             it.printStackTrace()
           })
       )
     }
   }
+
+  private fun calculatePrices(
+    routeResponse: RouteResponse,
+    startPlace: Place,
+    destinationPlace: Place,
+    axisValue: Int,
+    fuelConsume: Double,
+    fuelPrice: Double
+  ) {
+    compositeDisposable.add(
+      tictacRepository.getPrices(axisValue, routeResponse.distance.toKm())
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe({ tictacResponse ->
+
+          val routeUiModel =
+            RouteUiModel.toRouteUiModel(
+              routeResponse,
+              tictacResponse,
+              startPlace.displayName,
+              destinationPlace.displayName,
+              axisValue,
+              fuelConsume,
+              fuelPrice)
+
+          routeMutableLiveData.value = routeUiModel
+
+        }, {
+          it.printStackTrace()
+        })
+    )
+  }
+
+  fun onDestroy() {
+
+  }
+
+  private fun start() {
+    axisMutableLiveData.value = DEFAULT_AXIS_VALUE
+  }
 }
+

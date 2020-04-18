@@ -10,7 +10,7 @@ import dev.khalil.freightpad.databinding.FragmentCalculatorBinding
 import dev.khalil.freightpad.model.UiState
 import dev.khalil.freightpad.ui.adapter.CalculatorViewPagerAdapter
 
-class CalculatorFragment : Fragment() {
+class CalculatorFragment : Fragment(), ViewPagerControl {
 
   private lateinit var binding: FragmentCalculatorBinding
   private val bottomSheetBehavior by lazy { BottomSheetBehavior.from(binding.bottomSheet) }
@@ -42,6 +42,10 @@ class CalculatorFragment : Fragment() {
       offscreenPageLimit = viewPagerAdapter.count
       binding.tabLayout.setupWithViewPager(this)
     }
+  }
+
+  override fun setPage(state: UiState) {
+    binding.viewPager.currentItem = UiState.values().indexOf(state)
   }
 
 }

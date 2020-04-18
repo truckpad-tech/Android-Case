@@ -39,21 +39,22 @@ class SearchActivityViewModel(private val repository: SearchApiRepository) : Vie
     _searchInput.onNext(query)
   }
 
+  fun onDestroy() {
+    compositeDisposable.dispose()
+    compositeDisposable.clear()
+  }
+
   private fun executeSearch(query: String) {
     if (lastSearch == query)
       return
 
-    compositeDisposable.add(repository.searchLocation(query)
-      .subscribeOn(Schedulers.io())
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribe { responseList ->
-        searchResultLiveData.value = responseList
-        lastSearch = query
-      }) //TODO Implement an error scenario
-  }
-
-  fun onDestroy() {
-    compositeDisposable.dispose()
-    compositeDisposable.clear()
+    compositeDisposable.add(
+      repository.searchLocation(query)
+        .subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe { responseList ->
+          searchResultLiveData.value = responseList
+          lastSearch = query
+        }) //TODO Implement an error scenario
   }
 }

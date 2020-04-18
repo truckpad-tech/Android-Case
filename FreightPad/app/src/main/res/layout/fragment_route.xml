@@ -25,7 +25,7 @@
           android:layout_width="match_parent"
           android:layout_height="match_parent">
 
-          <androidx.appcompat.widget.AppCompatTextView
+          <com.google.android.material.textview.MaterialTextView
             android:id="@+id/route_info_header"
             style="@style/FreightPad.Route.CardView.Header"
             android:text="@string/f_route_info_header"
@@ -39,7 +39,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/route_info_header" />
 
-          <androidx.appcompat.widget.AppCompatTextView
+          <com.google.android.material.textview.MaterialTextView
             android:id="@+id/route_info_start_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,7 +49,7 @@
             app:layout_constraintStart_toStartOf="@+id/route_info_header"
             app:layout_constraintTop_toBottomOf="@+id/route_info_divider" />
 
-          <androidx.appcompat.widget.AppCompatTextView
+          <com.google.android.material.textview.MaterialTextView
             android:id="@+id/route_info_destination_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -59,7 +59,7 @@
             app:layout_constraintStart_toStartOf="@+id/route_info_header"
             app:layout_constraintTop_toBottomOf="@+id/route_info_start_label" />
 
-          <androidx.appcompat.widget.AppCompatTextView
+          <com.google.android.material.textview.MaterialTextView
             android:id="@+id/route_info_start_location"
             android:layout_width="@dimen/f_route_location_width"
             android:layout_height="wrap_content"
@@ -67,39 +67,39 @@
             android:layout_marginStart="@dimen/f_route_location_margin_horizontal"
             android:ellipsize="end"
             android:fontFamily="sans-serif-light"
-            android:hint="Localização atual"
+            android:hint="@string/f_route_hint_start_location"
             android:textSize="@dimen/f_route_location_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/route_info_start_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/route_info_start_label"
             app:layout_constraintTop_toTopOf="@+id/route_info_start_label" />
 
-          <androidx.appcompat.widget.AppCompatTextView
+          <com.google.android.material.textview.MaterialTextView
             android:id="@+id/route_info_destination_location"
             android:layout_width="@dimen/f_route_location_width"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/f_route_location_margin_horizontal"
             android:ellipsize="end"
             android:fontFamily="sans-serif-light"
-            android:hint="Localização final"
+            android:hint="@string/f_route_hint_destination_location"
             android:textSize="@dimen/f_route_location_text_size"
             app:layout_constraintBottom_toBottomOf="@+id/route_info_destination_label"
             app:layout_constraintEnd_toEndOf="@+id/route_info_start_location"
             app:layout_constraintStart_toEndOf="@+id/route_info_destination_label"
             app:layout_constraintTop_toTopOf="@+id/route_info_destination_label" />
 
-          <androidx.appcompat.widget.AppCompatTextView
+          <com.google.android.material.textview.MaterialTextView
             android:id="@+id/route_info_distance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/f_route_info_details_margin_vertical"
             android:fontFamily="sans-serif-medium"
-            android:hint="99999 KM"
+            android:hint="@string/f_route_hint_distance"
             app:layout_constraintEnd_toStartOf="@+id/route_info_duration"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/route_info_destination_label" />
 
-          <androidx.appcompat.widget.AppCompatTextView
+          <com.google.android.material.textview.MaterialTextView
             android:id="@+id/route_info_distance_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -111,17 +111,17 @@
             app:layout_constraintStart_toStartOf="@+id/route_info_distance"
             app:layout_constraintTop_toBottomOf="@+id/route_info_distance" />
 
-          <androidx.appcompat.widget.AppCompatTextView
+          <com.google.android.material.textview.MaterialTextView
             android:id="@+id/route_info_duration"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
-            android:hint="99:99"
+            android:hint="@string/f_route_hint_duration"
             app:layout_constraintEnd_toStartOf="@+id/route_info_nav_map"
             app:layout_constraintStart_toEndOf="@+id/route_info_distance"
             app:layout_constraintTop_toTopOf="@+id/route_info_distance" />
 
-          <androidx.appcompat.widget.AppCompatTextView
+          <com.google.android.material.textview.MaterialTextView
             android:id="@+id/route_info_duration_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -132,7 +132,7 @@
             app:layout_constraintStart_toStartOf="@+id/route_info_duration"
             app:layout_constraintTop_toBottomOf="@+id/route_info_duration" />
 
-          <androidx.appcompat.widget.AppCompatTextView
+          <com.google.android.material.textview.MaterialTextView
             android:id="@+id/route_info_nav_map"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/f_route_nav_height"
@@ -160,7 +160,7 @@
           android:layout_width="match_parent"
           android:layout_height="match_parent">
 
-          <androidx.appcompat.widget.AppCompatTextView
+          <com.google.android.material.textview.MaterialTextView
             android:id="@+id/route_fuel_toll_header"
             style="@style/FreightPad.Route.CardView.Header"
             android:text="@string/f_route_fuel_toll_header"
@@ -181,7 +181,7 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.7" />
 
-          <androidx.appcompat.widget.AppCompatTextView
+          <com.google.android.material.textview.MaterialTextView
             android:id="@+id/route_fuel_toll_count_label"
             style="@style/FreightPad.Route.CardView.Labels"
             android:layout_marginEnd="@dimen/f_route_label_margin_horizontal"
@@ -190,7 +190,7 @@
             app:layout_constraintStart_toStartOf="@+id/route_fuel_toll_header"
             app:layout_constraintTop_toBottomOf="@+id/route_fuel_divider" />
 
-          <androidx.appcompat.widget.AppCompatTextView
+          <com.google.android.material.textview.MaterialTextView
             android:id="@+id/route_fuel_toll_price_label"
             style="@style/FreightPad.Route.CardView.Labels"
             android:text="@string/f_route_sum_toll"
@@ -198,7 +198,7 @@
             app:layout_constraintStart_toStartOf="@+id/route_fuel_toll_header"
             app:layout_constraintTop_toBottomOf="@+id/route_fuel_toll_count_label" />
 
-          <androidx.appcompat.widget.AppCompatTextView
+          <com.google.android.material.textview.MaterialTextView
             android:id="@+id/route_fuel_needed_label"
             style="@style/FreightPad.Route.CardView.Labels"
             android:text="@string/f_route_fuel_needed"
@@ -206,7 +206,7 @@
             app:layout_constraintStart_toStartOf="@+id/route_fuel_toll_header"
             app:layout_constraintTop_toBottomOf="@+id/route_fuel_toll_price_label" />
 
-          <androidx.appcompat.widget.AppCompatTextView
+          <com.google.android.material.textview.MaterialTextView
             android:id="@+id/route_fuel_price_label"
             style="@style/FreightPad.Route.CardView.Labels"
             android:text="@string/f_route_fuel_amount"
@@ -214,7 +214,7 @@
             app:layout_constraintStart_toStartOf="@+id/route_fuel_toll_header"
             app:layout_constraintTop_toBottomOf="@+id/route_fuel_needed_label" />
 
-          <androidx.appcompat.widget.AppCompatTextView
+          <com.google.android.material.textview.MaterialTextView
             android:id="@+id/route_fuel_toll_total_price_label"
             style="@style/FreightPad.Route.CardView.Labels"
             android:layout_marginBottom="@dimen/f_route_label_margin_vertical"
@@ -224,49 +224,49 @@
             app:layout_constraintStart_toStartOf="@+id/route_fuel_toll_header"
             app:layout_constraintTop_toBottomOf="@+id/route_fuel_price_label" />
 
-          <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/route_fuel_toll_count"
+          <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/route_toll_count"
             style="@style/FreightPad.Route.CardView.Values"
             android:layout_marginEnd="@dimen/f_route_values_margin_end"
-            android:text="99"
+            android:hint="@string/f_route_hint_toll_count"
             app:layout_constraintBottom_toBottomOf="@+id/route_fuel_toll_count_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/route_fuel_toll_guideline"
             app:layout_constraintTop_toTopOf="@+id/route_fuel_toll_count_label" />
 
-          <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/route_fuel_toll_price"
+          <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/route_toll_cost"
             style="@style/FreightPad.Route.CardView.Values"
-            android:text="R$ 99.999,99"
+            android:hint="@string/f_route_hint_money"
             app:layout_constraintBottom_toBottomOf="@+id/route_fuel_toll_price_label"
-            app:layout_constraintEnd_toEndOf="@+id/route_fuel_toll_count"
+            app:layout_constraintEnd_toEndOf="@+id/route_toll_count"
             app:layout_constraintStart_toStartOf="@+id/route_fuel_toll_guideline"
             app:layout_constraintTop_toTopOf="@+id/route_fuel_toll_price_label" />
 
-          <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/route_fuel_needed_value"
+          <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/route_fuel_needed"
             style="@style/FreightPad.Route.CardView.Values"
-            android:text="9.999 L"
+            android:hint="@string/f_route_hint_fuel_needed"
             app:layout_constraintBottom_toBottomOf="@+id/route_fuel_needed_label"
-            app:layout_constraintEnd_toEndOf="@+id/route_fuel_toll_count"
+            app:layout_constraintEnd_toEndOf="@+id/route_toll_count"
             app:layout_constraintStart_toStartOf="@+id/route_fuel_toll_guideline"
             app:layout_constraintTop_toTopOf="@+id/route_fuel_needed_label" />
 
-          <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/route_fuel_price_value"
+          <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/route_fuel_total_cost"
             style="@style/FreightPad.Route.CardView.Values"
-            android:text="R$ 99.999,99"
+            android:hint="@string/f_route_hint_money"
             app:layout_constraintBottom_toBottomOf="@+id/route_fuel_price_label"
-            app:layout_constraintEnd_toEndOf="@+id/route_fuel_toll_count"
+            app:layout_constraintEnd_toEndOf="@+id/route_toll_count"
             app:layout_constraintStart_toStartOf="@+id/route_fuel_toll_guideline"
             app:layout_constraintTop_toTopOf="@+id/route_fuel_price_label" />
 
-          <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/route_fuel_toll_total_price_value"
+          <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/route_fuel_toll_total"
             style="@style/FreightPad.Route.CardView.Values"
-            android:text="R$ 99.999,99"
+            android:hint="@string/f_route_hint_money"
             app:layout_constraintBottom_toBottomOf="@+id/route_fuel_toll_total_price_label"
-            app:layout_constraintEnd_toEndOf="@+id/route_fuel_toll_count"
+            app:layout_constraintEnd_toEndOf="@+id/route_toll_count"
             app:layout_constraintStart_toStartOf="@+id/route_fuel_toll_guideline"
             app:layout_constraintTop_toTopOf="@+id/route_fuel_toll_total_price_label" />
 
@@ -286,7 +286,7 @@
           android:layout_width="match_parent"
           android:layout_height="match_parent">
 
-          <androidx.appcompat.widget.AppCompatTextView
+          <com.google.android.material.textview.MaterialTextView
             android:id="@+id/route_antt_prices_header"
             style="@style/FreightPad.Route.CardView.Header"
             android:text="@string/f_route_antt_header"
@@ -307,7 +307,7 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.7" />
 
-          <androidx.appcompat.widget.AppCompatTextView
+          <com.google.android.material.textview.MaterialTextView
             android:id="@+id/route_antt_general_label"
             style="@style/FreightPad.Route.CardView.Labels"
             android:layout_marginEnd="@dimen/f_route_label_margin_horizontal"
@@ -316,7 +316,7 @@
             app:layout_constraintStart_toStartOf="@+id/route_antt_prices_header"
             app:layout_constraintTop_toBottomOf="@+id/route_antt_prices_divider" />
 
-          <androidx.appcompat.widget.AppCompatTextView
+          <com.google.android.material.textview.MaterialTextView
             android:id="@+id/route_antt_bulk_label"
             style="@style/FreightPad.Route.CardView.Labels"
             android:text="@string/f_route_bulk"
@@ -324,7 +324,7 @@
             app:layout_constraintStart_toStartOf="@+id/route_antt_prices_header"
             app:layout_constraintTop_toBottomOf="@+id/route_antt_general_label" />
 
-          <androidx.appcompat.widget.AppCompatTextView
+          <com.google.android.material.textview.MaterialTextView
             android:id="@+id/route_antt_neobulk_label"
             style="@style/FreightPad.Route.CardView.Labels"
             android:text="@string/f_route_neobulk"
@@ -332,7 +332,7 @@
             app:layout_constraintStart_toStartOf="@+id/route_antt_prices_header"
             app:layout_constraintTop_toBottomOf="@+id/route_antt_bulk_label" />
 
-          <androidx.appcompat.widget.AppCompatTextView
+          <com.google.android.material.textview.MaterialTextView
             android:id="@+id/route_antt_refrigerated_label"
             style="@style/FreightPad.Route.CardView.Labels"
             android:text="@string/f_route_refrigerated"
@@ -340,7 +340,7 @@
             app:layout_constraintStart_toStartOf="@+id/route_antt_prices_header"
             app:layout_constraintTop_toBottomOf="@+id/route_antt_neobulk_label" />
 
-          <androidx.appcompat.widget.AppCompatTextView
+          <com.google.android.material.textview.MaterialTextView
             android:id="@+id/route_antt_dangerous_label"
             style="@style/FreightPad.Route.CardView.Labels"
             android:layout_marginBottom="@dimen/f_route_label_margin_vertical"
@@ -350,49 +350,49 @@
             app:layout_constraintStart_toStartOf="@+id/route_antt_prices_header"
             app:layout_constraintTop_toBottomOf="@+id/route_antt_refrigerated_label" />
 
-          <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/route_antt_general_value"
+          <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/route_antt_general"
             style="@style/FreightPad.Route.CardView.Values"
             android:layout_marginEnd="@dimen/f_route_values_margin_end"
-            android:text="R$ 99.999,99"
+            android:hint="@string/f_route_hint_money"
             app:layout_constraintBottom_toBottomOf="@+id/route_antt_general_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/route_antt_prices_guideline"
             app:layout_constraintTop_toTopOf="@+id/route_antt_general_label" />
 
-          <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/route_antt_bulk_value"
+          <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/route_antt_bulk"
             style="@style/FreightPad.Route.CardView.Values"
-            android:text="R$ 99.999,99"
+            android:hint="@string/f_route_hint_money"
             app:layout_constraintBottom_toBottomOf="@+id/route_antt_bulk_label"
-            app:layout_constraintEnd_toEndOf="@+id/route_antt_general_value"
+            app:layout_constraintEnd_toEndOf="@+id/route_antt_general"
             app:layout_constraintStart_toStartOf="@+id/route_antt_prices_guideline"
             app:layout_constraintTop_toTopOf="@+id/route_antt_bulk_label" />
 
-          <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/route_antt_neobulk_value"
+          <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/route_antt_neobulk"
             style="@style/FreightPad.Route.CardView.Values"
-            android:text="R$ 99.999,99"
+            android:hint="@string/f_route_hint_money"
             app:layout_constraintBottom_toBottomOf="@+id/route_antt_neobulk_label"
-            app:layout_constraintEnd_toEndOf="@+id/route_antt_general_value"
+            app:layout_constraintEnd_toEndOf="@+id/route_antt_general"
             app:layout_constraintStart_toStartOf="@+id/route_antt_prices_guideline"
             app:layout_constraintTop_toTopOf="@+id/route_antt_neobulk_label" />
 
-          <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/route_antt_refrigerated_value"
+          <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/route_antt_refrigerated"
             style="@style/FreightPad.Route.CardView.Values"
-            android:text="R$ 99.999,99"
+            android:hint="@string/f_route_hint_money"
             app:layout_constraintBottom_toBottomOf="@+id/route_antt_refrigerated_label"
-            app:layout_constraintEnd_toEndOf="@+id/route_antt_general_value"
+            app:layout_constraintEnd_toEndOf="@+id/route_antt_general"
             app:layout_constraintStart_toStartOf="@+id/route_antt_prices_guideline"
             app:layout_constraintTop_toTopOf="@+id/route_antt_refrigerated_label" />
 
-          <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/route_antt_dangerous_value"
+          <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/route_antt_dangerous"
             style="@style/FreightPad.Route.CardView.Values"
-            android:text="R$ 99.999,99"
+            android:hint="@string/f_route_hint_money"
             app:layout_constraintBottom_toBottomOf="@+id/route_antt_dangerous_label"
-            app:layout_constraintEnd_toEndOf="@+id/route_antt_general_value"
+            app:layout_constraintEnd_toEndOf="@+id/route_antt_general"
             app:layout_constraintStart_toStartOf="@+id/route_antt_prices_guideline"
             app:layout_constraintTop_toTopOf="@+id/route_antt_dangerous_label" />
 

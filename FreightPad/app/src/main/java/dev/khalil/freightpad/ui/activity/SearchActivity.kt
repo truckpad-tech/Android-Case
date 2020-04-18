@@ -158,8 +158,8 @@ class SearchActivity : AppCompatActivity(), KodeinAware, LocationClick {
   private fun setLocation(place: Place) {
     val intent = Intent().apply {
       putExtra(ADDRESS_KEY, place.displayName)
-      putExtra(LAT_KEY, place.point.first())
-      putExtra(LONG_KEY, place.point.last())
+      putExtra(LONG_KEY, place.point.first())
+      putExtra(LAT_KEY, place.point.last())
     }
     setResult(Activity.RESULT_OK, intent)
     finish()

@@ -63,7 +63,7 @@ class InfoFragment : Fragment(), KodeinAware {
           val long = it.getDoubleExtra(LONG_KEY, 0.0)
 
           if (!name.isNullOrEmpty()) {
-            infoViewModel.setLocation(Place(name, listOf(lat, long)), fromCode)
+            infoViewModel.setLocation(Place(name, listOf(long, lat)), fromCode)
           }
         }
       }
@@ -80,12 +80,21 @@ class InfoFragment : Fragment(), KodeinAware {
 
   private fun initObservers() {
     infoViewModel.axis.observe(viewLifecycleOwner, Observer { binding.axisDisplay.text = "$it" })
-    infoViewModel.start.observe(
-      viewLifecycleOwner,
+    infoViewModel.start.observe(viewLifecycleOwner,
       Observer { binding.startLocation.text = it.displayName })
-    infoViewModel.destination.observe(
-      viewLifecycleOwner,
+    infoViewModel.destination.observe(viewLifecycleOwner,
       Observer { binding.destinationLocation.text = it.displayName })
+    infoViewModel.route.observe(viewLifecycleOwner, Observer {
+      activity?.run {
+        val routeInfo = this.supportFragmentManager.fragments.first { fragment ->
+          fragment is CalculatorFragment
+        }
+          .childFragmentManager.fragments.first() { childFragment ->
+            childFragment is RouteFragment
+          } as RouteInfo
+        routeInfo.showRoute(it)
+      }
+    })
   }
 
   private fun initListeners() {
@@ -112,5 +121,4 @@ class InfoFragment : Fragment(), KodeinAware {
       startActivityForResult(SearchActivity.createIntent(this), intentCode)
     }
   }
-
 }

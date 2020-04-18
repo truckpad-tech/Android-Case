@@ -5,8 +5,11 @@ import dev.khalil.freightpad.api.repository.GeoApiRepository
 import dev.khalil.freightpad.api.repository.GeoApiRepositoryImpl
 import dev.khalil.freightpad.api.repository.SearchApiRepository
 import dev.khalil.freightpad.api.repository.SearchApiRepositoryImpl
+import dev.khalil.freightpad.api.repository.TictacApiRepository
+import dev.khalil.freightpad.api.repository.TictacApiRepositoryImpl
 import dev.khalil.freightpad.api.service.GeoApiService
 import dev.khalil.freightpad.api.service.SearchApiService
+import dev.khalil.freightpad.api.service.TictacApiService
 import dev.khalil.freightpad.ui.viewModel.InfoFragmentViewModel
 import dev.khalil.freightpad.ui.viewModel.SearchActivityViewModel
 import org.kodein.di.Kodein
@@ -26,7 +29,7 @@ val infoModule = Kodein.Module(INFO_MODULE) {
   import(viewModelProviderModule)
   import(calculate)
 
-  bind<InfoFragmentViewModel>() with provider { InfoFragmentViewModel(instance()) }
+  bind<InfoFragmentViewModel>() with provider { InfoFragmentViewModel(instance(), instance()) }
 }
 
 val calculate = Kodein.Module(CALCULATE_MODULE) {
@@ -40,6 +43,17 @@ val calculate = Kodein.Module(CALCULATE_MODULE) {
       .build()
       .create(GeoApiService::class.java)
   }
+
+  bind<TictacApiRepository>() with singleton { TictacApiRepositoryImpl(instance()) }
+  bind<TictacApiService>() with singleton {
+    Retrofit.Builder()
+      .baseUrl(BuildConfig.TICTAC_API_BASE_URL)
+      .addConverterFactory(GsonConverterFactory.create())
+      .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+      .build()
+      .create(TictacApiService::class.java)
+  }
+
 }
 
 val searchModule = Kodein.Module(SEARCH_MODULE) {
