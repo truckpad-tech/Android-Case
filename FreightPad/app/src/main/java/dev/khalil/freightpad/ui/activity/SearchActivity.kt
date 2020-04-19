@@ -198,7 +198,6 @@ class SearchActivity : AppCompatActivity(), KodeinAware, LocationClick {
         val place = Place(
           getString(R.string.your_location),
           listOf(location.longitude, location.latitude))
-        //TODO TEST THIS SHIT
         setLocation(place)
       }
   }
