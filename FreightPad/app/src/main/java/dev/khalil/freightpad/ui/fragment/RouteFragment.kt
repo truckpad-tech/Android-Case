@@ -36,9 +36,6 @@ class RouteFragment : Fragment(), RouteInfo {
     binding.routeInfoNavMap.setOnClickListener {
       route?.let {
         activity?.run {
-          val onShowRoute = this as OnShowRoute
-          onShowRoute.showRoute(it.route.first())
-
           val calculatorFragment = this.supportFragmentManager.fragments.first { fragment ->
             fragment is CalculatorFragment
           } as CalculatorFragment
@@ -62,6 +59,11 @@ class RouteFragment : Fragment(), RouteInfo {
       } as ViewPagerControl
 
       viewPagerControl.setPage(ROUTE)
+
+      route?.let {
+        val onShowRoute = this as OnShowRoute
+        onShowRoute.showRoute(it.route.first())
+      }
     }
   }
 

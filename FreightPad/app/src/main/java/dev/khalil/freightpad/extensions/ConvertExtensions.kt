@@ -3,13 +3,22 @@ package dev.khalil.freightpad.extensions
 import com.google.android.gms.maps.model.LatLng
 import dev.khalil.freightpad.common.BRAZIL
 import dev.khalil.freightpad.common.HOUR_FORMAT
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.GregorianCalendar
 
 fun Int.toKm(measureUnit: String): String {
   return when (measureUnit) {
-    "meters" -> "${(this / 1000.0)} KM"
+    "meters" -> {
+      val format = DecimalFormat.getNumberInstance(BRAZIL).apply {
+        this.maximumFractionDigits = 2
+        this.minimumFractionDigits = 2
+      } as DecimalFormat
+      format.decimalFormatSymbols.decimalSeparator = ','
+
+      "${format.format(this / 100.0)} KM"
+    }
     else     -> this.toString()
   }
 }

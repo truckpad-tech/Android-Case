@@ -69,10 +69,9 @@ class MapsActivity : FragmentActivity(), OnMapReadyCallback, OnShowRoute {
         googleMap.addMarker(MarkerOptions().position(it))
       }
     }
-    val sheetHeight = resources.getDimension(R.dimen.a_maps_peek_height)
-    val toolbarHeight = binding.toolbar.height
-    val offset = (sheetHeight + toolbarHeight)
-    googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), offset.toInt()))
+
+    val offset = 200
+    googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), offset))
   }
 
   private fun initCalculator() {
