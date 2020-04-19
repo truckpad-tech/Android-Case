@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="start_label">Início</string>
+  <string name="destination_label">Destino</string>
+  <string name="your_location">Sua localização</string>
+  <string name="error_description">Ops! Desculpe, algo deu errado!</string>
+  <string name="error_try_again">Tentar novamente</string>
+  <string name="ok">OK</string>
+
+  <!-- Calculator Fragment-->
+  <string name="calculator_title">Calculadora de Rota de Carga</string>
+  <string name="tab_info">Info</string>
+  <string name="tab_route">Rota</string>
+  <string name="tab_history">Histórico</string>
+
+  <!-- Info Fragment-->
+  <string name="f_info_location_from">De onde?</string>
+  <string name="f_info_location_to">Pra onde?</string>
+  <string name="f_info_many_axis">Quantos eixos o\nveículo tem?</string>
+  <string name="f_info_fuel_consume">Qual é a média de\nconsumo (km/l)?</string>
+  <string name="f_info_fuel_price">Qual é o preço do combustível?</string>
+  <string name="f_info_fuel_consume_default">2,45</string>
+  <string name="f_info_fuel_price_default">R$ 2,50</string>
+  <string name="f_info_fields_empty">Ops! Alguns campos não foram preenchidos, preencha-os!</string>
+
+  <!-- Route Fragment-->
+  <string name="f_route_info_header">Info da Rota</string>
+  <string name="f_route_start_label">@string/start_label</string>
+  <string name="f_route_destination_label">@string/destination_label</string>
+  <string name="f_route_distance_label">Distância</string>
+  <string name="f_route_duration_label">Duração</string>
+  <string name="f_route_nav_map">Rota\nno mapa</string>
+  <string name="f_route_fuel_toll_header">Combustível e Pedágio</string>
+  <string name="f_route_toll_count_label">Qtd de Pedágio</string>
+  <string name="f_route_sum_toll">Valor total dos pedágios</string>
+  <string name="f_route_fuel_needed">Combustível necessário</string>
+  <string name="f_route_fuel_amount">Valor total de combustível</string>
+  <string name="f_route_total">Total</string>
+  <string name="f_route_general">Geral</string>
+  <string name="f_route_bulk">Granel</string>
+  <string name="f_route_neobulk">Neogranel</string>
+  <string name="f_route_refrigerated">Frigorificada</string>
+  <string name="f_route_dangerous">Perigosa</string>
+  <string name="f_route_antt_header">Preços Mínumos ANTT</string>
+  <string name="f_route_hint_start_location">Localização inicial</string>
+  <string name="f_route_hint_destination_location">Localização final</string>
+
+  <!--  History Fragment-->
+  <string name="i_history_start_label">@string/start_label</string>
+  <string name="i_history_destination_label">@string/destination_label</string>
+
+  <!-- Search Activity-->
+  <string name="a_search_header">Buscar</string>
+  <string name="a_search_location">Usar minha localização</string>
+  <string name="f_info_calculate">Calcular</string>
+  <string name="f_search_permission_permanently_denied">Ops! Permissão negada permanentemente, por favor altere nas configs!</string>
+
+  <string name="f_search_permission_denied">Ops! Nós precisamos da permissão para acessar sua localização!</string>
+
+</resources>
