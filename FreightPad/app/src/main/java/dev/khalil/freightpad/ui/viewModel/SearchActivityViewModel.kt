@@ -72,6 +72,7 @@ class SearchActivityViewModel(private val repository: SearchApiRepository) : Vie
           searchResultLiveData.value = responseList
           lastSearch = query
         }, {
+          it.printStackTrace()
           lastSearch = ""
           errorMutableLiveData.value = true
         }))

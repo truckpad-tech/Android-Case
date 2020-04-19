@@ -106,6 +106,7 @@ class InfoFragmentViewModel(
                 fuelPrice)
             }
           }, {
+            it.printStackTrace()
             errorMutableLiveData.value = R.string.error_description
             loadingMutableLiveData.value = false
           })
@@ -143,6 +144,7 @@ class InfoFragmentViewModel(
 
           routeMutableLiveData.value = routeUiModel
         }, {
+          it.printStackTrace()
           errorMutableLiveData.value = R.string.error_description
         })
     )

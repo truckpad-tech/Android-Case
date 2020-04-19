@@ -1,7 +1,6 @@
 package dev.khalil.freightpad.model
 
 import dev.khalil.freightpad.common.BRAZIL_CURRENCY_SYMBOL
-import dev.khalil.freightpad.common.LITER_SYMBOL
 import dev.khalil.freightpad.extensions.formatPrice
 import dev.khalil.freightpad.extensions.formatUnit
 import dev.khalil.freightpad.extensions.toKm
@@ -22,7 +21,7 @@ data class RouteUiModel(
   val duration: String,
   val tollCount: String,
   val tollCost: String,
-  val route: List<List<List<Double>>>,
+  val route: List<List<List<Double>>>?,
   val fuelNeeded: String,
   val fuelTotalCost: String,
   val totalCost: String,
@@ -55,16 +54,16 @@ data class RouteUiModel(
         routeResponse.distance.toKm(routeResponse.distanceUnit),
         routeResponse.duration.toTime(routeResponse.durationUnit),
         routeResponse.tollCount.toString(),
-        routeResponse.tollCost.formatPrice(BRAZIL_CURRENCY_SYMBOL),
+        routeResponse.tollCost.formatPrice(routeResponse.tollCostUnit),
         routeResponse.route,
-        routeResponse.fuelUsage.formatUnit(LITER_SYMBOL),
-        routeResponse.fuelCost.formatPrice(BRAZIL_CURRENCY_SYMBOL),
-        routeResponse.totalCost.formatPrice(BRAZIL_CURRENCY_SYMBOL),
-        tictacResponse.refrigerated.formatPrice(BRAZIL_CURRENCY_SYMBOL),
-        tictacResponse.general.formatPrice(BRAZIL_CURRENCY_SYMBOL),
-        tictacResponse.bulk.formatPrice(BRAZIL_CURRENCY_SYMBOL),
-        tictacResponse.neoBulk.formatPrice(BRAZIL_CURRENCY_SYMBOL),
-        tictacResponse.dangerous.formatPrice(BRAZIL_CURRENCY_SYMBOL)
+        routeResponse.fuelUsage.formatUnit(routeResponse.fuelUsageUnit),
+        routeResponse.fuelCost.formatPrice(routeResponse.fuelCostUnit),
+        routeResponse.totalCost.formatPrice(routeResponse.fuelCostUnit),
+        tictacResponse.refrigerated.formatPrice(routeResponse.fuelCostUnit),
+        tictacResponse.general.formatPrice(routeResponse.fuelCostUnit),
+        tictacResponse.bulk.formatPrice(routeResponse.fuelCostUnit),
+        tictacResponse.neoBulk.formatPrice(routeResponse.fuelCostUnit),
+        tictacResponse.dangerous.formatPrice(routeResponse.fuelCostUnit)
       )
     }
   }

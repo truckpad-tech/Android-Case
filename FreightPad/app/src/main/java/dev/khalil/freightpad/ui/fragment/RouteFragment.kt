@@ -60,9 +60,9 @@ class RouteFragment : Fragment(), RouteInfo {
 
       viewPagerControl.setPage(ROUTE)
 
-      route?.let {
+      route?.route?.let {
         val onShowRoute = this as OnShowRoute
-        onShowRoute.showRoute(it.route.first())
+        onShowRoute.showRoute(it.first())
       }
     }
   }

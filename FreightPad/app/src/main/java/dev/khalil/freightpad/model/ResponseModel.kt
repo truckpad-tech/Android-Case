@@ -13,11 +13,11 @@ data class RouteResponse(
   @SerializedName("distance")
   val distance: Int,
   @SerializedName("distance_unit")
-  val distanceUnit: String,
+  val distanceUnit: String?,
   @SerializedName("duration")
   val duration: Int,
   @SerializedName("duration_unit")
-  val durationUnit: String,
+  val durationUnit: String?,
   @SerializedName("has_tolls")
   val hasTolls: Boolean,
   @SerializedName("toll_count")
@@ -25,21 +25,21 @@ data class RouteResponse(
   @SerializedName("toll_cost")
   val tollCost: Double,
   @SerializedName("toll_cost_unit")
-  val tollCostUnit: String,
+  val tollCostUnit: String?,
   @SerializedName("route")
-  val route: List<List<List<Double>>>,
+  val route: List<List<List<Double>>>?,
   @SerializedName("provider")
-  val provider: String,
+  val provider: String?,
   @SerializedName("cached")
   val cached: Boolean,
   @SerializedName("fuel_usage")
   val fuelUsage: Double,
   @SerializedName("fuel_usage_unit")
-  val fuelUsageUnit: String,
+  val fuelUsageUnit: String?,
   @SerializedName("fuel_cost")
   val fuelCost: Double,
   @SerializedName("fuel_cost_unit")
-  val fuelCostUnit: String,
+  val fuelCostUnit: String?,
   @SerializedName("total_cost")
   val totalCost: Double
 )
@@ -48,7 +48,7 @@ data class Point(
   @SerializedName("point")
   val point: List<Double>,
   @SerializedName("provider")
-  val provider: String
+  val provider: String?
 )
 
 data class TictacResponse(

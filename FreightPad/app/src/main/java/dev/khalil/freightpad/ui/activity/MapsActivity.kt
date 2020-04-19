@@ -70,8 +70,10 @@ class MapsActivity : FragmentActivity(), OnMapReadyCallback, OnShowRoute {
       }
     }
 
-    val offset = 200
-    googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), offset))
+    val sheetHeight = resources.getDimension(R.dimen.a_maps_peek_height)
+    val toolbarHeight = binding.toolbar.height
+    val offset = (sheetHeight + toolbarHeight) / 2
+    googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), offset.toInt()))
   }
 
   private fun initCalculator() {
@@ -85,7 +87,10 @@ class MapsActivity : FragmentActivity(), OnMapReadyCallback, OnShowRoute {
     setGoogleLogoPadding()
 
     googleMap.animateCamera(CameraUpdateFactory.newLatLng(BRAZIL_GEO_LOCATION))
-    googleMap.moveCamera(CameraUpdateFactory.newLatLngBounds(BRAZIL_BOUNDS, 0))
+
+    googleMap.setOnMapLoadedCallback {
+      googleMap.animateCamera(CameraUpdateFactory.newLatLngBounds(BRAZIL_BOUNDS, MAP_OFFSET))
+    }
   }
 
   private fun initMap() {
@@ -100,8 +105,11 @@ class MapsActivity : FragmentActivity(), OnMapReadyCallback, OnShowRoute {
   }
 
   companion object {
+    private const val MAP_OFFSET = 200
+
     fun createIntent(context: Context): Intent {
       return Intent(context, MapsActivity::class.java)
     }
   }
+
 }

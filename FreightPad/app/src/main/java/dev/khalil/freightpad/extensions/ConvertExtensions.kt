@@ -8,7 +8,11 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.GregorianCalendar
 
-fun Int.toKm(measureUnit: String): String {
+fun Int.toKm(measureUnit: String?): String {
+  if (measureUnit.isNullOrEmpty()) {
+    return "0 KM"
+  }
+
   return when (measureUnit) {
     "meters" -> {
       val format = DecimalFormat.getNumberInstance(BRAZIL).apply {
@@ -23,15 +27,17 @@ fun Int.toKm(measureUnit: String): String {
   }
 }
 
-fun Int.toKmInDouble(measureUnit: String): Double {
+fun Int.toKmInDouble(measureUnit: String?): Double {
   return when (measureUnit) {
     "meters" -> this / 1000.0
     else     -> this.toDouble()
   }
 }
 
-fun Int.toTime(timeUnit: String): String {
+fun Int.toTime(timeUnit: String?): String {
+
   return when (timeUnit) {
+    null,
     "seconds" -> {
       val cal = GregorianCalendar(0, 0, 0, 0, 0, this)
       val dNow: Date = cal.time
