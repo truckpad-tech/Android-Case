@@ -69,7 +69,6 @@ class SearchActivityViewModel(private val repository: SearchApiRepository) : Vie
         }
         .doAfterTerminate { loadingMutableLiveData.value = false }
         .subscribe({ responseList ->
-          loadingMutableLiveData.value = false
           searchResultLiveData.value = responseList
           lastSearch = query
         }, {

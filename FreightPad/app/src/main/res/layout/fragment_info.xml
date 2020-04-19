@@ -7,7 +7,7 @@
   <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/f_info_padding"
+
     tools:context=".ui.fragment.InfoFragment">
 
     <com.google.android.material.textview.MaterialTextView
@@ -15,8 +15,11 @@
       style="@style/FreightPad.Info.Location.TextAppearance"
       android:layout_width="@dimen/f_info_location_width"
       android:layout_height="@dimen/f_info_location_height"
-      android:hint="@string/f_info_location_from"
+      android:layout_marginTop="16dp"
+      android:layout_marginEnd="16dp"
+      android:layout_marginStart="16dp"
       android:ellipsize="end"
+      android:hint="@string/f_info_location_from"
       android:maxLines="1"
       android:background="@drawable/location_start_background"
       app:drawableStartCompat="@drawable/dot"
@@ -32,8 +35,8 @@
       android:layout_width="@dimen/f_info_location_width"
       android:layout_height="@dimen/f_info_location_height"
       android:layout_marginTop="@dimen/f_info_location_margin_top"
-      android:hint="@string/f_info_location_to"
       android:ellipsize="end"
+      android:hint="@string/f_info_location_to"
       android:maxLines="1"
       android:background="@drawable/location_destination_background"
       app:drawableStartCompat="@drawable/dot"
@@ -85,8 +88,8 @@
       android:layout_marginEnd="@dimen/f_info_label_margin_end"
       android:fontFamily="sans-serif-medium"
       android:gravity="center_vertical"
-      android:textSize="@dimen/f_info_label_text_size"
       android:maxLines="2"
+      android:textSize="@dimen/f_info_label_text_size"
       android:text="@string/f_info_many_axis"
       app:layout_constraintBottom_toBottomOf="@+id/axis_display"
       app:layout_constraintEnd_toStartOf="@+id/axis_decrement"
@@ -160,5 +163,44 @@
       app:layout_constraintStart_toStartOf="@+id/start_location"
       app:layout_constraintTop_toBottomOf="@+id/materialTextView" />
 
+    <com.google.android.material.textview.MaterialTextView
+      android:id="@+id/error_description"
+      android:layout_width="@dimen/f_info_error_width"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="16dp"
+      android:padding="8dp"
+      android:gravity="center"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="@+id/calculate"
+      app:layout_constraintStart_toStartOf="@+id/calculate"
+      app:layout_constraintTop_toBottomOf="@+id/calculate"
+      app:layout_constraintVertical_bias="0.0" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:id="@+id/progress_bar"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@color/greyA300"
+      android:elevation="5dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="parent">
+
+      <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loading_animation"
+        android:layout_width="@dimen/loading_size"
+        android:layout_height="@dimen/loading_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/truck_loading" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
   </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

@@ -18,8 +18,10 @@ import dev.khalil.freightpad.common.LONG_KEY
 import dev.khalil.freightpad.common.START_LOCATION_CODE
 import dev.khalil.freightpad.databinding.FragmentInfoBinding
 import dev.khalil.freightpad.di.infoModule
+import dev.khalil.freightpad.extensions.gone
 import dev.khalil.freightpad.extensions.removeMeasureUnit
 import dev.khalil.freightpad.extensions.viewModel
+import dev.khalil.freightpad.extensions.visible
 import dev.khalil.freightpad.model.Place
 import dev.khalil.freightpad.ui.activity.SearchActivity
 import dev.khalil.freightpad.ui.viewModel.InfoFragmentViewModel
@@ -94,6 +96,26 @@ class InfoFragment : Fragment(), KodeinAware {
           } as RouteInfo
         routeInfo.showRoute(it)
       }
+    })
+    infoViewModel.loading.observe(viewLifecycleOwner, Observer { isLoading ->
+      if (isLoading) {
+        binding.calculate.isClickable = false
+        binding.progressBar.visible()
+        binding.loadingAnimation.playAnimation()
+      } else {
+        binding.calculate.isClickable = true
+        binding.progressBar.gone()
+        binding.loadingAnimation.pauseAnimation()
+      }
+    })
+    infoViewModel.error.observe(viewLifecycleOwner, Observer { stringId ->
+      if (stringId == R.string.error_description) {
+        binding.calculate.setText(R.string.error_try_again)
+      } else {
+        binding.calculate.setText(R.string.f_info_calculate)
+      }
+
+      binding.errorDescription.setText(getString(stringId))
     })
   }
 

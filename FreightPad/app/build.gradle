@@ -87,6 +87,9 @@ dependencies {
   //Gson
   implementation "com.google.code.gson:gson:$gsonVersion"
 
+  //Lottie
+  implementation "com.airbnb.android:lottie:$lottieVersion"
+
   //Test
   testImplementation "junit:junit:$junitVersion"
   androidTestImplementation "androidx.test.ext:junit:$junitAndroidXVersion"

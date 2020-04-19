@@ -95,6 +95,8 @@
   <dimen name="a_search_location_text_size">@dimen/font_16</dimen>
   <dimen name="a_search_recycler_height">@dimen/default_constraint</dimen>
   <dimen name="a_search_location_margin">8dp</dimen>
+  <dimen name="f_info_error_width">@dimen/default_constraint</dimen>
+  <dimen name="loading_size">180dp</dimen>
 
 
 </resources>

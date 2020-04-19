@@ -9,13 +9,16 @@ import java.util.GregorianCalendar
 
 fun Int.toKm(measureUnit: String): String {
   return when (measureUnit) {
-    "meters" -> "${(this / 100.0)} KM"
+    "meters" -> "${(this / 1000.0)} KM"
     else     -> this.toString()
   }
 }
 
-fun Int.toKm(): Double {
-  return this / 100.0
+fun Int.toKmInDouble(measureUnit: String): Double {
+  return when (measureUnit) {
+    "meters" -> this / 1000.0
+    else     -> this.toDouble()
+  }
 }
 
 fun Int.toTime(timeUnit: String): String {
