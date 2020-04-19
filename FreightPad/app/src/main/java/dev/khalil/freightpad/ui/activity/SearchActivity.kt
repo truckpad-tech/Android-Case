@@ -94,7 +94,7 @@ class SearchActivity : AppCompatActivity(), KodeinAware, LocationClick {
           if (!showRationale) {
             Snackbar.make(
               findViewById(android.R.id.content),
-              R.string.f_search_permission_permanently_denied,
+              R.string.a_search_permission_permanently_denied,
               Snackbar.LENGTH_LONG)
               .setAction(R.string.ok) {
                 startActivity(Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
@@ -103,7 +103,7 @@ class SearchActivity : AppCompatActivity(), KodeinAware, LocationClick {
               }
               .show()
           } else {
-            Toast.makeText(this, R.string.f_search_permission_denied, Toast.LENGTH_LONG).show()
+            Toast.makeText(this, R.string.a_search_permission_denied, Toast.LENGTH_LONG).show()
           }
         }
       }

@@ -19,9 +19,8 @@
   <string name="f_info_many_axis">Quantos eixos o\nveículo tem?</string>
   <string name="f_info_fuel_consume">Qual é a média de\nconsumo (km/l)?</string>
   <string name="f_info_fuel_price">Qual é o preço do combustível?</string>
-  <string name="f_info_fuel_consume_default">2,45</string>
-  <string name="f_info_fuel_price_default">R$ 2,50</string>
   <string name="f_info_fields_empty">Ops! Alguns campos não foram preenchidos, preencha-os!</string>
+  <string name="f_info_calculate">Calcular</string>
 
   <!-- Route Fragment-->
   <string name="f_route_info_header">Info da Rota</string>
@@ -48,13 +47,13 @@
   <!--  History Fragment-->
   <string name="i_history_start_label">@string/start_label</string>
   <string name="i_history_destination_label">@string/destination_label</string>
+  <string name="f_history_empty">Sem pesquisas recentes</string>
+  <string name="f_history_feature_on_development">Desculpe, esta funcionalidade esta\nem desenvolvimento</string>
 
   <!-- Search Activity-->
   <string name="a_search_header">Buscar</string>
   <string name="a_search_location">Usar minha localização</string>
-  <string name="f_info_calculate">Calcular</string>
-  <string name="f_search_permission_permanently_denied">Ops! Permissão negada permanentemente, por favor altere nas configs!</string>
-
-  <string name="f_search_permission_denied">Ops! Nós precisamos da permissão para acessar sua localização!</string>
+  <string name="a_search_permission_permanently_denied">Ops! Permissão negada permanentemente, por favor altere nas configs!</string>
+  <string name="a_search_permission_denied">Ops! Nós precisamos da permissão para acessar sua localização!</string>
 
 </resources>
