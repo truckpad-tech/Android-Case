@@ -18,6 +18,14 @@ class SearchActivityViewModel(private val repository: SearchApiRepository) : Vie
   val searchResult: LiveData<List<Place>>
     get() = searchResultLiveData
 
+  private val errorMutableLiveData = MutableLiveData<Boolean>()
+  val error: LiveData<Boolean>
+    get() = errorMutableLiveData
+
+  private val loadingMutableLiveData = MutableLiveData<Boolean>()
+  val loading: LiveData<Boolean>
+    get() = loadingMutableLiveData
+
   private val _searchInput = BehaviorSubject.create<String>()
   private val searchInput = _searchInput.toFlowable(BackpressureStrategy.LATEST)
 
@@ -30,6 +38,9 @@ class SearchActivityViewModel(private val repository: SearchApiRepository) : Vie
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe { executeSearch(it) }
     )
+
+    errorMutableLiveData.value = false
+    loadingMutableLiveData.value = false
   }
 
   fun search(query: String) {
@@ -52,9 +63,18 @@ class SearchActivityViewModel(private val repository: SearchApiRepository) : Vie
       repository.searchLocation(query)
         .subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe { responseList ->
+        .doOnSubscribe {
+          loadingMutableLiveData.value = true
+          errorMutableLiveData.value = false
+        }
+        .doAfterTerminate { loadingMutableLiveData.value = false }
+        .subscribe({ responseList ->
+          loadingMutableLiveData.value = false
           searchResultLiveData.value = responseList
           lastSearch = query
-        }) //TODO Implement an error scenario
+        }, {
+          lastSearch = ""
+          errorMutableLiveData.value = true
+        }))
   }
 }

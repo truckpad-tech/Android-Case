@@ -8,9 +8,14 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.location.Location
+import android.net.Uri
+import android.os.Build.VERSION
+import android.os.Build.VERSION_CODES
 import android.os.Bundle
+import android.provider.Settings
 import android.text.Editable
 import android.text.TextWatcher
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.checkSelfPermission
@@ -20,13 +25,16 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.DividerItemDecoration.VERTICAL
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.location.LocationServices
+import com.google.android.material.snackbar.Snackbar
 import dev.khalil.freightpad.R
 import dev.khalil.freightpad.common.ADDRESS_KEY
 import dev.khalil.freightpad.common.LAT_KEY
 import dev.khalil.freightpad.common.LONG_KEY
 import dev.khalil.freightpad.databinding.ActivitySearchBinding
 import dev.khalil.freightpad.di.searchModule
+import dev.khalil.freightpad.extensions.gone
 import dev.khalil.freightpad.extensions.viewModel
+import dev.khalil.freightpad.extensions.visible
 import dev.khalil.freightpad.model.Place
 import dev.khalil.freightpad.ui.adapter.LocationsAdapter
 import dev.khalil.freightpad.ui.adapter.holder.LocationClick
@@ -77,7 +85,27 @@ class SearchActivity : AppCompatActivity(), KodeinAware, LocationClick {
       LOCATION_PERMISSION_CODE -> {
         if (grantResults.isNotEmpty() && grantResults.first() == PERMISSION_GRANTED) {
           getUserLocation()
-        } //TODO Create a response if permission was denied
+        } else {
+          val showRationale = if (VERSION.SDK_INT >= VERSION_CODES.M) {
+            shouldShowRequestPermissionRationale(permissions.first())
+          } else {
+            false
+          }
+          if (!showRationale) {
+            Snackbar.make(
+              findViewById(android.R.id.content),
+              R.string.f_search_permission_permanently_denied,
+              Snackbar.LENGTH_LONG)
+              .setAction(R.string.ok) {
+                startActivity(Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS).apply {
+                  this.data = Uri.fromParts("package", packageName, null)
+                })
+              }
+              .show()
+          } else {
+            Toast.makeText(this, R.string.f_search_permission_denied, Toast.LENGTH_LONG).show()
+          }
+        }
       }
     }
     super.onRequestPermissionsResult(requestCode, permissions, grantResults)
@@ -98,6 +126,9 @@ class SearchActivity : AppCompatActivity(), KodeinAware, LocationClick {
 
     }
     binding.placeEdit.addTextChangedListener(searchTextWatcher())
+    binding.errorView.errorButton.setOnClickListener {
+      searchViewModel.search(binding.placeEdit.text.toString())
+    }
   }
 
   private fun initView() {
@@ -114,7 +145,24 @@ class SearchActivity : AppCompatActivity(), KodeinAware, LocationClick {
 
   private fun initObservers() {
     searchViewModel.searchResult.observe(this, Observer { locationList ->
+      binding.placesRecycler.visible()
       locationsAdapter.updateLocations(locationList)
+    })
+    searchViewModel.loading.observe(this, Observer { isVisible ->
+      if (isVisible) {
+        binding.progressBar.visible()
+        binding.placesRecycler.gone()
+      } else {
+        binding.progressBar.gone()
+      }
+    })
+    searchViewModel.error.observe(this, Observer { isError ->
+      if (isError) {
+        binding.placesRecycler.gone()
+        binding.errorView.root.visible()
+      } else {
+        binding.errorView.root.gone()
+      }
     })
   }
 

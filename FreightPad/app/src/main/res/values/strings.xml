@@ -3,6 +3,8 @@
   <string name="start_label">Start</string>
   <string name="destination_label">Destination</string>
   <string name="your_location">Your location</string>
+  <string name="error_description">Ops! Sorry, something went wrong!</string>
+  <string name="error_try_again">Try Again</string>
 
   <!-- Calculator Fragment-->
   <string name="calculator_title">Freight Route Calculator</string>
@@ -57,6 +59,8 @@
   <string name="a_search_header">Search</string>
   <string name="a_search_location">My Location</string>
   <string name="f_info_calculate">Calculate</string>
-
+  <string name="f_search_permission_permanently_denied">Ops! Permission permanently denied, please change on app settings!</string>
+  <string name="ok">OK</string>
+  <string name="f_search_permission_denied">Ops! We need permission to access your location!</string>
 
 </resources>
