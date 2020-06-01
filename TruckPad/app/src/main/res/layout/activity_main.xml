@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryBackground"
+    tools:context="com.correia.app_truckpad.activities.MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/linearLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="80dp"
+        android:text="TruckPad"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+        android:textColor="@color/colorFormBackground" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="391dp"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/colorFormBackground"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <EditText
+            android:id="@+id/eTpoint1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
+            android:hint="Cidade de Origem"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/eTpoint2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
+            android:hint="Cidade de Destino"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/eTeixos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
+            android:hint="Nº de Eixos"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/eTConsumo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:drawablePadding="5dp"
+            android:hint="Consumo"
+            android:inputType="number" />
+
+        <EditText
+            android:id="@+id/eTPrecoDiesel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="5dp"
+            android:hint="Preço do Diesel"
+            android:inputType="text|numberDecimal"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btlocalizacao"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonSignUp"
+        android:layout_below="@+id/linearLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="122dp"
+        android:layout_marginBottom="23dp"
+        android:background="@color/colorPrimaryDark"
+        android:text="Localizacao"
+        android:textAllCaps="false"
+        android:textColor="@color/colorFormBackground" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/btlocalizacao"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="73dp" />
+
+</RelativeLayout>
