@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0277BD"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context=".ActivityNewTruck">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:scrollbarFadeDuration="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/layoutBack"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical|center">
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@drawable/ic_arrow_left_white"/>
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:padding="16dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/textTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Meu Truck"
+                    android:textColor="#FFFFFF"
+                    android:textSize="30dp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/textSubTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Inclua as informações de acordo com o seu caminhão."
+                    android:textColor="#FFFFFF"
+                    android:textSize="10dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="16dp"
+                android:padding="16dp"
+                android:background="@drawable/background_truck"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="Nome do caminhão"
+                    android:textStyle="bold"
+                    android:textSize="16dp"/>
+                <EditText
+                    android:id="@+id/editName"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:padding="10dp"
+                    android:background="@drawable/bakcground_input_truck"
+                    android:inputType="text"
+                    android:textColor="#616161"
+                    android:textStyle="bold"
+                    android:textColorHint="#BDBDBD"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="Qtd. Eixos"
+                    android:textStyle="bold"
+                    android:textSize="16dp"/>
+                <EditText
+                    android:id="@+id/editEixos"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:padding="10dp"
+                    android:background="@drawable/bakcground_input_truck"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:textColor="#616161"
+                    android:textStyle="bold"
+                    android:textColorHint="#BDBDBD"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:text="Consumo médio em Km/L"
+                    android:textStyle="bold"
+                    android:textSize="16dp"/>
+                <EditText
+                    android:id="@+id/editFuel"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:padding="10dp"
+                    android:background="@drawable/bakcground_input_truck"
+                    android:inputType="numberDecimal"
+                    android:maxLength="5"
+                    android:textColor="#616161"
+                    android:textStyle="bold"
+                    android:textColorHint="#BDBDBD"/>
+
+                <Button
+                    android:id="@+id/buttonSave"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="60dp"
+                    android:background="@drawable/background_button_next_border_blue"
+                    android:text="Salvar"
+                    android:textColor="#313131"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/layoutAdd"
+        android:layout_width="match_parent"
+        android:layout_height="1dp">
+        <include
+            layout="@layout/layout_add_truck"/>
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

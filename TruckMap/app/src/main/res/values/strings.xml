@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Truck Map</string>
+    <string name="access_token">pk.eyJ1IjoiZ3VlZGhlciIsImEiOiJja2FweGphcHUwNDR1MnNzMDNnc3RidWN2In0.DoYIHTVBU_FhfltUFulC0Q</string>
+    <string name="access_token_google">AIzaSyBzDwljuBLem1XIIAF76yEOmd9pKt4O8f4</string>
+</resources>
