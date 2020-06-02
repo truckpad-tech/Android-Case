@@ -33,6 +33,9 @@ dependencies {
     implementation deps.android.app_compat
     implementation deps.android.constraint_layout
 
+    implementation deps.third_party.koin
+
+    testImplementation deps.test.koin_test
     testImplementation deps.test.junit
     androidTestImplementation deps.test.espresso
 }
