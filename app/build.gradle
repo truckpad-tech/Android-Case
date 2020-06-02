@@ -3,17 +3,17 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion config.version.target_sdk_version
+    buildToolsVersion config.version.build_tools_version
 
     defaultConfig {
         applicationId "com.jonas.truckpadchallenge"
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion config.version.min_sdk_version
+        targetSdkVersion config.version.target_sdk_version
+        versionCode config.version.version_code
+        versionName config.version.version_name
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner deps.test.test_inst_runner
     }
 
     buildTypes {
@@ -26,12 +26,13 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.0'
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+    implementation config.build.kotlin_plugin
+
+    implementation deps.android.core_ktx
+    implementation deps.android.app_compat
+    implementation deps.android.constraint_layout
+
+    testImplementation deps.test.junit
+    androidTestImplementation deps.test.espresso
 }
