@@ -38,11 +38,12 @@ dependencies {
     implementation deps.android.core_ktx
     implementation deps.android.app_compat
     implementation deps.android.constraint_layout
-    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
-    implementation 'com.google.android.gms:play-services-maps:17.0.0'
-    implementation 'com.google.android.libraries.places:places:2.3.0'
-    implementation 'com.google.android.gms:play-services-location:17.0.0'
-    implementation 'com.google.android.material:material:1.1.0'
+    implementation deps.android.coordinator_layout
+    implementation deps.android.material
+
+    implementation deps.android.play_services
+    implementation deps.android.places
+    implementation deps.android.location
 
     implementation deps.third_party.koin
 
