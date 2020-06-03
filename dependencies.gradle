@@ -13,6 +13,7 @@ def version = [
         material           : "1.1.0",
         play_services      : "17.0.0",
         places             : "2.3.0",
+        legacy             : "1.0.0",
 
         core_ktx           : "1.3.0",
         constraint_layout  : "1.1.3",
@@ -36,6 +37,7 @@ def android = [
         constraint_layout : "androidx.constraintlayout:constraintlayout:${version.constraint_layout}",
         coordinator_layout: "androidx.coordinatorlayout:coordinatorlayout:${version.coordinator_layout}",
         material          : "com.google.android.material:material:${version.material}",
+        support_legacy    : "androidx.legacy:legacy-support-v4:${version.legacy}",
 
         play_services     : "com.google.android.gms:play-services-maps:${version.play_services}",
         places            : "com.google.android.libraries.places:places:${version.places}",

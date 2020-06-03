@@ -50,6 +50,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         createLocationRequest()
         listenerUserLocation()
+        showFragmentOnBottomSheet()
     }
 
     public override fun onResume() {
@@ -155,6 +156,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 getUserLocation()
             }
         }
+    }
+
+    private fun showFragmentOnBottomSheet() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container_info_input, InfoInputFragment())
+            .addToBackStack(null)
+            .commit()
     }
 
     override fun onPause() {
