@@ -17,6 +17,12 @@ android {
     }
 
     buildTypes {
+        debug {
+            minifyEnabled false
+
+            it.buildConfigField "String", "GOOGLE_API_KEY", config_properties.googleApi
+            resValue "string", "GOOGLE_API_KEY", config_properties.googleApi
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
@@ -32,6 +38,12 @@ dependencies {
     implementation deps.android.core_ktx
     implementation deps.android.app_compat
     implementation deps.android.constraint_layout
+    implementation deps.android.coordinator_layout
+    implementation deps.android.material
+
+    implementation deps.android.play_services
+    implementation deps.android.places
+    implementation deps.android.location
 
     implementation deps.third_party.koin
 

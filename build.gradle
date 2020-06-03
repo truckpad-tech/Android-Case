@@ -1,6 +1,7 @@
 buildscript {
     apply from: "$rootDir/dependencies.gradle"
     apply from: "$rootDir/ktlint.gradle"
+    apply from: "$rootDir/configurations.gradle"
 
     repositories {
         google()

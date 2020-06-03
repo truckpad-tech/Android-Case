@@ -1,0 +1,13 @@
+def getStringFromPropertiesFile(property) {
+    return getStringFromFile('local.properties', property).toString()
+}
+
+def getStringFromFile(fileName, property) {
+    Properties props = new Properties()
+    props.load(project.rootProject.file(fileName).newDataInputStream())
+    return props[property].toString()
+}
+
+ext.config_properties = [
+        "googleApi": getStringFromPropertiesFile('google.api')
+]
