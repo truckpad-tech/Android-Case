@@ -47,6 +47,7 @@ dependencies {
     implementation deps.android.location
 
     implementation deps.third_party.koin
+    implementation deps.third_party.koin_view_model
 
     testImplementation deps.test.koin_test
     testImplementation deps.test.junit

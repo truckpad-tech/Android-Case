@@ -45,8 +45,9 @@ def android = [
 ]
 
 def third_party = [
-        ktlint: "com.pinterest:ktlint:${version.ktlint}",
-        koin  : "org.koin:koin-core:${version.koin}"
+        ktlint         : "com.pinterest:ktlint:${version.ktlint}",
+        koin           : "org.koin:koin-core:${version.koin}",
+        koin_view_model: "org.koin:koin-androidx-viewmodel:${version.koin}"
 ]
 
 def test = [
