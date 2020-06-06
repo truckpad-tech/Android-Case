@@ -21,7 +21,10 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/GOOGLE_API_KEY" />
 
-        <activity android:name="com.jonas.truckpadchallenge.maps.view.MapsActivity">
+        <activity
+            android:name="com.jonas.truckpadchallenge.maps.presentation.MapsActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
