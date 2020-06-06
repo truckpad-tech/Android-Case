@@ -1,4 +1,4 @@
-package com.jonas.truckpadchallenge.search.domain
+package com.jonas.truckpadchallenge.search.domain.entities
 
 data class Location(
     val latitude: Double? = 0.0,
