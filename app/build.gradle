@@ -28,6 +28,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
@@ -48,6 +57,13 @@ dependencies {
 
     implementation deps.third_party.koin
     implementation deps.third_party.koin_view_model
+
+    implementation deps.third_party.rx_java
+    implementation deps.third_party.rx_android
+
+    implementation deps.third_party.retrofit
+    implementation deps.third_party.retrofit_adapter
+    implementation deps.third_party.retrofit_converter_gson
 
     testImplementation deps.test.koin_test
     testImplementation deps.test.junit
