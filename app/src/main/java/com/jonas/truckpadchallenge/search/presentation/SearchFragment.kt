@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.annotation.IdRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.google.android.gms.common.api.Status
@@ -22,6 +22,8 @@ import com.jonas.truckpadchallenge.R
 import com.jonas.truckpadchallenge.core.utils.gone
 import com.jonas.truckpadchallenge.core.utils.visible
 import com.jonas.truckpadchallenge.maps.domain.LocationAddress
+import com.jonas.truckpadchallenge.maps.presentation.InfoInputFragment.Companion.REQUEST_KEY
+import com.jonas.truckpadchallenge.maps.presentation.InfoInputFragment.Companion.RESULT_INFO
 import com.jonas.truckpadchallenge.search.domain.PlaceType
 import com.jonas.truckpadchallenge.search.domain.PlaceType.DESTINATION
 import com.jonas.truckpadchallenge.search.domain.PlaceType.ORIGIN
@@ -126,7 +128,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun goToResult(searchResult: SearchResult) {
-        Toast.makeText(context, "Deu bom $searchResult", Toast.LENGTH_LONG).show()
+        parentFragmentManager.setFragmentResult(REQUEST_KEY, bundleOf(RESULT_INFO to searchResult))
     }
 
     private fun onError() {
