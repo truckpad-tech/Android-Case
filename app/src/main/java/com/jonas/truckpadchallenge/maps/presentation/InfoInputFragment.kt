@@ -1,4 +1,4 @@
-package com.jonas.truckpadchallenge.maps.view
+package com.jonas.truckpadchallenge.maps.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,7 +10,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.jonas.truckpadchallenge.R
 import com.jonas.truckpadchallenge.history.HistoryFragment
 import com.jonas.truckpadchallenge.result.ResultFragment
-import com.jonas.truckpadchallenge.search.SearchFragment
+import com.jonas.truckpadchallenge.search.presentation.SearchFragment
 import kotlinx.android.synthetic.main.fragment_info_input.view.bottom_navigation_info_input
 
 class InfoInputFragment : Fragment(), BottomNavigationView.OnNavigationItemSelectedListener {
