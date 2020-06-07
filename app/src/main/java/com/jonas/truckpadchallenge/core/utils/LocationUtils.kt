@@ -4,11 +4,10 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.location.Geocoder
 import android.location.Location
-import android.util.Log
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
-import com.jonas.truckpadchallenge.maps.domain.LatLng
-import com.jonas.truckpadchallenge.maps.domain.LocationAddress
+import com.jonas.truckpadchallenge.result.domain.LatLng
+import com.jonas.truckpadchallenge.result.domain.LocationAddress
 import io.reactivex.Maybe
 
 open class LocationUtils(context: Context) {

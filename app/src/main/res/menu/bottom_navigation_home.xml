@@ -10,10 +10,6 @@
         android:title="Pesquisar"
         app:showAsAction="always" />
     <item
-        android:id="@+id/result"
-        android:title="Resultado"
-        app:showAsAction="always" />
-    <item
         android:id="@+id/history"
         android:title="Histórico"
         app:showAsAction="always" />

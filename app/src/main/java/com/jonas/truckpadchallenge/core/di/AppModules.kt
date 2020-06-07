@@ -7,7 +7,7 @@ import com.jonas.truckpadchallenge.core.api.GeoApi
 import com.jonas.truckpadchallenge.core.api.GeoApi.Companion.BASE_URL_ROUTE
 import com.jonas.truckpadchallenge.core.utils.LocationUtils
 import com.jonas.truckpadchallenge.core.utils.NetworkUtils
-import com.jonas.truckpadchallenge.maps.presentation.MapsViewModel
+import com.jonas.truckpadchallenge.result.presentation.MapsViewModel
 import com.jonas.truckpadchallenge.search.data.CalculateRouteRepositoryImpl
 import com.jonas.truckpadchallenge.search.data.CalculateRouteRepository
 import com.jonas.truckpadchallenge.search.domain.CalculateRouteUseCase

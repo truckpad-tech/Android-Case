@@ -1,5 +1,7 @@
 package com.jonas.truckpadchallenge.search.domain.entities
 
+import java.io.Serializable
+
 data class SearchResult(
     val points: List<SearchRoutePoints>,
     val distance: Double,
@@ -23,9 +25,9 @@ data class SearchResult(
     val bulk: Double,
     val neogranel: Double,
     val dangerous: Double
-)
+) : Serializable
 
 data class SearchRoutePoints(
     val point: List<Double>,
     val provider: String
-)
+) : Serializable

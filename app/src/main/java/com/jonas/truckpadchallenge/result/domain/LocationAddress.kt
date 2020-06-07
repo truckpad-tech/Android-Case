@@ -1,4 +1,4 @@
-package com.jonas.truckpadchallenge.maps.domain
+package com.jonas.truckpadchallenge.result.domain
 
 
 data class LocationAddress(

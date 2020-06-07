@@ -1,4 +1,4 @@
-package com.jonas.truckpadchallenge.maps.presentation
+package com.jonas.truckpadchallenge.result.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
