@@ -31,7 +31,7 @@ class CalculateRouteRepositoryImpl(
                         else
                             Maybe.empty()
                     } else {
-                        Maybe.error(Throwable(""))
+                        Maybe.error(Throwable("Occurs an error"))
                     }
                 }
         } else {
