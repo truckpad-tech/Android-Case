@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.graphics.BitmapFactory
+import android.graphics.Color
 import android.location.Location
 import android.os.Build
 import android.os.Bundle
@@ -20,11 +21,14 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.maps.model.PolylineOptions
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.jonas.truckpadchallenge.R
 import com.jonas.truckpadchallenge.search.domain.entities.SearchResult
+import com.jonas.truckpadchallenge.search.domain.entities.SearchRoutePoints
 import kotlinx.android.synthetic.main.activity_maps.bottom_sheet_info_input
 import kotlinx.android.synthetic.main.activity_maps.map_fragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -53,10 +57,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         (map_fragment as SupportMapFragment).getMapAsync(this)
 
-        setupObservers()
         unpackBundle()
-        showFragmentOnBottomSheet()
+        setupObservers()
         listenerUserLocation()
+        showFragmentOnBottomSheet()
     }
 
     override fun onResume() {
@@ -72,16 +76,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun setupObservers() {
         viewModel.uiState.observe(this, Observer(::updateUI))
-    }
-
-    override fun onMapReady(googleMap: GoogleMap) {
-        maps = googleMap
-        getUserLocation()
-    }
-
-    private fun getUserLocation() {
-        if (checkLocationPermission()) viewModel.getCurrentLocation()
-        else requestPermissions()
     }
 
     private fun updateUI(state: MapsUiState) {
@@ -101,6 +95,17 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         TODO("Implements error state")
     }
 
+    override fun onMapReady(googleMap: GoogleMap) {
+        maps = googleMap
+        getUserLocation()
+        drawRoute()
+    }
+
+    private fun getUserLocation() {
+        if (checkLocationPermission()) viewModel.getCurrentLocation()
+        else requestPermissions()
+    }
+
     private fun placeMarkerOnMap(location: LatLng) {
         val markerOptions = MarkerOptions().position(location)
         markerOptions.icon(
@@ -118,10 +123,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 super.onLocationResult(location)
 
                 placeMarkerOnMap(
-                    LatLng(
-                        location.lastLocation.latitude,
-                        location.lastLocation.longitude
-                    )
+                    LatLng(location.lastLocation.latitude, location.lastLocation.longitude)
                 )
             }
         }
@@ -154,5 +156,28 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             .replace(R.id.container_info_input, ResultFragment.newInstance(searchResult))
             .addToBackStack(null)
             .commit()
+    }
+
+    private fun drawRoute() {
+        if (::searchResult.isInitialized) {
+            val route = searchResult.route[0]
+
+            val polylineOptions = PolylineOptions()
+                .width(12f)
+                .color(Color.RED)
+                .geodesic(true)
+            val bounds = LatLngBounds.Builder()
+
+            route.indices.forEach { index ->
+                val point = LatLng(route[index][1], route[index][0])
+                polylineOptions.add(point)
+                bounds.include(point)
+            }
+
+            maps.apply {
+                addPolyline(polylineOptions)
+                moveCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 48))
+            }
+        }
     }
 }
