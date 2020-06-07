@@ -15,6 +15,8 @@ class CalculateRouteUseCaseImpl(private val repository: CalculateRouteRepository
         return repository.calculateRoute(routeInfo)
             .flatMap { result ->
                 getPriceByType(result)
+            }.doOnError { error ->
+                Maybe.error<Throwable>(error)
             }
     }
 
@@ -22,6 +24,8 @@ class CalculateRouteUseCaseImpl(private val repository: CalculateRouteRepository
         return repository.calculatePriceByType(toAnttCalculation(routeResult))
             .flatMap { result ->
                 Maybe.just(toSearchResult(routeResult, result))
+            }.doOnError { error ->
+                Maybe.error<Throwable>(error)
             }
     }
 }
