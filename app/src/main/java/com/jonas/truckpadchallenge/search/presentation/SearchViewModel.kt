@@ -1,14 +1,13 @@
 package com.jonas.truckpadchallenge.search.presentation
 
 import android.location.Location
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.jonas.truckpadchallenge.core.utils.LocationUtils
 import com.jonas.truckpadchallenge.core.utils.observeOnMain
 import com.jonas.truckpadchallenge.core.utils.subscribeOnIO
-import com.jonas.truckpadchallenge.maps.domain.LocationAddress
+import com.jonas.truckpadchallenge.result.domain.LocationAddress
 import com.jonas.truckpadchallenge.search.domain.CalculateRouteUseCase
 import com.jonas.truckpadchallenge.search.domain.entities.RouteCalculationInfo
 import io.reactivex.disposables.CompositeDisposable

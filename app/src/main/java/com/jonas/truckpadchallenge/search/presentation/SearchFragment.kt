@@ -1,5 +1,10 @@
 package com.jonas.truckpadchallenge.search.presentation
 
+import android.Manifest.permission.ACCESS_FINE_LOCATION
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build.VERSION
+import android.os.Build.VERSION_CODES
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +12,8 @@ import android.view.ViewGroup
 import androidx.annotation.IdRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
-import androidx.core.os.bundleOf
+import androidx.core.app.ActivityCompat.checkSelfPermission
+import androidx.core.app.ActivityCompat.requestPermissions
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.google.android.gms.common.api.Status
@@ -21,9 +27,9 @@ import com.google.android.libraries.places.widget.listener.PlaceSelectionListene
 import com.jonas.truckpadchallenge.R
 import com.jonas.truckpadchallenge.core.utils.gone
 import com.jonas.truckpadchallenge.core.utils.visible
-import com.jonas.truckpadchallenge.maps.domain.LocationAddress
-import com.jonas.truckpadchallenge.maps.presentation.InfoInputFragment.Companion.REQUEST_KEY
-import com.jonas.truckpadchallenge.maps.presentation.InfoInputFragment.Companion.RESULT_INFO
+import com.jonas.truckpadchallenge.home.HomeActivity.Companion.LOCATION_REQUEST_CODE
+import com.jonas.truckpadchallenge.result.domain.LocationAddress
+import com.jonas.truckpadchallenge.result.presentation.MapsActivity
 import com.jonas.truckpadchallenge.search.domain.PlaceType
 import com.jonas.truckpadchallenge.search.domain.PlaceType.DESTINATION
 import com.jonas.truckpadchallenge.search.domain.PlaceType.ORIGIN
@@ -52,8 +58,8 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? = inflater.inflate(R.layout.fragment_search, container, false)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         setupObservers()
 
@@ -105,7 +111,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun onClickGetCurrentLocation() {
-        viewModel.getUserLocation()
+        if (checkLocationPermission()) requestPermissions() else viewModel.getUserLocation()
     }
 
     private fun currentUserLocation(location: LocationAddress) {
@@ -128,7 +134,9 @@ class SearchFragment : Fragment() {
     }
 
     private fun goToResult(searchResult: SearchResult) {
-        parentFragmentManager.setFragmentResult(REQUEST_KEY, bundleOf(RESULT_INFO to searchResult))
+        context?.let {
+            startActivity(Intent(MapsActivity.getIntent(it, searchResult)))
+        }
     }
 
     private fun onError() {
@@ -166,4 +174,16 @@ class SearchFragment : Fragment() {
 
     private fun getLocation(place: Place) =
         Location(place.latLng?.latitude, place.latLng?.longitude)
+
+    private fun checkLocationPermission() =
+        context?.let {
+            checkSelfPermission(it, ACCESS_FINE_LOCATION)
+        } != PackageManager.PERMISSION_GRANTED
+
+    private fun requestPermissions() {
+        if (VERSION.SDK_INT >= VERSION_CODES.M)
+            activity?.let {
+                requestPermissions(it, arrayOf(ACCESS_FINE_LOCATION), LOCATION_REQUEST_CODE)
+            }
+    }
 }

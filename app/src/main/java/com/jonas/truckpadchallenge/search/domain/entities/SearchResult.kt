@@ -30,4 +30,4 @@ data class SearchResult(
 data class SearchRoutePoints(
     val point: List<Double>,
     val provider: String
-)
+) : Serializable

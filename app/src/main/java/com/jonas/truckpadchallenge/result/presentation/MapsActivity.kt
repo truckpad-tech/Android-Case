@@ -1,6 +1,8 @@
-package com.jonas.truckpadchallenge.maps.presentation
+package com.jonas.truckpadchallenge.result.presentation
 
 import android.Manifest.permission.ACCESS_FINE_LOCATION
+import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager.PERMISSION_GRANTED
 import android.graphics.BitmapFactory
 import android.location.Location
@@ -20,7 +22,10 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.jonas.truckpadchallenge.R
+import com.jonas.truckpadchallenge.search.domain.entities.SearchResult
+import kotlinx.android.synthetic.main.activity_maps.bottom_sheet_info_input
 import kotlinx.android.synthetic.main.activity_maps.map_fragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -30,9 +35,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var maps: GoogleMap
     private lateinit var marker: Marker
+    private lateinit var searchResult: SearchResult
 
     companion object {
         private const val LOCATION_REQUEST_CODE = 1
+        const val SEARCH_RESULT = "SearchResult"
+
+        fun getIntent(context: Context, searchResult: SearchResult) =
+            Intent(context, MapsActivity::class.java).also {
+                it.putExtra(SEARCH_RESULT, searchResult)
+            }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,8 +54,20 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         (map_fragment as SupportMapFragment).getMapAsync(this)
 
         setupObservers()
-        listenerUserLocation()
+        unpackBundle()
         showFragmentOnBottomSheet()
+        listenerUserLocation()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val behavior = BottomSheetBehavior.from(bottom_sheet_info_input)
+        behavior.state = BottomSheetBehavior.STATE_EXPANDED
+    }
+
+    private fun unpackBundle() {
+        searchResult = intent.getSerializableExtra(SEARCH_RESULT) as SearchResult
     }
 
     private fun setupObservers() {
@@ -94,7 +118,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 super.onLocationResult(location)
 
                 placeMarkerOnMap(
-                    LatLng(location.lastLocation.latitude, location.lastLocation.longitude)
+                    LatLng(
+                        location.lastLocation.latitude,
+                        location.lastLocation.longitude
+                    )
                 )
             }
         }
@@ -124,7 +151,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private fun showFragmentOnBottomSheet() {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.container_info_input, InfoInputFragment())
+            .replace(R.id.container_info_input, ResultFragment.newInstance(searchResult))
             .addToBackStack(null)
             .commit()
     }
