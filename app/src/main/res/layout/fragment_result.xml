@@ -214,7 +214,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/medium_large_margin"
-            android:layout_marginEnd="@dimen/small_margin"
             android:text="@string/result_item_fuel_usage"
             app:layout_constraintEnd_toStartOf="@id/guideline_center"
             app:layout_constraintStart_toStartOf="parent"
@@ -256,6 +255,31 @@
             app:layout_constraintTop_toBottomOf="@+id/fuel_usage"
             tools:text="value" />
 
+        <TextView
+            android:id="@+id/total_hint"
+            style="@style/TextViewResult"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/medium_large_margin"
+            android:layout_marginEnd="@dimen/small_margin"
+            android:text="@string/result_item_total"
+            android:textAlignment="textEnd"
+            app:layout_constraintEnd_toStartOf="@id/guideline_center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/total" />
+
+        <TextView
+            android:id="@+id/total"
+            style="@style/TextViewValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_margin"
+            android:layout_marginEnd="@dimen/medium_large_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/guideline_center"
+            app:layout_constraintTop_toBottomOf="@+id/fuel_cost"
+            tools:text="value" />
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -266,7 +290,7 @@
             app:cardElevation="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fuel_cost">
+            app:layout_constraintTop_toBottomOf="@+id/total">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraint_card"

@@ -37,11 +37,12 @@
     <string name="result_item_tolls_cost">Valor pedágios</string>
     <string name="result_item_fuel_usage">Combustível necessário</string>
     <string name="result_item_fuel_cost">Total combustível</string>
+    <string name="result_item_total">Total</string>
     <string name="result_antt_prices_title">Preços Mínimos - ANTT</string>
     <string name="result_item_refrigerated">Frigorificada</string>
     <string name="result_item_general">Geral</string>
     <string name="result_item_bulk">Granel</string>
     <string name="result_item_neogranel">Neogranel</string>
     <string name="result_item_dangerous">Perigosa</string>
-    <string name="result_tolls">+ Pedágio</string>
+    <string name="result_tolls"> + Pedágio</string>
 </resources>

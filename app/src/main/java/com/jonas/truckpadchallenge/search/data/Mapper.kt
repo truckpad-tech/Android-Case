@@ -37,7 +37,7 @@ object Mapper {
             routeInfo?.fuelUsage ?: 0.0,
             routeInfo?.fuelUsageUnit ?: "-",
             routeInfo?.fuelCost ?: 0.0,
-            routeInfo?.fuelUsageUnit ?: "-",
+            routeInfo?.fuelCostUnit ?: "-",
             routeInfo?.totalCost ?: 0.0
         )
 
@@ -59,7 +59,7 @@ object Mapper {
         routeResult.fuelUsage,
         routeResult.fuelUsageUnit,
         routeResult.fuelCost,
-        routeResult.fuelUsageUnit,
+        routeResult.fuelCostUnit,
         routeResult.totalCost,
         anttResult.refrigerated,
         anttResult.general,
