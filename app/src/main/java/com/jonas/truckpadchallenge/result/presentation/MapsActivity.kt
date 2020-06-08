@@ -9,6 +9,7 @@ import android.graphics.Color
 import android.location.Location
 import android.os.Build
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.checkSelfPermission
 import androidx.core.app.ActivityCompat.requestPermissions
@@ -20,7 +21,6 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
-import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.PolylineOptions
 import com.jonas.truckpadchallenge.R
@@ -68,7 +68,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun updateUI(state: MapsUiState) {
         when (state) {
             is MapsUiState.Success -> onSuccess(state.location)
-            is MapsUiState.Error -> onError(state.error)
+            is MapsUiState.Error -> onError()
         }
     }
 
@@ -76,14 +76,14 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         placeMarkerOnMap(LatLng(location.latitude, location.longitude))
     }
 
-    private fun onError(error: Throwable) {
-        TODO("Implements error state")
+    private fun onError() {
+        showErrorDialog()
     }
 
     override fun onMapReady(googleMap: GoogleMap) {
         maps = googleMap
-//        getUserLocation()
-//        drawRoute()
+        getUserLocation()
+        drawRoute()
     }
 
     private fun getUserLocation() {
@@ -130,10 +130,23 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 addPolyline(polylineOptions)
                 moveCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 48))
 
-                addMarker(MarkerOptions().position(origin).title("Origem"))
-                addMarker(MarkerOptions().position(destination).title("Destino"))
+                addMarker(
+                    MarkerOptions().position(origin).title(getString(R.string.origin_point_title))
+                )
+                addMarker(
+                    MarkerOptions().position(destination)
+                        .title(getString(R.string.destination_point_title))
+                )
             }
         }
+    }
+
+    private fun showErrorDialog() {
+        AlertDialog.Builder(this).apply {
+            setTitle(R.string.attention_dialog_title)
+            setMessage(R.string.generic_error_dialog_message)
+            setPositiveButton(android.R.string.ok, null)
+        }.create().show()
     }
 
     private fun checkLocationPermission() =
@@ -153,7 +166,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         when (requestCode) {
             LOCATION_REQUEST_CODE -> if (grantResults.isNotEmpty() && grantResults[0] == PERMISSION_GRANTED) {
-//                getUserLocation()
+                getUserLocation()
             }
         }
     }
