@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: "kotlin-kapt"
 
 android {
     compileSdkVersion config.version.target_sdk_version
@@ -33,10 +34,6 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
 }
 
 dependencies {
@@ -64,6 +61,10 @@ dependencies {
     implementation deps.third_party.retrofit
     implementation deps.third_party.retrofit_adapter
     implementation deps.third_party.retrofit_converter_gson
+
+    implementation "androidx.room:room-runtime:2.2.5"
+    implementation "androidx.room:room-rxjava2:2.2.5"
+    kapt "androidx.room:room-compiler:2.2.5"
 
     testImplementation deps.test.koin_test
     testImplementation deps.test.junit

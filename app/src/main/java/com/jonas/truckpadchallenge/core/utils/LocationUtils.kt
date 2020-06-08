@@ -28,11 +28,11 @@ open class LocationUtils(context: Context) {
         }
     }
 
-    open fun getLocationByLatLng(location: Location): LocationAddress {
-        val result = geocode.getFromLocation(location.latitude, location.longitude, 1)
+    open fun getLocationByLatLng(latitude: Double, longitude: Double): LocationAddress {
+        val result = geocode.getFromLocation(latitude, longitude, 1)
         return LocationAddress(
             result[0].getAddressLine(0) ?: "",
-            LatLng(location.latitude, location.longitude)
+            LatLng(latitude, longitude)
         )
     }
 }

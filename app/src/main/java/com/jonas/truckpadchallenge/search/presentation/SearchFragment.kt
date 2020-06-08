@@ -37,6 +37,7 @@ import com.jonas.truckpadchallenge.search.domain.entities.Location
 import com.jonas.truckpadchallenge.search.domain.entities.Points
 import com.jonas.truckpadchallenge.search.domain.entities.RouteCalculationInfo
 import com.jonas.truckpadchallenge.search.domain.entities.SearchResult
+import com.jonas.truckpadchallenge.search.presentation.SearchUiState.Empty
 import com.jonas.truckpadchallenge.search.presentation.SearchUiState.Error
 import com.jonas.truckpadchallenge.search.presentation.SearchUiState.Loading
 import com.jonas.truckpadchallenge.search.presentation.SearchUiState.Success
@@ -88,9 +89,20 @@ class SearchFragment : Fragment() {
         toggleLoading(false)
         when (state) {
             Loading -> toggleLoading(true)
+            Empty -> clearFields()
             is Success -> goToResult(state.searchResult)
             is Error -> onError()
         }
+    }
+
+    private fun clearFields() {
+        val origin = childFragmentManager.findFragmentById(R.id.origin_place_fragment) as AutocompleteSupportFragment
+        val destination = childFragmentManager.findFragmentById(R.id.destination_place_fragment) as AutocompleteSupportFragment
+
+        origin.setText("")
+        destination.setText("")
+        consumption_edit_text.setText("")
+        fuel_edit_text.setText("")
     }
 
     private fun placeSelectedListener(fragment: AutocompleteSupportFragment, type: PlaceType) {
@@ -134,9 +146,8 @@ class SearchFragment : Fragment() {
     }
 
     private fun goToResult(searchResult: SearchResult) {
-        context?.let {
-            startActivity(Intent(MapsActivity.getIntent(it, searchResult)))
-        }
+        context?.let { startActivity(Intent(MapsActivity.getIntent(it, searchResult))) }
+        viewModel.onPause()
     }
 
     private fun onError() {

@@ -55,8 +55,12 @@ class SearchViewModel(
     }
 
     private fun getAddressByLatLng(location: Location) {
-        val result = locationUtils.getLocationByLatLng(location)
+        val result = locationUtils.getLocationByLatLng(location.latitude, location.longitude)
         _userLocation.value = result
+    }
+
+    fun onPause(){
+        _uiState.toEmpty()
     }
 
     override fun onCleared() {
