@@ -10,6 +10,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -19,15 +20,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Calcular rota"
-            android:textSize="24sp" />
+            android:text="@string/search_title"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
 
     <TextView
         android:id="@+id/origin_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Origem"
+        android:layout_marginStart="@dimen/medium_large_margin"
+        android:layout_marginTop="@dimen/medium_margin"
+        android:layout_marginEnd="@dimen/medium_large_margin"
+        android:text="@string/origin_point_title"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
@@ -36,46 +43,70 @@
         android:id="@+id/origin_place_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/medium_large_margin"
+        android:layout_marginEnd="@dimen/medium_large_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/origin_title">
 
-        <fragment
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/origin_place_fragment"
             android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            tools:layout_height="50dp" />
     </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/get_current_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/medium_large_margin"
+        android:layout_marginTop="@dimen/small_margin"
+        android:text="@string/search_current_location_button"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/origin_place_card"
+        app:layout_constraintTop_toBottomOf="@+id/origin_place_card" />
 
     <TextView
         android:id="@+id/destination_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Destino"
+        android:layout_marginStart="@dimen/medium_large_margin"
+        android:layout_marginTop="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/medium_large_margin"
+        android:text="@string/destination_point_title"
         android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/origin_place_card" />
+        app:layout_constraintTop_toBottomOf="@+id/get_current_location" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/destination_place_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/medium_large_margin"
+        android:layout_marginEnd="@dimen/medium_large_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/destination_title">
 
-        <fragment
+        <androidx.fragment.app.FragmentContainerView
             android:id="@+id/destination_place_fragment"
             android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            tools:layout_height="50dp" />
     </androidx.cardview.widget.CardView>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/consumption_input_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Consumo médio de combustível Km/L"
+        android:layout_marginStart="@dimen/medium_large_margin"
+        android:layout_marginTop="@dimen/medium_margin"
+        android:layout_marginEnd="@dimen/medium_large_margin"
+        android:hint="@string/search_average_consumption_hint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/destination_place_card">
@@ -92,7 +123,10 @@
         android:id="@+id/fuel_input_layout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Preço do diesel"
+        android:layout_marginStart="@dimen/medium_large_margin"
+        android:layout_marginTop="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/medium_large_margin"
+        android:hint="@string/search_fuel_price"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/consumption_input_layout">
@@ -107,49 +141,58 @@
 
     <TextView
         android:id="@+id/axis_title"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Número de eixos"
+        android:layout_marginStart="@dimen/medium_large_margin"
+        android:layout_marginTop="@dimen/medium_margin"
+        android:layout_marginEnd="@dimen/medium_large_margin"
+        android:text="@string/search_choose_axis"
+        android:textAlignment="center"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/linear_layout_axis"
-        app:layout_constraintEnd_toStartOf="@+id/linear_layout_axis"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linear_layout_axis" />
-
-    <LinearLayout
-        android:id="@+id/linear_layout_axis"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fuel_input_layout">
+        app:layout_constraintTop_toBottomOf="@+id/fuel_input_layout" />
 
-        <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            app:srcCompat="@drawable/ic_less" />
+    <SeekBar
+        android:id="@+id/seekbar_axis"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/medium_large_margin"
+        android:layout_marginTop="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/medium_large_margin"
+        android:max="9"
+        android:min="2"
+        android:progress="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/axis_title"
+        tools:ignore="UnusedAttribute" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="4" />
-
-        <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            app:srcCompat="@drawable/ic_plus" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/axis_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/medium_large_margin"
+        android:layout_marginTop="@dimen/small_margin"
+        android:layout_marginEnd="@dimen/medium_large_margin"
+        android:text="@string/axis_value"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekbar_axis" />
 
     <Button
         android:id="@+id/calculate_route_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Calcular rota"
+        android:layout_marginStart="@dimen/medium_large_margin"
+        android:layout_marginTop="@dimen/medium_margin"
+        android:layout_marginEnd="@dimen/medium_large_margin"
+        android:background="@color/colorPrimary"
+        android:text="@string/search_calculate_route_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linear_layout_axis" />
+        app:layout_constraintTop_toBottomOf="@+id/axis_value" />
 
     <ProgressBar
         android:id="@+id/search_progress_bar"
@@ -161,13 +204,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
-
-    <Button
-        android:id="@+id/get_current_location"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Localização atual"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calculate_route_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -77,9 +77,9 @@ object Mapper {
     )
 
     fun toAnttCalculation(routeResult: RouteResult) = AnttCalculation(
-        2, //TODO review it
+        2,
         routeResult.distance,
-        false //TODO review it
+        false
     )
 
     private fun toRoutePoints(routePoints: List<Points>?): List<RoutePoints> {
