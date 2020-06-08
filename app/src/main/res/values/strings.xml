@@ -1,3 +1,47 @@
 <resources>
     <string name="app_name">TruckPad</string>
+
+    <string name="attention_dialog_title">Atenção</string>
+
+    <string name="generic_error_dialog_message">Ocorreu um erro, por favor, tente novamente</string>
+    <string name="search_error_dialog_message">Você precisa preencher todos os campos</string>
+
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+
+    <string name="origin_point_title">Origem</string>
+    <string name="destination_point_title">Destino</string>
+
+    <string name="search_title">Calcular rota</string>
+    <string name="search_average_consumption_hint">Consumo médio de combustível Km/L</string>
+    <string name="search_fuel_price">Preço do diesel</string>
+    <string name="search_number_of_axes">Número de eixos (De 2 à 9)</string>
+    <string name="search_calculate_route_button">Calcular</string>
+    <string name="search_current_location_button">Localização atual</string>
+    <string name="search_choose_axis">Escolha o número de eixos do seu caminhão</string>
+    <string name="axis_value">2 eixos</string>
+
+    <string name="history_title">Histórico de buscas</string>
+    <string name="history_empty_title">Nenhum resultado de busca salvo, comece pesquisando uma rota na aba anterior</string>
+
+    <string name="bottom_navigation_search_button">Pesquisar</string>
+    <string name="bottom_navigation_history_button">Histórico</string>
+
+    <string name="result_title">Resultado da busca</string>
+    <string name="result_item_origin">Origem</string>
+    <string name="result_item_destination">Destino</string>
+    <string name="result_item_distance">Distância</string>
+    <string name="result_item_duration">Duração</string>
+    <string name="result_item_has_tolls">Há pedágios</string>
+    <string name="result_item_tolls_count">Quantidade pedágios</string>
+    <string name="result_item_tolls_cost">Valor pedágios</string>
+    <string name="result_item_fuel_usage">Combustível necessário</string>
+    <string name="result_item_fuel_cost">Total combustível</string>
+    <string name="result_antt_prices_title">Preços Mínimos - ANTT</string>
+    <string name="result_item_refrigerated">Frigorificada</string>
+    <string name="result_item_general">Geral</string>
+    <string name="result_item_bulk">Granel</string>
+    <string name="result_item_neogranel">Neogranel</string>
+    <string name="result_item_dangerous">Perigosa</string>
+    <string name="result_tolls">+ Pedágio</string>
 </resources>
