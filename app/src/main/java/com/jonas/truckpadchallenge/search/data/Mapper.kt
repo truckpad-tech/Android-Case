@@ -4,14 +4,13 @@ import com.jonas.truckpadchallenge.search.data.request.AnttCalculation
 import com.jonas.truckpadchallenge.search.data.request.Places
 import com.jonas.truckpadchallenge.search.data.request.RouteCalculation
 import com.jonas.truckpadchallenge.search.data.response.AnttResponse
-import com.jonas.truckpadchallenge.search.data.response.RouteResponse
-import com.jonas.truckpadchallenge.search.domain.entities.RouteCalculationInfo
 import com.jonas.truckpadchallenge.search.data.response.Points
+import com.jonas.truckpadchallenge.search.data.response.RouteResponse
 import com.jonas.truckpadchallenge.search.domain.entities.AnttResult
+import com.jonas.truckpadchallenge.search.domain.entities.RouteCalculationInfo
 import com.jonas.truckpadchallenge.search.domain.entities.RoutePoints
 import com.jonas.truckpadchallenge.search.domain.entities.RouteResult
 import com.jonas.truckpadchallenge.search.domain.entities.SearchResult
-import com.jonas.truckpadchallenge.search.domain.entities.SearchRoutePoints
 
 object Mapper {
 
@@ -23,7 +22,7 @@ object Mapper {
 
     fun toRouteResult(routeInfo: RouteResponse?) =
         RouteResult(
-            listOf(RoutePoints(toDoubleList(routeInfo?.points), routeInfo?.provider ?: "")),
+            toRoutePoints(routeInfo?.points),
             routeInfo?.distance ?: 0.0,
             routeInfo?.distanceUnit ?: "-",
             routeInfo?.duration ?: 0,
@@ -43,12 +42,9 @@ object Mapper {
         )
 
     fun toSearchResult(routeResult: RouteResult, anttResult: AnttResult) = SearchResult(
-        listOf(
-            SearchRoutePoints(
-                routePointstoDoubleList(routeResult.points),
-                routeResult.provider
-            )
-        ),
+        0,
+        routeResult.points[0].point,
+        routeResult.points[1].point,
         routeResult.distance,
         routeResult.distanceUnit,
         routeResult.duration,
@@ -86,15 +82,11 @@ object Mapper {
         false //TODO review it
     )
 
-    private fun toDoubleList(points: List<Points>?): List<Double> {
-        val list = mutableListOf<Double>()
-        points?.forEach { response -> list += response.point }
-        return list
-    }
-
-    private fun routePointstoDoubleList(points: List<RoutePoints>?): List<Double> {
-        val list = mutableListOf<Double>()
-        points?.forEach { response -> list += response.point }
+    private fun toRoutePoints(routePoints: List<Points>?): List<RoutePoints> {
+        val list = mutableListOf<RoutePoints>()
+        routePoints?.forEach { response ->
+            list.add(RoutePoints(response.point, response.provider))
+        }
         return list
     }
 }

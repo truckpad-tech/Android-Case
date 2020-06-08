@@ -1,9 +1,15 @@
 package com.jonas.truckpadchallenge.search.domain.entities
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.io.Serializable
 
+@Entity(tableName = "search_result")
 data class SearchResult(
-    val points: List<SearchRoutePoints>,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+    val originAddress: List<Double>,
+    val destinationAddress: List<Double>,
     val distance: Double,
     val distanceUnit: String,
     val duration: Int,
@@ -25,9 +31,4 @@ data class SearchResult(
     val bulk: Double,
     val neogranel: Double,
     val dangerous: Double
-) : Serializable
-
-data class SearchRoutePoints(
-    val point: List<Double>,
-    val provider: String
 ) : Serializable
