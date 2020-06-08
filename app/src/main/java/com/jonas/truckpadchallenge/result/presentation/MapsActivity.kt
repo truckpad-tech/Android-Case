@@ -82,8 +82,10 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         maps = googleMap
-        getUserLocation()
-        drawRoute()
+        maps.setOnMapLoadedCallback {
+            getUserLocation()
+            drawRoute()
+        }
     }
 
     private fun getUserLocation() {
@@ -128,15 +130,11 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
             maps.apply {
                 addPolyline(polylineOptions)
-                moveCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 48))
 
-                addMarker(
-                    MarkerOptions().position(origin).title(getString(R.string.origin_point_title))
-                )
-                addMarker(
-                    MarkerOptions().position(destination)
-                        .title(getString(R.string.destination_point_title))
-                )
+                animateCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 48))
+
+                addMarker(MarkerOptions().position(origin).title(getString(R.string.origin_point_title)))
+                addMarker(MarkerOptions().position(destination).title(getString(R.string.destination_point_title)))
             }
         }
     }
