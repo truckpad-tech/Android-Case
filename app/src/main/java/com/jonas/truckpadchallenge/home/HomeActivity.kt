@@ -12,7 +12,7 @@ import androidx.core.app.ActivityCompat.requestPermissions
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.jonas.truckpadchallenge.R
-import com.jonas.truckpadchallenge.history.HistoryFragment
+import com.jonas.truckpadchallenge.history.presentation.HistoryFragment
 import com.jonas.truckpadchallenge.search.presentation.SearchFragment
 import kotlinx.android.synthetic.main.activity_home.bottom_navigation_home
 

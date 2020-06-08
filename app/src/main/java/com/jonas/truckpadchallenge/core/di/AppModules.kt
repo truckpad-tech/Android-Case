@@ -5,11 +5,15 @@ import com.jonas.truckpadchallenge.core.api.AnttApi
 import com.jonas.truckpadchallenge.core.api.AnttApi.Companion.BASE_URL_ANTT
 import com.jonas.truckpadchallenge.core.api.GeoApi
 import com.jonas.truckpadchallenge.core.api.GeoApi.Companion.BASE_URL_ROUTE
+import com.jonas.truckpadchallenge.core.data.database.AppDatabase
 import com.jonas.truckpadchallenge.core.utils.LocationUtils
 import com.jonas.truckpadchallenge.core.utils.NetworkUtils
+import com.jonas.truckpadchallenge.history.data.HistoryRepository
+import com.jonas.truckpadchallenge.history.data.HistoryRepositoryImpl
+import com.jonas.truckpadchallenge.history.presentation.HistoryViewModel
 import com.jonas.truckpadchallenge.result.presentation.MapsViewModel
-import com.jonas.truckpadchallenge.search.data.CalculateRouteRepositoryImpl
 import com.jonas.truckpadchallenge.search.data.CalculateRouteRepository
+import com.jonas.truckpadchallenge.search.data.CalculateRouteRepositoryImpl
 import com.jonas.truckpadchallenge.search.domain.CalculateRouteUseCase
 import com.jonas.truckpadchallenge.search.domain.CalculateRouteUseCaseImpl
 import com.jonas.truckpadchallenge.search.presentation.SearchViewModel
@@ -31,10 +35,15 @@ val networkModule = module {
 val dataModule = module {
     single { LocationUtils(get()) }
     single<CalculateRouteRepository> { CalculateRouteRepositoryImpl(get(), get(), get()) }
+
+    single { AppDatabase.getAppDataBase(get()) }
+    single { get<AppDatabase>().historyDao() }
+
+    single<HistoryRepository> { HistoryRepositoryImpl(get()) }
 }
 
 val domainModule = module {
-    single<CalculateRouteUseCase> { CalculateRouteUseCaseImpl(get()) }
+    single<CalculateRouteUseCase> { CalculateRouteUseCaseImpl(get(), get()) }
 }
 
 val presentationModule = module {
@@ -42,6 +51,7 @@ val presentationModule = module {
 
     viewModel { MapsViewModel(get()) }
     viewModel { SearchViewModel(get(), get()) }
+    viewModel { HistoryViewModel(get()) }
 }
 
 fun provideRetrofitGeo(okHttpClient: OkHttpClient): GeoApi {
