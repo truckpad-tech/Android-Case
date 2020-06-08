@@ -1,5 +1,6 @@
 package com.jonas.truckpadchallenge.history.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,6 +16,7 @@ import com.jonas.truckpadchallenge.history.presentation.HistoryUiState.Empty
 import com.jonas.truckpadchallenge.history.presentation.HistoryUiState.Error
 import com.jonas.truckpadchallenge.history.presentation.HistoryUiState.Loading
 import com.jonas.truckpadchallenge.history.presentation.HistoryUiState.Success
+import com.jonas.truckpadchallenge.result.presentation.MapsActivity
 import com.jonas.truckpadchallenge.search.domain.entities.SearchResult
 import kotlinx.android.synthetic.main.fragment_history.empty_history_text_view
 import kotlinx.android.synthetic.main.fragment_history.history_progress_bar
@@ -55,7 +57,7 @@ class HistoryFragment : Fragment() {
             is Loading -> toggleLoading(true)
             is Empty -> onEmpty()
             is Success -> onSuccess(state.listSearchResult)
-            is Error -> onError(state.error)
+            is Error -> onError()
         }
     }
 
@@ -72,14 +74,20 @@ class HistoryFragment : Fragment() {
         empty_history_text_view.gone()
         history_recycler.apply {
             visible()
-            adapter = HistoryAdapter(list)
+            adapter = HistoryAdapter(list, ::onClickItemList)
         }
     }
 
-    private fun onError(throwable: Throwable) {
+    private fun onError() {
         empty_history_text_view.gone()
         history_recycler.gone()
         showAlertDialog()
+    }
+
+    private fun onClickItemList(searchResult: SearchResult) {
+        activity?.let {
+            startActivity(Intent(MapsActivity.getIntent(it, searchResult)))
+        }
     }
 
     private fun showAlertDialog() {
