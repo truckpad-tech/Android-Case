@@ -7,7 +7,6 @@ import com.jonas.truckpadchallenge.search.domain.CalculateRouteUseCase
 import com.jonas.truckpadchallenge.search.domain.entities.Points
 import com.jonas.truckpadchallenge.search.domain.entities.RouteCalculationInfo
 import com.jonas.truckpadchallenge.search.domain.entities.SearchResult
-import com.jonas.truckpadchallenge.search.domain.entities.SearchRoutePoints
 import com.jonas.truckpadchallenge.search.presentation.SearchUiState.Error
 import com.jonas.truckpadchallenge.search.presentation.SearchUiState.Success
 import io.mockk.every
@@ -64,7 +63,9 @@ class SearchViewModelTest : RxUnitTest() {
     )
 
     private fun getSearchResult() = SearchResult(
-        listOf(SearchRoutePoints(listOf(), "")),
+        1,
+        listOf(),
+        listOf(),
         0.0,
         "",
         0,

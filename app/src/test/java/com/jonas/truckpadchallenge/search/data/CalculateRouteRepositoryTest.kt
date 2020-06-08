@@ -121,7 +121,7 @@ class CalculateRouteRepositoryTest : BaseNetworkTest() {
     )
 
     private fun getRouteResult() = RouteResult(
-        listOf(RoutePoints(listOf(), "")),
+        listOf(),
         0.0,
         "-",
         0,
