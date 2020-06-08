@@ -13,8 +13,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.checkSelfPermission
 import androidx.core.app.ActivityCompat.requestPermissions
 import androidx.lifecycle.Observer
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationResult
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -25,12 +23,8 @@ import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.PolylineOptions
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.jonas.truckpadchallenge.R
 import com.jonas.truckpadchallenge.search.domain.entities.SearchResult
-import com.jonas.truckpadchallenge.search.domain.entities.SearchRoutePoints
-import kotlinx.android.synthetic.main.activity_maps.bottom_sheet_info_input
-import kotlinx.android.synthetic.main.activity_maps.map_fragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -38,7 +32,6 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private val viewModel: MapsViewModel by viewModel()
 
     private lateinit var maps: GoogleMap
-    private lateinit var marker: Marker
     private lateinit var searchResult: SearchResult
 
     companion object {
@@ -55,19 +48,13 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
 
-        (map_fragment as SupportMapFragment).getMapAsync(this)
+        val mapFragment = supportFragmentManager
+            .findFragmentById(R.id.map_fragment) as SupportMapFragment
+        mapFragment.getMapAsync(this)
 
         unpackBundle()
         setupObservers()
-        listenerUserLocation()
         showFragmentOnBottomSheet()
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        val behavior = BottomSheetBehavior.from(bottom_sheet_info_input)
-        behavior.state = BottomSheetBehavior.STATE_EXPANDED
     }
 
     private fun unpackBundle() {
@@ -86,9 +73,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     }
 
     private fun onSuccess(location: Location) {
-        val currentLatLng = LatLng(location.latitude, location.longitude)
-        placeMarkerOnMap(currentLatLng)
-        maps.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 12f))
+        placeMarkerOnMap(LatLng(location.latitude, location.longitude))
     }
 
     private fun onError(error: Throwable) {
@@ -97,8 +82,8 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     override fun onMapReady(googleMap: GoogleMap) {
         maps = googleMap
-        getUserLocation()
-        drawRoute()
+//        getUserLocation()
+//        drawRoute()
     }
 
     private fun getUserLocation() {
@@ -113,18 +98,40 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
                 BitmapFactory.decodeResource(resources, R.drawable.ic_truck_pin)
             )
         )
-        if (::marker.isInitialized) marker.remove()
-        marker = maps.addMarker(markerOptions)
+        maps.addMarker(markerOptions)
     }
 
-    private fun listenerUserLocation() {
-        object : LocationCallback() {
-            override fun onLocationResult(location: LocationResult) {
-                super.onLocationResult(location)
+    private fun showFragmentOnBottomSheet() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container_info_input, ResultFragment.newInstance(searchResult))
+            .addToBackStack(null)
+            .commit()
+    }
 
-                placeMarkerOnMap(
-                    LatLng(location.lastLocation.latitude, location.lastLocation.longitude)
-                )
+    private fun drawRoute() {
+        if (::searchResult.isInitialized) {
+            val route = searchResult.route[0]
+            val bounds = LatLngBounds.Builder()
+            val polylineOptions = PolylineOptions()
+                .width(12f)
+                .color(Color.RED)
+                .geodesic(true)
+
+            route.indices.forEach { index ->
+                val point = LatLng(route[index][1], route[index][0])
+                polylineOptions.add(point)
+                bounds.include(point)
+            }
+
+            val origin = LatLng(route[0][1], route[0][0])
+            val destination = LatLng(route[route.lastIndex][1], route[route.lastIndex][0])
+
+            maps.apply {
+                addPolyline(polylineOptions)
+                moveCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 48))
+
+                addMarker(MarkerOptions().position(origin).title("Origem"))
+                addMarker(MarkerOptions().position(destination).title("Destino"))
             }
         }
     }
@@ -146,37 +153,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
         when (requestCode) {
             LOCATION_REQUEST_CODE -> if (grantResults.isNotEmpty() && grantResults[0] == PERMISSION_GRANTED) {
-                getUserLocation()
-            }
-        }
-    }
-
-    private fun showFragmentOnBottomSheet() {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.container_info_input, ResultFragment.newInstance(searchResult))
-            .addToBackStack(null)
-            .commit()
-    }
-
-    private fun drawRoute() {
-        if (::searchResult.isInitialized) {
-            val route = searchResult.route[0]
-
-            val polylineOptions = PolylineOptions()
-                .width(12f)
-                .color(Color.RED)
-                .geodesic(true)
-            val bounds = LatLngBounds.Builder()
-
-            route.indices.forEach { index ->
-                val point = LatLng(route[index][1], route[index][0])
-                polylineOptions.add(point)
-                bounds.include(point)
-            }
-
-            maps.apply {
-                addPolyline(polylineOptions)
-                moveCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 48))
+//                getUserLocation()
             }
         }
     }

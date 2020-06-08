@@ -12,6 +12,7 @@ import com.jonas.truckpadchallenge.search.domain.entities.SearchResult
 import kotlinx.android.synthetic.main.activity_result.bulk
 import kotlinx.android.synthetic.main.activity_result.cached
 import kotlinx.android.synthetic.main.activity_result.dangerous
+import kotlinx.android.synthetic.main.activity_result.destination
 import kotlinx.android.synthetic.main.activity_result.distance
 import kotlinx.android.synthetic.main.activity_result.distance_unit
 import kotlinx.android.synthetic.main.activity_result.duration
@@ -24,6 +25,7 @@ import kotlinx.android.synthetic.main.activity_result.general
 import kotlinx.android.synthetic.main.activity_result.group_result
 import kotlinx.android.synthetic.main.activity_result.has_tolls
 import kotlinx.android.synthetic.main.activity_result.neogranel
+import kotlinx.android.synthetic.main.activity_result.origin
 import kotlinx.android.synthetic.main.activity_result.provider
 import kotlinx.android.synthetic.main.activity_result.refrigerated
 import kotlinx.android.synthetic.main.activity_result.toll_cost
@@ -58,6 +60,8 @@ class ResultFragment : Fragment() {
     private fun showResultInfo() {
         group_result.visible()
 
+        origin.text = searchResult.originAddress.toString()
+        destination.text = searchResult.destinationAddress.toString()
         distance.text = searchResult.distance.toString()
         distance_unit.text = searchResult.distanceUnit
         duration.text = searchResult.duration.toString()
