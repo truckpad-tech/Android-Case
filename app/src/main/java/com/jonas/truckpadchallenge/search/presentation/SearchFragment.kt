@@ -172,6 +172,7 @@ class SearchFragment : Fragment() {
 
     private fun onError() {
         showAlertDialog(R.string.generic_error_dialog_message)
+        viewModel.onPause()
     }
 
     private fun showAlertDialog(@StringRes message: Int) {
