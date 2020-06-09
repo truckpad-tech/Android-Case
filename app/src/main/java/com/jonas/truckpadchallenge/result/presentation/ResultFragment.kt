@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.jonas.truckpadchallenge.R
+import com.jonas.truckpadchallenge.core.utils.LocationUtils
 import com.jonas.truckpadchallenge.core.utils.gone
 import com.jonas.truckpadchallenge.core.utils.visible
 import com.jonas.truckpadchallenge.result.presentation.MapsActivity.Companion.SEARCH_RESULT
@@ -56,8 +57,8 @@ class ResultFragment : Fragment() {
         val costUnit = searchResult.fuelCostUnit
         val tollsString = getString(R.string.result_tolls)
 
-        origin.text = searchResult.originAddress.toString()
-        destination.text = searchResult.destinationAddress.toString()
+        origin.text = getAddressFromLocation(searchResult.originAddress)
+        destination.text = getAddressFromLocation(searchResult.destinationAddress)
         distance.text = searchResult.distance.toString().plus(" " + searchResult.distanceUnit)
         duration.text = searchResult.duration.toString().plus(" " + searchResult.durationUnit)
         fuel_usage.text = searchResult.fuelUsage.toString().plus(" " + searchResult.fuelUsageUnit)
@@ -79,5 +80,17 @@ class ResultFragment : Fragment() {
             group_toll.gone()
             has_tolls.text = getString(R.string.no)
         }
+    }
+
+    private fun getAddressFromLocation(location: List<Double>): String {
+        context?.let {
+            val locationAddress = LocationUtils(it).getLocationByLatLng(
+                latitude = location[1],
+                longitude = location[0]
+            )
+
+            return locationAddress.address
+        }
+        return ""
     }
 }
