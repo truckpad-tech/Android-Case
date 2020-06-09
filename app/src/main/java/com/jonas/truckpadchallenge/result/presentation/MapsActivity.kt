@@ -9,6 +9,8 @@ import android.graphics.Color
 import android.location.Location
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.checkSelfPermission
@@ -23,8 +25,10 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.PolylineOptions
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.jonas.truckpadchallenge.R
 import com.jonas.truckpadchallenge.search.domain.entities.SearchResult
+import kotlinx.android.synthetic.main.activity_maps.bottom_sheet_info_input
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
@@ -55,6 +59,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         unpackBundle()
         setupObservers()
         showFragmentOnBottomSheet()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        Handler().postDelayed({
+            val behavior = BottomSheetBehavior.from(bottom_sheet_info_input)
+            behavior.state = BottomSheetBehavior.STATE_EXPANDED
+        }, 3000)
     }
 
     private fun unpackBundle() {
@@ -106,35 +119,44 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun showFragmentOnBottomSheet() {
         supportFragmentManager.beginTransaction()
             .replace(R.id.container_info_input, ResultFragment.newInstance(searchResult))
-            .addToBackStack(null)
             .commit()
     }
 
     private fun drawRoute() {
         if (::searchResult.isInitialized) {
-            val route = searchResult.route[0]
-            val bounds = LatLngBounds.Builder()
-            val polylineOptions = PolylineOptions()
-                .width(12f)
-                .color(Color.RED)
-                .geodesic(true)
+            if (searchResult.route.isNotEmpty()) {
+                val route = searchResult.route[0]
+                val bounds = LatLngBounds.Builder()
+                val polylineOptions = PolylineOptions()
+                    .width(12f)
+                    .color(Color.RED)
+                    .geodesic(true)
 
-            route.indices.forEach { index ->
-                val point = LatLng(route[index][1], route[index][0])
-                polylineOptions.add(point)
-                bounds.include(point)
-            }
+                route.indices.forEach { index ->
+                    val point = LatLng(route[index][1], route[index][0])
+                    polylineOptions.add(point)
+                    bounds.include(point)
+                }
 
-            val origin = LatLng(route[0][1], route[0][0])
-            val destination = LatLng(route[route.lastIndex][1], route[route.lastIndex][0])
+                val origin = LatLng(route[0][1], route[0][0])
+                val destination = LatLng(route[route.lastIndex][1], route[route.lastIndex][0])
 
-            maps.apply {
-                addPolyline(polylineOptions)
+                maps.apply {
+                    addPolyline(polylineOptions)
 
-                animateCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 48))
+                    animateCamera(CameraUpdateFactory.newLatLngBounds(bounds.build(), 48))
 
-                addMarker(MarkerOptions().position(origin).title(getString(R.string.origin_point_title)))
-                addMarker(MarkerOptions().position(destination).title(getString(R.string.destination_point_title)))
+                    addMarker(
+                        MarkerOptions().position(origin)
+                            .title(getString(R.string.origin_point_title))
+                    )
+                    addMarker(
+                        MarkerOptions().position(destination)
+                            .title(getString(R.string.destination_point_title))
+                    )
+                }
+            } else {
+                showErrorDialog()
             }
         }
     }
@@ -166,6 +188,17 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
             LOCATION_REQUEST_CODE -> if (grantResults.isNotEmpty() && grantResults[0] == PERMISSION_GRANTED) {
                 getUserLocation()
             }
+        }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val behavior = BottomSheetBehavior.from(bottom_sheet_info_input as View)
+
+        if (behavior.state == BottomSheetBehavior.STATE_EXPANDED) {
+            behavior.state = BottomSheetBehavior.STATE_COLLAPSED
+        } else {
+            finish()
         }
     }
 }
