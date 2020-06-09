@@ -37,7 +37,7 @@ object Mapper {
             routeInfo?.fuelUsage ?: 0.0,
             routeInfo?.fuelUsageUnit ?: "-",
             routeInfo?.fuelCost ?: 0.0,
-            routeInfo?.fuelUsageUnit ?: "-",
+            routeInfo?.fuelCostUnit ?: "-",
             routeInfo?.totalCost ?: 0.0
         )
 
@@ -59,7 +59,7 @@ object Mapper {
         routeResult.fuelUsage,
         routeResult.fuelUsageUnit,
         routeResult.fuelCost,
-        routeResult.fuelUsageUnit,
+        routeResult.fuelCostUnit,
         routeResult.totalCost,
         anttResult.refrigerated,
         anttResult.general,
@@ -77,9 +77,9 @@ object Mapper {
     )
 
     fun toAnttCalculation(routeResult: RouteResult) = AnttCalculation(
-        2, //TODO review it
+        2,
         routeResult.distance,
-        false //TODO review it
+        false
     )
 
     private fun toRoutePoints(routePoints: List<Points>?): List<RoutePoints> {

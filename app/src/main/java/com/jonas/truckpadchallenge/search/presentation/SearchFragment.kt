@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SeekBar
 import androidx.annotation.IdRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
@@ -41,11 +42,13 @@ import com.jonas.truckpadchallenge.search.presentation.SearchUiState.Empty
 import com.jonas.truckpadchallenge.search.presentation.SearchUiState.Error
 import com.jonas.truckpadchallenge.search.presentation.SearchUiState.Loading
 import com.jonas.truckpadchallenge.search.presentation.SearchUiState.Success
+import kotlinx.android.synthetic.main.fragment_search.axis_value
 import kotlinx.android.synthetic.main.fragment_search.calculate_route_button
 import kotlinx.android.synthetic.main.fragment_search.consumption_edit_text
 import kotlinx.android.synthetic.main.fragment_search.fuel_edit_text
 import kotlinx.android.synthetic.main.fragment_search.get_current_location
 import kotlinx.android.synthetic.main.fragment_search.search_progress_bar
+import kotlinx.android.synthetic.main.fragment_search.seekbar_axis
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchFragment : Fragment() {
@@ -66,6 +69,7 @@ class SearchFragment : Fragment() {
 
         setupAutoCompleteFragment(R.id.origin_place_fragment, ORIGIN)
         setupAutoCompleteFragment(R.id.destination_place_fragment, DESTINATION)
+        setupSeekBar()
 
         get_current_location.setOnClickListener { onClickGetCurrentLocation() }
         calculate_route_button.setOnClickListener { onClickCalculateRoute() }
@@ -85,6 +89,22 @@ class SearchFragment : Fragment() {
         }
     }
 
+    private fun setupSeekBar() {
+        seekbar_axis.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seekBar: SeekBar, i: Int, b: Boolean) {
+                axis_value.text = "$i eixos"
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar) {
+
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar) {
+
+            }
+        })
+    }
+
     private fun updateUI(state: SearchUiState) {
         toggleLoading(false)
         when (state) {
@@ -96,8 +116,10 @@ class SearchFragment : Fragment() {
     }
 
     private fun clearFields() {
-        val origin = childFragmentManager.findFragmentById(R.id.origin_place_fragment) as AutocompleteSupportFragment
-        val destination = childFragmentManager.findFragmentById(R.id.destination_place_fragment) as AutocompleteSupportFragment
+        val origin =
+            childFragmentManager.findFragmentById(R.id.origin_place_fragment) as AutocompleteSupportFragment
+        val destination =
+            childFragmentManager.findFragmentById(R.id.destination_place_fragment) as AutocompleteSupportFragment
 
         origin.setText("")
         destination.setText("")
@@ -116,7 +138,9 @@ class SearchFragment : Fragment() {
                 }
 
                 override fun onError(status: Status) {
-                    onError()
+                    if (!status.isCanceled) {
+                        onError()
+                    }
                 }
             }
         )
@@ -138,11 +162,7 @@ class SearchFragment : Fragment() {
     private fun onClickCalculateRoute() {
         if (checkLocationFieldsAreFilled()) {
             viewModel.calculateRoute(getRouteCalculationInfo())
-        } else showDialog(
-            "Atenção",
-            "Você precisa definir sua origem e destino",
-            android.R.string.ok
-        )
+        } else showAlertDialog(R.string.search_error_dialog_message)
     }
 
     private fun goToResult(searchResult: SearchResult) {
@@ -151,19 +171,16 @@ class SearchFragment : Fragment() {
     }
 
     private fun onError() {
-        showDialog(
-            "Atenção",
-            "Ocorreu um erro, por favor, tente novamente",
-            android.R.string.ok
-        )
+        showAlertDialog(R.string.generic_error_dialog_message)
+        viewModel.onPause()
     }
 
-    private fun showDialog(title: String, message: String, @StringRes buttonMessage: Int) {
+    private fun showAlertDialog(@StringRes message: Int) {
         activity?.let { fragment ->
             AlertDialog.Builder(fragment).apply {
-                setTitle(title)
+                setTitle(R.string.attention_dialog_title)
                 setMessage(message)
-                setPositiveButton(buttonMessage, null)
+                setPositiveButton(android.R.string.ok, null)
             }.create().show()
         }
     }
@@ -172,16 +189,22 @@ class SearchFragment : Fragment() {
         if (isShow) search_progress_bar.visible() else search_progress_bar.gone()
     }
 
-    private fun checkLocationFieldsAreFilled() =
-        ::originPlace.isInitialized && ::destinationPlace.isInitialized
-
     private fun getRouteCalculationInfo() =
         RouteCalculationInfo(
             Points(listOf(originPlace.longitude!!, originPlace.latitude!!)),
             Points(listOf(destinationPlace.longitude!!, destinationPlace.latitude!!)),
-            consumption_edit_text.text.toString().toDouble(),
-            fuel_edit_text.text.toString().toDouble()
+            getStringAndConvertToDouble(consumption_edit_text.text.toString()),
+            getStringAndConvertToDouble(fuel_edit_text.text.toString())
         )
+
+    private fun getStringAndConvertToDouble(string: String): Double {
+        return if (string.isEmpty()) 0.0 else string.toDouble()
+    }
+
+    private fun checkLocationFieldsAreFilled() =
+        ::originPlace.isInitialized && ::destinationPlace.isInitialized
+                && consumption_edit_text.text.toString().isNotEmpty()
+                && fuel_edit_text.toString().isNotEmpty()
 
     private fun getLocation(place: Place) =
         Location(place.latLng?.latitude, place.latLng?.longitude)

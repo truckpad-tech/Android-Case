@@ -6,31 +6,27 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.jonas.truckpadchallenge.R
+import com.jonas.truckpadchallenge.core.utils.LocationUtils
+import com.jonas.truckpadchallenge.core.utils.gone
 import com.jonas.truckpadchallenge.core.utils.visible
 import com.jonas.truckpadchallenge.result.presentation.MapsActivity.Companion.SEARCH_RESULT
 import com.jonas.truckpadchallenge.search.domain.entities.SearchResult
-import kotlinx.android.synthetic.main.activity_result.bulk
-import kotlinx.android.synthetic.main.activity_result.cached
-import kotlinx.android.synthetic.main.activity_result.dangerous
-import kotlinx.android.synthetic.main.activity_result.destination
-import kotlinx.android.synthetic.main.activity_result.distance
-import kotlinx.android.synthetic.main.activity_result.distance_unit
-import kotlinx.android.synthetic.main.activity_result.duration
-import kotlinx.android.synthetic.main.activity_result.duration_unit
-import kotlinx.android.synthetic.main.activity_result.fuel_cost
-import kotlinx.android.synthetic.main.activity_result.fuel_cost_unit
-import kotlinx.android.synthetic.main.activity_result.fuel_usage
-import kotlinx.android.synthetic.main.activity_result.fuel_usage_unit
-import kotlinx.android.synthetic.main.activity_result.general
-import kotlinx.android.synthetic.main.activity_result.group_result
-import kotlinx.android.synthetic.main.activity_result.has_tolls
-import kotlinx.android.synthetic.main.activity_result.neogranel
-import kotlinx.android.synthetic.main.activity_result.origin
-import kotlinx.android.synthetic.main.activity_result.provider
-import kotlinx.android.synthetic.main.activity_result.refrigerated
-import kotlinx.android.synthetic.main.activity_result.toll_cost
-import kotlinx.android.synthetic.main.activity_result.toll_cost_unit
-import kotlinx.android.synthetic.main.activity_result.toll_count
+import kotlinx.android.synthetic.main.fragment_result.bulk
+import kotlinx.android.synthetic.main.fragment_result.dangerous
+import kotlinx.android.synthetic.main.fragment_result.destination
+import kotlinx.android.synthetic.main.fragment_result.distance
+import kotlinx.android.synthetic.main.fragment_result.duration
+import kotlinx.android.synthetic.main.fragment_result.fuel_cost
+import kotlinx.android.synthetic.main.fragment_result.fuel_usage
+import kotlinx.android.synthetic.main.fragment_result.general
+import kotlinx.android.synthetic.main.fragment_result.group_toll
+import kotlinx.android.synthetic.main.fragment_result.has_tolls
+import kotlinx.android.synthetic.main.fragment_result.neogranel
+import kotlinx.android.synthetic.main.fragment_result.origin
+import kotlinx.android.synthetic.main.fragment_result.refrigerated
+import kotlinx.android.synthetic.main.fragment_result.toll_cost
+import kotlinx.android.synthetic.main.fragment_result.toll_count
+import kotlinx.android.synthetic.main.fragment_result.total
 
 class ResultFragment : Fragment() {
 
@@ -46,7 +42,7 @@ class ResultFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? = inflater.inflate(R.layout.activity_result, container, false)
+    ): View? = inflater.inflate(R.layout.fragment_result, container, false)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -58,28 +54,43 @@ class ResultFragment : Fragment() {
     }
 
     private fun showResultInfo() {
-        group_result.visible()
+        val costUnit = searchResult.fuelCostUnit
+        val tollsString = getString(R.string.result_tolls)
 
-        origin.text = searchResult.originAddress.toString()
-        destination.text = searchResult.destinationAddress.toString()
-        distance.text = searchResult.distance.toString()
-        distance_unit.text = searchResult.distanceUnit
-        duration.text = searchResult.duration.toString()
-        duration_unit.text = searchResult.durationUnit
-        has_tolls.text = searchResult.hasTolls.toString()
-        toll_count.text = searchResult.tollCount.toString()
-        toll_cost.text = searchResult.tollCost.toString()
-        toll_cost_unit.text = searchResult.tollCostUnit
-        provider.text = searchResult.provider
-        cached.text = searchResult.cached.toString()
-        fuel_usage.text = searchResult.fuelUsage.toString()
-        fuel_usage_unit.text = searchResult.fuelUsageUnit
-        fuel_cost.text = searchResult.fuelCost.toString()
-        fuel_cost_unit.text = searchResult.fuelCostUnit
-        refrigerated.text = searchResult.refrigerated.toString()
-        general.text = searchResult.general.toString()
-        bulk.text = searchResult.bulk.toString()
-        neogranel.text = searchResult.neogranel.toString()
-        dangerous.text = searchResult.dangerous.toString()
+        origin.text = getAddressFromLocation(searchResult.originAddress)
+        destination.text = getAddressFromLocation(searchResult.destinationAddress)
+        distance.text = searchResult.distance.toString().plus(" " + searchResult.distanceUnit)
+        duration.text = searchResult.duration.toString().plus(" " + searchResult.durationUnit)
+        fuel_usage.text = searchResult.fuelUsage.toString().plus(" " + searchResult.fuelUsageUnit)
+        fuel_cost.text = costUnit.plus(" " + searchResult.fuelCost.toString())
+        total.text = costUnit.plus(" " + searchResult.totalCost.toString())
+
+        refrigerated.text = costUnit.plus(" " + searchResult.refrigerated.toString()).plus(tollsString)
+        general.text = costUnit.plus(" " + searchResult.general.toString()).plus(tollsString)
+        bulk.text = costUnit.plus(" " + searchResult.bulk.toString()).plus(tollsString)
+        neogranel.text = costUnit.plus(" " + searchResult.neogranel.toString()).plus(tollsString)
+        dangerous.text = costUnit.plus(" " + searchResult.dangerous.toString()).plus(tollsString)
+
+        if (searchResult.hasTolls) {
+            group_toll.visible()
+            has_tolls.text = getString(R.string.yes)
+            toll_count.text = searchResult.tollCount.toString()
+            toll_cost.text = searchResult.tollCostUnit.plus(searchResult.tollCost.toString())
+        } else {
+            group_toll.gone()
+            has_tolls.text = getString(R.string.no)
+        }
+    }
+
+    private fun getAddressFromLocation(location: List<Double>): String {
+        context?.let {
+            val locationAddress = LocationUtils(it).getLocationByLatLng(
+                latitude = location[1],
+                longitude = location[0]
+            )
+
+            return locationAddress.address
+        }
+        return ""
     }
 }

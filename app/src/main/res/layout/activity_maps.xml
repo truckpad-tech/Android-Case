@@ -26,8 +26,10 @@
         android:id="@+id/bottom_sheet_info_input"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/medium_margin"
         app:behavior_hideable="false"
         app:behavior_peekHeight="60dp"
+        app:cardCornerRadius="20dp"
         app:cardElevation="5dp"
         app:layout_behavior="@string/bottom_sheet_behavior">
 

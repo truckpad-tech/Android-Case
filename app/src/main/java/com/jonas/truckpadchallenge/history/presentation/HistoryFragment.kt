@@ -1,19 +1,25 @@
 package com.jonas.truckpadchallenge.history.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jonas.truckpadchallenge.R
+import com.jonas.truckpadchallenge.core.utils.gone
+import com.jonas.truckpadchallenge.core.utils.visible
 import com.jonas.truckpadchallenge.history.presentation.HistoryUiState.Empty
 import com.jonas.truckpadchallenge.history.presentation.HistoryUiState.Error
 import com.jonas.truckpadchallenge.history.presentation.HistoryUiState.Loading
 import com.jonas.truckpadchallenge.history.presentation.HistoryUiState.Success
+import com.jonas.truckpadchallenge.result.presentation.MapsActivity
 import com.jonas.truckpadchallenge.search.domain.entities.SearchResult
+import kotlinx.android.synthetic.main.fragment_history.empty_history_text_view
+import kotlinx.android.synthetic.main.fragment_history.history_progress_bar
 import kotlinx.android.synthetic.main.fragment_history.history_recycler
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -51,23 +57,46 @@ class HistoryFragment : Fragment() {
             is Loading -> toggleLoading(true)
             is Empty -> onEmpty()
             is Success -> onSuccess(state.listSearchResult)
-            is Error -> onError(state.error)
+            is Error -> onError()
         }
     }
 
     private fun toggleLoading(isShow: Boolean) {
-        Toast.makeText(context, "Loading $isShow", Toast.LENGTH_SHORT).show()
+        if (isShow) history_progress_bar.visible() else history_progress_bar.gone()
     }
 
     private fun onEmpty() {
-        Toast.makeText(context, "Empty", Toast.LENGTH_SHORT).show()
+        history_recycler.gone()
+        empty_history_text_view.visible()
     }
 
     private fun onSuccess(list: List<SearchResult>) {
-        history_recycler.adapter = HistoryAdapter(list)
+        empty_history_text_view.gone()
+        history_recycler.apply {
+            visible()
+            adapter = HistoryAdapter(list, ::onClickItemList)
+        }
     }
 
-    private fun onError(throwable: Throwable) {
-        Toast.makeText(context, "Loading ${throwable.message}", Toast.LENGTH_SHORT).show()
+    private fun onError() {
+        empty_history_text_view.gone()
+        history_recycler.gone()
+        showAlertDialog()
+    }
+
+    private fun onClickItemList(searchResult: SearchResult) {
+        activity?.let {
+            startActivity(Intent(MapsActivity.getIntent(it, searchResult)))
+        }
+    }
+
+    private fun showAlertDialog() {
+        activity?.let {
+            AlertDialog.Builder(it).apply {
+                setTitle(R.string.attention_dialog_title)
+                setMessage(R.string.generic_error_dialog_message)
+                setPositiveButton(android.R.string.ok, null)
+            }.create().show()
+        }
     }
 }

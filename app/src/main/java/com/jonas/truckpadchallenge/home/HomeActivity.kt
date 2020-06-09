@@ -44,7 +44,6 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     private fun showFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.container_home, fragment)
-            .addToBackStack(null)
             .commit()
     }
 
@@ -54,6 +53,14 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     private fun requestPermissions() {
         if (VERSION.SDK_INT >= VERSION_CODES.M)
             requestPermissions(this, arrayOf(ACCESS_FINE_LOCATION), LOCATION_REQUEST_CODE)
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        if (bottom_navigation_home.selectedItemId != R.id.search)
+            bottom_navigation_home.selectedItemId = R.id.search
+        else finish()
     }
 
     companion object {
