@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.fragment.home.HomeFragment">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilOrigin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        app:endIconDrawable="@drawable/ic_search_black_24dp"
+        app:endIconMode="custom"
+        app:layout_constraintEnd_toStartOf="@+id/btnCurrentPlace"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etOrigin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_city_of_origin"
+            android:imeOptions="actionNext"
+            android:maxLines="1"
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilDestiny"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        app:endIconDrawable="@drawable/ic_search_black_24dp"
+        app:endIconMode="custom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilOrigin">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etDestiny"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_city_of_destiny"
+            android:imeOptions="actionNext"
+            android:maxLines="1"
+            android:singleLine="true" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilFuelPricePerLiter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/tilFuelConsumption"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilDestiny">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etFuelPricePerLiter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_fuel_price_per_liter"
+            android:imeOptions="actionNext"
+            android:inputType="numberDecimal" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilFuelConsumption"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tilFuelPricePerLiter"
+        app:layout_constraintTop_toBottomOf="@+id/tilDestiny">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etFuelConsumption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_consumption"
+            android:imeOptions="actionNext"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilAxisNumber"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/btnCalculate"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilFuelConsumption">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etAxisNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/num_eixos"
+            android:imeOptions="actionDone"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.kusu.loadingbutton.LoadingButton
+        android:id="@+id/btnCalculate"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/secondaryColor"
+        android:text="@string/calculate"
+        android:textColor="@color/quantum_white_100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tilAxisNumber"
+        app:layout_constraintTop_toTopOf="@+id/tilAxisNumber"
+        app:lb_buttonColor="@color/primaryColor"
+        app:lb_cornerRadius="0dp"
+        app:lb_isShadowEnable="true"
+        app:lb_shadowColor="@color/primaryColor"
+        app:lb_shadowHeight="5dp" />
+
+    <ImageButton
+        android:id="@+id/btnCurrentPlace"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@color/secondaryColor"
+        android:backgroundTint="@color/primaryColor"
+        android:src="@drawable/ic_my_location_black_24dp"
+        android:textColor="@color/quantum_white_100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tilOrigin" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="insert_a_value">Insira um valor</string>
+    <string name="no_calc_history">Não há histórico de cálculos de frete</string>
+    <string name="results">Resultados</string>
+</resources>

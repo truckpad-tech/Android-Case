@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_home">
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="br.com.viniciuscoscia.truckpad.ui.main.fragment.home.HomeFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_navigation_home_to_routeResultsFragment"
+            app:destination="@id/routeResultsFragment">
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_routes_history"
+        android:name="br.com.viniciuscoscia.truckpad.ui.main.fragment.routeshistory.RoutesHistoryFragment"
+        android:label="@string/title_search_history"
+        tools:layout="@layout/fragment_routes_history">
+        <action
+            android:id="@+id/action_navigation_routes_history_to_routeResultsFragment"
+            app:destination="@id/routeResultsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/routeResultsFragment"
+        android:name="br.com.viniciuscoscia.truckpad.ui.main.fragment.routeresultsfragment.RouteResultsFragment"
+        android:label="@string/results"
+        tools:layout="@layout/fragment_route_results">
+        <argument
+            android:name="CalcResults"
+            app:argType="br.com.viniciuscoscia.truckpad.domain.entities.CalcResults" />
+    </fragment>
+
+
+</navigation>

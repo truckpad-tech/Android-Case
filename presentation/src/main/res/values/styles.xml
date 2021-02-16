@@ -1,0 +1,19 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorAccent">@color/secondaryColor</item>
+    </style>
+
+    <style name="TruckpadLabelTheme">
+        <item name="android:textColor">@color/quantum_black_text</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="ResultsStyle">
+        <item name="android:layout_margin">@dimen/result_label_margin</item>
+    </style>
+</resources>

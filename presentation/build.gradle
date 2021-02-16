@@ -1,0 +1,63 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        applicationId "br.com.viniciuscoscia.truckpad"
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':domain')
+    implementation project(':data')
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.0"
+    implementation libs.appCompat
+    implementation libs.coreKt
+    implementation libs.material
+    implementation libs.constraintLayout
+    implementation libs.navigationFragment
+    implementation libs.navigationUi
+    implementation libs.lifecycleExtensions
+    implementation libs.navigationFragment
+    implementation libs.navigationUi
+    implementation libs.koin
+    implementation libs.koinViewModel
+    implementation libs.navigationUi
+    implementation libs.navigationFragment
+    implementation libs.coroutinesAndroid
+    implementation libs.googleMaps
+    implementation libs.googlePlaces
+    implementation libs.lifecycleViewModel
+    implementation libs.loadingButton
+    apply plugin: "androidx.navigation.safeargs.kotlin"
+    testImplementation libs.junit
+    androidTestImplementation libs.junitAndroid
+    androidTestImplementation libs.espresso
+}

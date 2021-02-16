@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.fragment.routeresultsfragment.RouteResultsFragment">
+
+    <TextView
+        android:id="@+id/lblOrigin"
+        style="@style/ResultsStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_origin"
+        android:theme="@style/TruckpadLabelTheme"
+        app:layout_constraintBottom_toBottomOf="@+id/tvOrigin"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/tvOrigin" />
+
+    <TextView
+        android:id="@+id/lblDestiny"
+        style="@style/ResultsStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_destiny"
+        android:theme="@style/TruckpadLabelTheme"
+        app:layout_constraintBottom_toBottomOf="@+id/tvDestiny"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toTopOf="@+id/tvDestiny" />
+
+    <TextView
+        android:id="@+id/lblAxis"
+        style="@style/ResultsStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/lbl_axis"
+        android:theme="@style/TruckpadLabelTheme"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/lblDestiny" />
+
+    <TextView
+        android:id="@+id/lblDistance"
+        style="@style/ResultsStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_distance"
+        android:theme="@style/TruckpadLabelTheme"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/lblAxis" />
+
+    <TextView
+        android:id="@+id/lblDuration"
+        style="@style/ResultsStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_duration"
+        android:theme="@style/TruckpadLabelTheme"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/lblDistance" />
+
+    <TextView
+        android:id="@+id/lblToll"
+        style="@style/ResultsStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_toll"
+        android:theme="@style/TruckpadLabelTheme"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/lblDuration" />
+
+    <TextView
+        android:id="@+id/lblNecessaryFuel"
+        style="@style/ResultsStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_necessary_fueld"
+        android:theme="@style/TruckpadLabelTheme"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/lblToll" />
+
+    <TextView
+        android:id="@+id/lblTotalFuelCost"
+        style="@style/ResultsStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_total_fuel"
+        android:theme="@style/TruckpadLabelTheme"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/lblNecessaryFuel" />
+
+    <TextView
+        android:id="@+id/lblTotal"
+        style="@style/ResultsStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_total"
+        android:theme="@style/TruckpadLabelTheme"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/lblTotalFuelCost" />
+
+    <TextView
+        android:id="@+id/lblTollValues"
+        style="@style/ResultsStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_toll_values"
+        android:theme="@style/TruckpadLabelTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lblTotal" />
+
+    <TextView
+        android:id="@+id/lblGeneral"
+        style="@style/ResultsStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_general"
+        android:theme="@style/TruckpadLabelTheme"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/lblTollValues" />
+
+    <TextView
+        android:id="@+id/tvGeneral"
+        style="@style/ResultsStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/lblGeneral"
+        app:layout_constraintStart_toEndOf="@id/lblGeneral"
+        app:layout_constraintTop_toTopOf="@+id/lblGeneral" />
+
+    <TextView
+        android:id="@+id/lblBulk"
+        style="@style/ResultsStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_bulk"
+        android:theme="@style/TruckpadLabelTheme"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/lblGeneral" />
+
+    <TextView
+        android:id="@+id/lblNeoBulk"
+        style="@style/ResultsStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_neobulk"
+        android:theme="@style/TruckpadLabelTheme"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/lblBulk" />
+
+    <TextView
+        android:id="@+id/lblFridged"
+        style="@style/ResultsStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_fridged"
+        android:theme="@style/TruckpadLabelTheme"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/lblNeoBulk" />
+
+    <TextView
+        android:id="@+id/tvFridged"
+        style="@style/ResultsStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/lblFridged"
+        app:layout_constraintStart_toEndOf="@id/lblFridged"
+        app:layout_constraintTop_toTopOf="@+id/lblFridged" />
+
+    <TextView
+        android:id="@+id/lblDangerous"
+        style="@style/ResultsStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_dangerous"
+        android:theme="@style/TruckpadLabelTheme"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintTop_toBottomOf="@+id/lblFridged" />
+
+    <TextView
+        android:id="@+id/tvDangerous"
+        style="@style/ResultsStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/lblDangerous"
+        app:layout_constraintStart_toEndOf="@id/lblDangerous"
+        app:layout_constraintTop_toTopOf="@+id/lblDangerous" />
+
+    <TextView
+        android:id="@+id/tvBulk"
+        style="@style/ResultsStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/lblBulk"
+        app:layout_constraintStart_toEndOf="@+id/lblBulk"
+        app:layout_constraintTop_toTopOf="@+id/lblBulk" />
+
+    <TextView
+        android:id="@+id/tvTotalFuelCost"
+        style="@style/ResultsStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/lblTotalFuelCost"
+        app:layout_constraintStart_toEndOf="@+id/lblTotalFuelCost"
+        app:layout_constraintTop_toTopOf="@+id/lblTotalFuelCost" />
+
+    <TextView
+        android:id="@+id/tvDistance"
+        style="@style/ResultsStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/lblDistance"
+        app:layout_constraintStart_toEndOf="@+id/lblDistance"
+        app:layout_constraintTop_toTopOf="@+id/lblDistance" />
+
+    <TextView
+        android:id="@+id/tvTotal"
+        style="@style/ResultsStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/lblTotal"
+        app:layout_constraintStart_toEndOf="@+id/lblTotal"
+        app:layout_constraintTop_toTopOf="@+id/lblTotal" />
+
+    <TextView
+        android:id="@+id/tvAxis"
+        style="@style/ResultsStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/lblAxis"
+        app:layout_constraintStart_toEndOf="@+id/lblAxis"
+        app:layout_constraintTop_toTopOf="@+id/lblAxis" />
+
+    <TextView
+        android:id="@+id/tvDestiny"
+        style="@style/ResultsStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:singleLine="false"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/lblDestiny"
+        app:layout_constraintTop_toBottomOf="@+id/tvOrigin" />
+
+    <TextView
+        android:id="@+id/tvNecessaryFuel"
+        style="@style/ResultsStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/lblNecessaryFuel"
+        app:layout_constraintStart_toEndOf="@+id/lblNecessaryFuel"
+        app:layout_constraintTop_toTopOf="@+id/lblNecessaryFuel" />
+
+    <TextView
+        android:id="@+id/tvToll"
+        style="@style/ResultsStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/lblToll"
+        app:layout_constraintStart_toEndOf="@+id/lblToll"
+        app:layout_constraintTop_toTopOf="@+id/lblToll" />
+
+    <TextView
+        android:id="@+id/tvOrigin"
+        style="@style/ResultsStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:singleLine="false"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/lblOrigin"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvDuration"
+        style="@style/ResultsStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/lblDuration"
+        app:layout_constraintStart_toEndOf="@+id/lblDuration"
+        app:layout_constraintTop_toTopOf="@+id/lblDuration" />
+
+    <TextView
+        android:id="@+id/tvNeobulk"
+        style="@style/ResultsStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="@+id/lblNeoBulk"
+        app:layout_constraintStart_toEndOf="@+id/lblNeoBulk"
+        app:layout_constraintTop_toTopOf="@+id/lblNeoBulk" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.49" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:elevation="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvOrigin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:singleLine="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/lblOrigin"
+            app:layout_constraintTop_toBottomOf="@+id/tvDateTime"
+            tools:text="Barueri - SP" />
+
+        <TextView
+            android:id="@+id/lblOrigin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/lbl_origin"
+            android:theme="@style/TruckpadLabelTheme"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/tvDateTime" />
+
+        <TextView
+            android:id="@+id/lblDestiny"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/lbl_destiny"
+            android:theme="@style/TruckpadLabelTheme"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/tvOrigin" />
+
+        <TextView
+            android:id="@+id/tvDestiny"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:singleLine="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/lblDestiny"
+            app:layout_constraintTop_toBottomOf="@+id/tvOrigin"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="São Roque - SP" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginStart="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvDestiny"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvOrigin"
+            app:srcCompat="@drawable/travel_icon" />
+
+        <TextView
+            android:id="@+id/tvDateTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:text="TextView"
+            android:textAlignment="textEnd"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
